@@ -46,6 +46,10 @@ Usually the published **`baseURL` did not match where the site is actually hoste
 
 `hugo server -D --baseURL "https://YOUR_USER.github.io/YOUR_REPO/"`
 
+## Site architecture and authoring
+
+See **[SITE_GUIDE.md](SITE_GUIDE.md)** for how Hugo + PaperMod + GitHub Pages fit together, and how to add posts and publish.
+
 ## Customize
 
 - **Site metadata and PaperMod options**: [hugo.toml](hugo.toml)
