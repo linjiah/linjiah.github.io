@@ -1,0 +1,72 @@
+/* Homepage inspired by https://karpathy.ai/ — long-form, minimal, document-like */
+
+.karpathy-wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 0 3rem;
+}
+
+.karpathy-home {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.karpathy-home h1 {
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.25rem 0 0.75rem;
+  line-height: 1.2;
+}
+
+.karpathy-home h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0 0 1rem;
+  opacity: 0.88;
+  line-height: 1.45;
+}
+
+.karpathy-home hr {
+  margin: 1.75rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  opacity: 0.85;
+}
+
+.karpathy-home h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.65rem;
+  letter-spacing: 0.01em;
+}
+
+.karpathy-home h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  margin: 2rem 0 0.5rem;
+  opacity: 0.9;
+}
+
+.karpathy-home p {
+  margin: 0.65rem 0;
+}
+
+.karpathy-home ul {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.karpathy-home li {
+  margin: 0.25rem 0;
+}
+
+.karpathy-home a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.karpathy-home strong {
+  font-weight: 600;
+}

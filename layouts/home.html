@@ -1,0 +1,11 @@
+{{- define "main" }}
+<div class="karpathy-wrap">
+  <article class="karpathy-home post-content md-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+      {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}
+      {{- .Content }}
+    {{- end }}
+  </article>
+</div>
+{{- end }}

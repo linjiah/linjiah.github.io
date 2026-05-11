@@ -1,0 +1,145 @@
+baseURL = "https://linjiah.github.io/"
+locale = "en-us"
+title = "Linjia Hu"
+theme = ["github.com/adityatelange/hugo-PaperMod"]
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+
+defaultContentLanguage = "en"
+
+mainSections = ["posts"]
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[module]
+[[module.imports]]
+path = "github.com/adityatelange/hugo-PaperMod"
+
+[menu]
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 10
+
+[[menu.main]]
+identifier = "resume"
+name = "Résumé"
+url = "/resume/"
+weight = 15
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 20
+
+[[menu.main]]
+identifier = "categories"
+name = "Categories"
+url = "/categories/"
+weight = 30
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 40
+
+[[menu.main]]
+identifier = "archive"
+name = "Archive"
+url = "/archive/"
+weight = 50
+
+[[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 60
+
+[params]
+env = "production"
+description = "AI Architect | Principal ML Engineer — agentic AI, ML platforms, LLM post-training. Intelligent Machines; ex-Microsoft Copilot & Azure AI, Amazon, Qualcomm."
+author = "Linjia Hu"
+keywords = ["AI architect", "machine learning", "agentic AI", "LLM alignment", "Copilot", "Azure", "ML platforms", "edge AI", "Intelligent Machines"]
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowToc = true
+ShowCodeCopyButtons = true
+ShowBreadCrumbs = true
+ShowPostNavLinks = true
+ShowRssButtonInSectionTermList = true
+ShowAllPagesInArchive = true
+ShowPageNums = true
+ShowWordCount = true
+comments = false
+
+[params.label]
+text = "Home"
+iconHeight = 35
+
+[params.profileMode]
+enabled = false
+title = "Linjia Hu"
+subtitle = "AI Architect | Principal ML Engineer — Intelligent Machines; ex–Microsoft Copilot & Azure AI, Amazon Go, Qualcomm. Ph.D. & M.S. CS (Michigan Tech)."
+imageUrl = "/images/avatar.jpg"
+imageWidth = 160
+imageHeight = 160
+imageTitle = "Linjia Hu"
+
+[[params.profileMode.buttons]]
+name = "Posts"
+url = "/posts/"
+
+[[params.profileMode.buttons]]
+name = "Categories"
+url = "/categories/"
+
+[[params.profileMode.buttons]]
+name = "Résumé"
+url = "/resume/"
+
+[[params.profileMode.buttons]]
+name = "GitHub"
+url = "https://github.com/linjiah"
+
+[[params.profileMode.buttons]]
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/linjia-hu-4a296818/"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/linjiah"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/linjia-hu-4a296818/"
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+threshold = 0.3
+distance = 1000
+minMatchCharLength = 0
+keys = ["title", "permalink", "summary", "content"]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]
+
+[markup.highlight]
+noClasses = false
