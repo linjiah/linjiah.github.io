@@ -1,160 +1,452 @@
-/* Homepage and post-index styling.
-   Shape borrowed from eugeneyan.com and lilianweng.github.io: a short intro,
-   then a dense dated index of writing. No CV on the landing page. */
+/* Landing page (layouts/home.html) and shared post styling.
+   Structure borrowed from creator-style personal sites: a hero with portrait and
+   calls to action, a numbered career timeline with headline numbers, a grid of
+   selected work, a writing list, short "positions", and a contact block.
+   Everything is keyed to PaperMod's CSS variables so dark mode just works. */
 
-.home-wrap {
-  max-width: var(--main-width);
+:root { --lp-width: 940px; }
+
+/* PaperMod caps .main at --main-width (720px) for posts; the landing page is the
+   one page that wants more room, so widen .main only when it contains .lp. */
+.main:has(> .lp) { max-width: calc(var(--lp-width) + var(--gap) * 2); }
+
+.lp {
+  --lp-measure: 640px;
+  --lp-accent: #0f766e;
+  --lp-accent-ink: #ffffff;
+  --lp-accent-soft: rgba(15, 118, 110, 0.10);
+  --lp-radius: 14px;
+  max-width: var(--lp-width);
   margin: 0 auto;
-  padding: 0 0 3rem;
+  padding: 0 0 4rem;
 }
 
-.home-content {
-  font-size: 1.02rem;
-  line-height: 1.75;
+[data-theme="dark"] .lp {
+  --lp-accent: #5eead4;
+  --lp-accent-ink: #062722;
+  --lp-accent-soft: rgba(94, 234, 212, 0.12);
 }
 
-.home-content h1 {
-  font-size: clamp(1.8rem, 4vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0.25rem 0 1rem;
-  line-height: 1.2;
-}
-
-.home-content p {
-  margin: 0 0 1rem;
-}
-
-.home-content a {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.home-content strong {
-  font-weight: 700;
-}
-
-/* Avatar, floated beside the intro */
-
-.home-content img.home-avatar {
-  float: right;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: 0.35rem 0 1rem 1.75rem;
-  object-fit: cover;
-}
-
-@media (max-width: 480px) {
-  .home-content img.home-avatar {
-    float: none;
-    display: block;
-    margin: 0 0 1rem;
-    width: 96px;
-    height: 96px;
-  }
-}
-
-/* --- Dated index of posts (homepage) --- */
-
-.home-writing {
-  margin-top: 2.5rem;
-  clear: both;
-}
-
-.home-writing h2 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0 0 0.5rem;
-  padding-bottom: 0.5rem;
+/* Sticky, translucent header so the anchor nav is always reachable */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--theme) 86%, transparent);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
-ul.post-index {
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.lp section { scroll-margin-top: calc(var(--header-height) + 1.25rem); }
+
+/* ---------- Shared pieces ---------- */
+
+.lp-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lp-accent);
+  margin: 0 0 0.75rem;
+}
+
+/* Editorial look: the big headings go serif, labels and UI stay sans */
+.lp h1, .lp h2 {
+  font-family: var(--font-body);
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+.lp h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--primary);
+  margin: 0;
+}
+
+.lp p { margin: 0; }
+
+.lp a:not(.lp-btn) { color: inherit; }
+.lp a:not(.lp-btn):hover { color: var(--lp-accent); }
+
+.lp-section { padding-top: 4.5rem; }
+
+.lp-sec-head { max-width: var(--lp-measure); margin-bottom: 2rem; }
+
+.lp-sec-head h2, .lp-contact h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 0.9rem;
+}
+
+.lp-lede {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--secondary);
+}
+
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.8rem 1.15rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--entry);
+  color: var(--primary);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+.lp-btn:hover { border-color: var(--lp-accent); transform: translateY(-1px); }
+.lp-btn-primary { background: var(--lp-accent); border-color: var(--lp-accent); color: var(--lp-accent-ink); }
+.lp-btn-primary:hover { filter: brightness(1.08); }
+
+.lp-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+
+.lp-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+}
+.lp-chips li, .lp-chips li a {
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;               /* long metrics may wrap to two lines */
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--code-bg);
+  color: var(--secondary);
+  text-decoration: none;
+}
+.lp-chips li a { display: inline-block; padding: 0; background: none; }
+.lp-chips li:has(a) { padding: 0.38rem 0.6rem; }
+.lp-metrics li { background: var(--lp-accent-soft); color: var(--lp-accent); }
+
+.lp-grid {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
-ul.post-index > li {
+/* Four focus areas read better as a 2x2 than as 3+1 */
+.lp-focus { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.lp-card {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--lp-radius);
+  padding: 1.35rem 1.35rem 1.25rem;
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
-  line-height: 1.5;
+  flex-direction: column;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
+.lp-card:hover {
+  border-color: var(--lp-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
+}
+.lp-card h3 { font-size: 1.08rem; line-height: 1.35; margin: 0.25rem 0 0.6rem; }
+.lp-card > p { font-size: 0.95rem; line-height: 1.65; color: var(--content); }
+.lp-card .lp-chips { margin-top: auto; padding-top: 1rem; }
 
-ul.post-index time {
-  flex: 0 0 auto;
-  font-size: 0.85rem;
+.lp-label {
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--secondary);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
 }
 
-ul.post-index .sep {
-  color: var(--secondary);
-  opacity: 0.6;
+.lp-more { margin-top: 1.5rem; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; }
+.lp-more a { text-decoration: none; color: var(--lp-accent) !important; }
+.lp-more a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.lp-dot { color: var(--tertiary); margin: 0 0.35rem; }
+
+/* ---------- Hero ---------- */
+
+.lp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 2.5rem;
+  padding: 3.5rem 0 1rem;
 }
 
-ul.post-index a {
+.lp-headline {
+  font-size: clamp(2.1rem, 5.2vw, 3.3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0 0 1.4rem;
+  text-wrap: balance;
+}
+.lp-headline span { display: block; }
+.lp-headline span + span { color: var(--lp-accent); }
+
+.lp-intro {
+  max-width: var(--lp-measure);
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--content);
+}
+.lp-intro p { margin: 0 0 0.9rem; }
+.lp-intro p:last-child { margin-bottom: 0; }
+.lp-intro strong { font-weight: 700; color: var(--primary); }
+
+.lp-social {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+.lp-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
   font-weight: 600;
+  color: var(--secondary) !important;
   text-decoration: none;
 }
+.lp-social a:hover { color: var(--lp-accent) !important; }
+.lp-social svg { width: 18px; height: 18px; }
 
-ul.post-index a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+.lp-portrait { margin: 0.4rem 0 0; }
+.lp-portrait img {
+  display: block;
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--theme), 0 0 0 6px var(--lp-accent);
 }
 
-/* Stack date above title on narrow screens so long titles don't crush */
-@media (max-width: 520px) {
-  ul.post-index > li {
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-  ul.post-index .sep {
-    display: none;
-  }
+/* ---------- Stats ---------- */
+
+.lp-stats {
+  list-style: none;
+  margin: 0 0 2.75rem;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--lp-radius);
+  overflow: hidden;
 }
+.lp-stats > li {
+  background: var(--entry);
+  padding: 1.25rem 1.3rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.lp-stats strong {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--lp-accent);
+  font-variant-numeric: tabular-nums;
+}
+.lp-stats span { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--primary); }
+.lp-stats small { font-size: 0.8rem; line-height: 1.45; color: var(--secondary); }
 
-/* --- Inline SVG figures in posts --- */
+/* ---------- Timeline ---------- */
 
-figure.diagram {
-  margin: 2rem 0;
+.lp-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: stop;
+  position: relative;
+}
+.lp-timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--border);
+}
+.lp-timeline > li {
+  counter-increment: stop;
+  position: relative;
+  padding: 0 0 1.8rem 3.25rem;
+}
+.lp-timeline > li:last-child { padding-bottom: 0; }
+.lp-timeline > li::before {
+  content: counter(stop, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--theme);
+  color: var(--lp-accent);
+  border: 2px solid var(--lp-accent);
+}
+.lp-tl-period {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 0.25rem;
+}
+.lp-timeline h3 { font-size: 1.08rem; line-height: 1.35; margin-bottom: 0.4rem; }
+.lp-tl-org { color: var(--secondary); font-weight: 600; }
+.lp-timeline > li > p:last-child { max-width: var(--lp-measure); font-size: 0.95rem; line-height: 1.65; color: var(--content); }
+
+/* ---------- Writing ---------- */
+
+.lp-posts { list-style: none; margin: 0; padding: 0; }
+.lp-posts > li {
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  column-gap: 1.5rem;
+  align-items: start;
+}
+.lp-posts > li:last-child { border-bottom: 1px solid var(--border); }
+.lp-post-meta {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--secondary);
+  padding-top: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.lp-post-meta time { display: block; }
+.lp-post-meta .lp-dot { display: none; }
+.lp-posts h3 { grid-column: 2; font-size: 1.15rem; line-height: 1.35; }
+.lp-posts h3 a { text-decoration: none; }
+.lp-posts h3 a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.lp-post-summary { grid-column: 2; margin-top: 0.45rem; max-width: var(--lp-measure); font-size: 0.95rem; line-height: 1.65; color: var(--content); }
+.lp-posts .lp-chips { grid-column: 2; margin-top: 0.75rem; }
+
+/* ---------- Positions ---------- */
+
+.lp-positions { list-style: none; margin: 0; padding: 0; counter-reset: claim; display: grid; gap: 0.75rem; }
+.lp-positions > li {
+  counter-increment: claim;
+  position: relative;
+  padding: 1.1rem 1.25rem 1.1rem 3.4rem;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--lp-radius);
+}
+.lp-positions > li::before {
+  content: counter(claim, decimal-leading-zero);
+  position: absolute;
+  left: 1.2rem;
+  top: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--lp-accent);
+}
+.lp-claim { font-size: 1.08rem; line-height: 1.55; color: var(--primary); font-weight: 700; max-width: 46rem; }
+.lp-claim-src {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--secondary) !important;
+  text-decoration: none;
+}
+.lp-claim-src:hover { color: var(--lp-accent) !important; }
+.lp-claim-src-label { font-weight: 500; opacity: 0.8; }
+
+/* ---------- Contact ---------- */
+
+.lp-contact {
+  margin-top: 4.5rem;
+  padding: 2.75rem 2.25rem;
+  border-radius: calc(var(--lp-radius) + 4px);
+  background: var(--lp-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--lp-accent) 35%, transparent);
   text-align: center;
 }
+.lp-contact .lp-lede { max-width: 38rem; margin: 0 auto; }
+.lp-contact .lp-cta { justify-content: center; margin-top: 1.6rem; }
+.lp-note { margin-top: 1.4rem; font-size: 0.82rem; color: var(--secondary); }
 
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+  .lp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-hero { grid-template-columns: 1fr; gap: 1.25rem; padding-top: 2.25rem; }
+  .lp-portrait { order: -1; }
+  .lp-portrait img { width: 112px; height: 112px; }
+  .lp-section { padding-top: 3.25rem; }
+  .lp-posts > li { grid-template-columns: 1fr; row-gap: 0.25rem; }
+  .lp-posts h3, .lp-post-summary, .lp-posts .lp-chips { grid-column: 1; }
+  .lp-post-meta time { display: inline; }
+  .lp-post-meta .lp-dot { display: inline; }
+  .lp-contact { padding: 2rem 1.25rem; }
+  .lp-focus { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .lp-stats { grid-template-columns: 1fr; }
+}
+
+/* ---------- 404 page (layouts/404.html) ---------- */
+
+.home-wrap { max-width: var(--main-width); margin: 0 auto; padding: 0 0 3rem; }
+.home-content { font-size: 1.02rem; line-height: 1.75; }
+.home-content h1 { font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; margin: 0.25rem 0 1rem; line-height: 1.2; }
+.home-content a { text-decoration: underline; text-underline-offset: 0.15em; }
+
+/* ---------- Inline SVG figures in posts ---------- */
+
+figure.diagram { margin: 2rem 0; text-align: center; }
 figure.diagram svg {
   width: 100%;
   max-width: var(--main-width);
   height: auto;
-  /* Inherit text colour so strokes/labels work in both light and dark themes. */
-  color: var(--content);
+  color: var(--content);           /* strokes/labels use currentColor */
   font-family: var(--font-heading);
 }
+figure.diagram figcaption { margin-top: 0.75rem; font-size: 0.88rem; line-height: 1.6; color: var(--secondary); text-align: left; }
+figure.diagram figcaption code { font-size: 0.85em; }
 
-figure.diagram figcaption {
-  margin-top: 0.75rem;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--secondary);
-  text-align: left;
-}
+/* ---------- Tables: PaperMod's defaults are cramped for reference tables ---------- */
 
-figure.diagram figcaption code {
-  font-size: 0.85em;
-}
-
-/* --- Tables: PaperMod's defaults are cramped for reference tables --- */
-
-.post-content table:not(.highlighttable):not(.highlight table):not(.gist table) {
-  font-size: 0.92rem;
-}
-
-.post-content table th,
-.post-content table td {
-  vertical-align: top;
-  line-height: 1.55;
-}
+.post-content table:not(.highlighttable):not(.highlight table):not(.gist table) { font-size: 0.92rem; }
+.post-content table th, .post-content table td { vertical-align: top; line-height: 1.55; }

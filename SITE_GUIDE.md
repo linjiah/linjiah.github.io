@@ -26,7 +26,8 @@ This document explains the **architecture** of this repository and a **practical
 |------|--------|
 | `hugo.toml` | Site URL (`baseURL`), title, menus, PaperMod options, taxonomies, RSS output, Goldmark/KaTeX settings. |
 | `content/posts/` | **Blog posts** — each `.md` file is one article. Listed on `/posts/`, on the homepage, in RSS, and under tags. |
-| `content/_index.md` | **Homepage** intro (rendered by `layouts/home.html`, which appends the dated index of every post below it). |
+| `data/home.yaml` | **Landing page copy**: hero, career timeline and headline numbers, selected work, positions, focus areas, contact. Rendered by `layouts/home.html`; the writing list comes from `content/posts/` automatically. |
+| `content/_index.md` | Homepage **front matter only** (title, description). Its body is not rendered. |
 | `content/about.md`, `content/resume.md` | Standalone **pages** (About, Résumé). |
 | `layouts/` | **Your overrides** on top of PaperMod: `home.html`, `404.html`, `partials/extend_head.html` (font preloads + KaTeX), `partials/math.html` (KaTeX with pinned integrity hashes). |
 | `assets/css/extended/` | Extra **CSS** merged into the theme stylesheet: `fonts.css` (`@font-face` for the self-hosted webfonts), `typography.css` (font stacks, type scale) and `home.css` (homepage, SVG diagrams, tables). |
@@ -34,16 +35,42 @@ This document explains the **architecture** of this repository and a **practical
 | `design/` | Sources and provenance for generated assets (Open Graph card, favicons, webfonts). Not part of the build. |
 | `public/` | **Build output** — generated locally when you run `hugo`; **not** committed to git (see `.gitignore`). CI builds a fresh `public/` on each deploy. |
 
+### The landing page
+
+The homepage is a single long page with anchored sections, in this order: hero
+(headline, intro, two buttons, profile links, portrait) → **Journey** (four
+headline numbers and a numbered career timeline) → **Selected work** (cards with
+an employer label, a title, a one-paragraph summary, and metric chips) →
+**Writing** (every post with date, reading time, summary, and tags) →
+**Positions** (one-sentence claims, each linking to the post that argues it) →
+**Focus** (four areas with skill chips) → **Contact**.
+
+Everything except the writing list is plain YAML in `data/home.yaml`:
+
+- `hero.headline` is a list of lines; the last line is rendered in the accent colour.
+- `journey.stats` takes exactly four `{value, label, note}` entries; `journey.timeline` is newest first.
+- `work.items` are `{label, title, summary, metrics[]}`; six items make a clean 3×2 grid.
+- `positions.items` are `{claim, post}` where `post` is the content path, e.g. `/posts/tool-calling-loop`; the title and date are looked up at build time.
+- `expertise.items` are `{title, summary, skills[]}`; four items make a 2×2 grid.
+
+Every number on the landing page is also in `content/resume.md`. When one
+changes, change both. The portrait is `static/images/avatar.jpg`, shown at
+152px; a 320px-square source would look sharper on high-density screens.
+
 ### Navigation is deliberately small
 
-The menu is **About / Writing** only. Categories, Tags, Archive, and Search
-pages were removed: with a handful of posts, one hub page per post reads as an
-empty archive. Tags still exist in front matter and still generate `/tags/...`
-pages reachable from each post's footer — they are just not in the top nav.
+The menu is **Work / Journey / Writing / About**. Work and Journey are anchors
+into the landing page (`/#work`, `/#journey`); the header is sticky so they stay
+reachable while scrolling. Categories, Tags, Archive, and Search pages were
+removed: with a handful of posts, one hub page per post reads as an empty
+archive. Tags still exist in front matter and still generate `/tags/...` pages
+reachable from each post's footer and from the landing page — they are just not
+in the top nav.
 
-**Résumé is not in the nav either.** This reads as a writing site, not a CV. The
-page still builds at `/resume/` and is linked from `content/about.md`; to surface
-it again, add a `[[menu.main]]` block for it in `hugo.toml`.
+**Résumé is not in the nav either.** It is one click away from the hero button,
+the Work section, the contact block, and `content/about.md`, and still builds at
+`/resume/`; to surface it in the menu as well, add a `[[menu.main]]` block for it
+in `hugo.toml`.
 
 To bring back a fuller structure once post volume justifies it: add
 `category = "categories"` under `[taxonomies]` in `hugo.toml`, re-add the
@@ -166,17 +193,17 @@ Inline HTML works because `markup.goldmark.renderer.unsafe = true` is set. See a
 
 | Page | File to edit |
 |------|----------------|
-| Home | `content/_index.md` |
+| Home (landing page copy) | `data/home.yaml` |
 | About | `content/about.md` |
 | Résumé | `content/resume.md` (PDF in `static/documents/`) |
 | Writing index blurb | `content/posts/_index.md` |
 | Site title / menus / theme options | `hugo.toml` |
-| Homepage layout + post index | `layouts/home.html` |
+| Landing page structure | `layouts/home.html` |
 | 404 page | `layouts/404.html` |
 | Extra head (font preloads, KaTeX) | `layouts/partials/extend_head.html`, `layouts/partials/math.html` |
 | Webfont files / `@font-face` | `static/fonts/`, `assets/css/extended/fonts.css` |
 | Fonts / body + heading type | `assets/css/extended/typography.css` |
-| Homepage / diagram / table CSS | `assets/css/extended/home.css` |
+| Landing page, sticky header, diagram, and table CSS | `assets/css/extended/home.css` |
 | Favicon | `static/favicon.svg`, plus the monochrome `static/safari-pinned-tab.svg` for Safari pinned tabs (wired up via `[params.assets]`) |
 | Social preview card | `static/images/og-default.jpg` — regenerate from `design/og-default.svg`, see `design/README.md` |
 

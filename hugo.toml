@@ -27,21 +27,36 @@ path = "github.com/adityatelange/hugo-PaperMod"
 [taxonomies]
 tag = "tags"
 
+# Anchor links deep-link into the landing page sections (layouts/home.html);
+# the header is sticky so they stay reachable while scrolling.
 [menu]
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
+identifier = "work"
+name = "Work"
+url = "/#work"
 weight = 10
+
+[[menu.main]]
+identifier = "journey"
+name = "Journey"
+url = "/#journey"
+weight = 20
 
 [[menu.main]]
 identifier = "posts"
 name = "Writing"
 url = "/posts/"
-weight = 20
+weight = 30
 
-# The résumé is deliberately not in the nav: this is a writing site, not a CV.
-# The page still builds at /resume/ and is linked from content/about.md.
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 40
+
+# The résumé is deliberately not in the nav. It is linked from the landing page
+# (hero button, Work section, contact block) and from content/about.md, and
+# still builds at /resume/.
 
 [params]
 env = "production"

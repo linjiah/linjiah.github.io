@@ -1,26 +1,187 @@
+{{- /* Landing page. All copy lives in data/home.yaml; posts come from content/posts.
+       Sections carry ids so the nav (hugo.toml [menu]) can deep-link to them. */ -}}
 {{- define "main" }}
-<div class="home-wrap">
-  <article class="home-content post-content md-content">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-      {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}
-      {{- .Content }}
-    {{- end }}
-  </article>
+{{- $d := site.Data.home }}
+<div class="lp">
 
-  {{- with where site.RegularPages "Type" "posts" }}
-  <section class="home-writing">
-    <h2>Writing</h2>
-    <ul class="post-index">
-      {{- range . }}
+  {{- /* ---------- Hero ---------- */}}
+  <section class="lp-hero" aria-labelledby="lp-headline">
+    <div class="lp-hero-text">
+      <p class="lp-eyebrow">{{ $d.hero.eyebrow }}</p>
+      <h1 id="lp-headline" class="lp-headline">
+        {{- range $d.hero.headline }}<span>{{ . }}</span>{{ end -}}
+      </h1>
+      <div class="lp-intro">{{ $d.hero.intro | markdownify }}</div>
+      <div class="lp-cta">
+        <a class="lp-btn lp-btn-primary" href="{{ $d.hero.primary.url }}">{{ $d.hero.primary.text }}</a>
+        <a class="lp-btn" href="{{ $d.hero.secondary.url | relURL }}">{{ $d.hero.secondary.text }}</a>
+      </div>
+      <ul class="lp-social" aria-label="Profiles">
+        {{- range $d.hero.socials }}
+        <li>
+          <a href="{{ .url }}" title="{{ .title }}"
+            {{- if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer me"{{ end }}>
+            {{- partial "svg.html" . -}}<span>{{ .title }}</span>
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+    <figure class="lp-portrait">
+      <img src="{{ $d.hero.portrait.src | relURL }}" alt="{{ $d.hero.portrait.alt }}"
+           width="{{ $d.hero.portrait.width }}" height="{{ $d.hero.portrait.height }}"
+           loading="eager" fetchpriority="high" decoding="async">
+    </figure>
+  </section>
+
+  {{- /* ---------- Journey: timeline + stats ---------- */}}
+  {{- with $d.journey }}
+  <section id="journey" class="lp-section" aria-labelledby="journey-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">01 · {{ .kicker }}</p>
+      <h2 id="journey-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+
+    <ul class="lp-stats">
+      {{- range .stats }}
       <li>
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
-        <span class="sep">·</span>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        <strong>{{ .value }}</strong>
+        <span>{{ .label }}</span>
+        {{ with .note }}<small>{{ . }}</small>{{ end }}
+      </li>
+      {{- end }}
+    </ul>
+
+    <ol class="lp-timeline">
+      {{- range .timeline }}
+      <li>
+        <p class="lp-tl-period">{{ .period }}</p>
+        <h3>{{ .role }} <span class="lp-tl-org">· {{ .org }}</span></h3>
+        <p>{{ .summary }}</p>
+      </li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+
+  {{- /* ---------- Selected work ---------- */}}
+  {{- with $d.work }}
+  <section id="work" class="lp-section" aria-labelledby="work-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">02 · {{ .kicker }}</p>
+      <h2 id="work-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+    <ul class="lp-grid lp-work">
+      {{- range .items }}
+      <li class="lp-card">
+        <p class="lp-label">{{ .label }}</p>
+        <h3>{{ .title }}</h3>
+        <p>{{ .summary }}</p>
+        {{- with .metrics }}
+        <ul class="lp-chips lp-metrics">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ul>
+    {{- with .footer_link }}
+    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></p>
+    {{- end }}
+  </section>
+  {{- end }}
+
+  {{- /* ---------- Writing ---------- */}}
+  {{- $posts := where site.RegularPages "Type" "posts" }}
+  {{- with $d.writing }}
+  <section id="writing" class="lp-section" aria-labelledby="writing-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">03 · {{ .kicker }}</p>
+      <h2 id="writing-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+    <ol class="lp-posts">
+      {{- range first 8 $posts }}
+      <li>
+        <p class="lp-post-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          <span class="lp-dot" aria-hidden="true">·</span>{{ .ReadingTime }} min read
+        </p>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{- with .Summary }}<p class="lp-post-summary">{{ . }}</p>{{ end }}
+        {{- with .Params.tags }}
+        <ul class="lp-chips lp-tags">{{ range first 4 . }}<li><a href="{{ (printf "/tags/%s/" (urlize .)) | relURL }}">{{ . }}</a></li>{{ end }}</ul>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ol>
+    {{- with .footer_link }}
+    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a> <span class="lp-dot" aria-hidden="true">·</span> <a href="{{ "index.xml" | relURL }}">RSS</a></p>
+    {{- end }}
+  </section>
+  {{- end }}
+
+  {{- /* ---------- Positions ---------- */}}
+  {{- with $d.positions }}
+  <section id="positions" class="lp-section" aria-labelledby="positions-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">04 · {{ .kicker }}</p>
+      <h2 id="positions-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+    <ol class="lp-positions">
+      {{- range .items }}
+      <li>
+        <p class="lp-claim">{{ .claim }}</p>
+        {{- with site.GetPage .post }}
+        <a class="lp-claim-src" href="{{ .RelPermalink }}">
+          <span class="lp-claim-src-label">Argued in</span> {{ .Title }}
+          <span class="lp-dot" aria-hidden="true">·</span> {{ .Date.Format "Jan 2006" }} <span aria-hidden="true">→</span>
+        </a>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+
+  {{- /* ---------- Expertise ---------- */}}
+  {{- with $d.expertise }}
+  <section id="focus" class="lp-section" aria-labelledby="focus-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">05 · {{ .kicker }}</p>
+      <h2 id="focus-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+    <ul class="lp-grid lp-focus">
+      {{- range .items }}
+      <li class="lp-card">
+        <h3>{{ .title }}</h3>
+        <p>{{ .summary }}</p>
+        {{- with .skills }}
+        <ul class="lp-chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        {{- end }}
       </li>
       {{- end }}
     </ul>
   </section>
   {{- end }}
+
+  {{- /* ---------- Contact ---------- */}}
+  {{- with $d.contact }}
+  <section id="contact" class="lp-section lp-contact" aria-labelledby="contact-h">
+    <p class="lp-eyebrow">06 · {{ .kicker }}</p>
+    <h2 id="contact-h">{{ .heading }}</h2>
+    {{ with .text }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    <div class="lp-cta">
+      {{- range .links }}
+      <a class="lp-btn{{ if .primary }} lp-btn-primary{{ end }}" href="{{ .url | relURL }}"
+        {{- if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .text }}</a>
+      {{- end }}
+    </div>
+    {{ with .note }}<p class="lp-note">{{ . }}</p>{{ end }}
+  </section>
+  {{- end }}
+
 </div>
 {{- end }}
