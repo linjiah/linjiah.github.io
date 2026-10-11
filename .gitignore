@@ -3,3 +3,7 @@
 .hugo_build.lock
 .DS_Store
 /_vendor/
+
+# LinkedIn drafts are work in progress; the repo is public. See linkedin/README.md.
+linkedin/drafts/*
+!linkedin/drafts/.gitkeep

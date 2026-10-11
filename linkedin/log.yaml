@@ -1,0 +1,14 @@
+# Publishing log. One entry per piece that went out. Metrics are whatever LinkedIn
+# shows a week after publishing; the point is the trend, not the number.
+#
+# - date: 2026-10-14
+#   title: "Why multi-agent systems fail at the handoff"
+#   type: article            # article | post | carousel | newsletter | video
+#   pillar: agents
+#   site_post: /posts/multi-agent-handoffs/
+#   linkedin_url: https://www.linkedin.com/pulse/...
+#   newsletter_edition: 1
+#   derived_posts: 4         # follow-up feed posts cut from it
+#   week_1: { impressions: 0, reactions: 0, comments: 0, saves: 0, site_visits: 0 }
+#   notes: ""
+entries: []
