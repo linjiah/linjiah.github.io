@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="LH">
+  <!-- Safari mask icon: single colour on a transparent background. Safari
+       recolours it from the alpha channel, so the filled card used by
+       favicon.svg would render as a solid square here. -->
+  <text x="8" y="8.3" fill="#000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="10.5" font-weight="700" letter-spacing="-0.4"
+        text-anchor="middle" dominant-baseline="central">LH</text>
+</svg>

@@ -1,0 +1,160 @@
+/* Homepage and post-index styling.
+   Shape borrowed from eugeneyan.com and lilianweng.github.io: a short intro,
+   then a dense dated index of writing. No CV on the landing page. */
+
+.home-wrap {
+  max-width: var(--main-width);
+  margin: 0 auto;
+  padding: 0 0 3rem;
+}
+
+.home-content {
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.home-content h1 {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.25rem 0 1rem;
+  line-height: 1.2;
+}
+
+.home-content p {
+  margin: 0 0 1rem;
+}
+
+.home-content a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.home-content strong {
+  font-weight: 700;
+}
+
+/* Avatar, floated beside the intro */
+
+.home-content img.home-avatar {
+  float: right;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0.35rem 0 1rem 1.75rem;
+  object-fit: cover;
+}
+
+@media (max-width: 480px) {
+  .home-content img.home-avatar {
+    float: none;
+    display: block;
+    margin: 0 0 1rem;
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* --- Dated index of posts (homepage) --- */
+
+.home-writing {
+  margin-top: 2.5rem;
+  clear: both;
+}
+
+.home-writing h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+ul.post-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.post-index > li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  line-height: 1.5;
+}
+
+ul.post-index time {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+ul.post-index .sep {
+  color: var(--secondary);
+  opacity: 0.6;
+}
+
+ul.post-index a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+ul.post-index a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Stack date above title on narrow screens so long titles don't crush */
+@media (max-width: 520px) {
+  ul.post-index > li {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  ul.post-index .sep {
+    display: none;
+  }
+}
+
+/* --- Inline SVG figures in posts --- */
+
+figure.diagram {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figure.diagram svg {
+  width: 100%;
+  max-width: var(--main-width);
+  height: auto;
+  /* Inherit text colour so strokes/labels work in both light and dark themes. */
+  color: var(--content);
+  font-family: var(--font-heading);
+}
+
+figure.diagram figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--secondary);
+  text-align: left;
+}
+
+figure.diagram figcaption code {
+  font-size: 0.85em;
+}
+
+/* --- Tables: PaperMod's defaults are cramped for reference tables --- */
+
+.post-content table:not(.highlighttable):not(.highlight table):not(.gist table) {
+  font-size: 0.92rem;
+}
+
+.post-content table th,
+.post-content table td {
+  vertical-align: top;
+  line-height: 1.55;
+}

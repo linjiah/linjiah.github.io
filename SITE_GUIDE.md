@@ -8,13 +8,15 @@ This document explains the **architecture** of this repository and a **practical
 
 | Piece | Role |
 |--------|------|
-| **[Hugo](https://gohugo.io/)** | **Static site generator.** Reads Markdown, config, layouts, and a theme, then outputs plain **HTML, CSS, JS, images, RSS, and a search JSON index** into a `public/` folder. |
-| **[PaperMod](https://github.com/adityatelange/hugo-PaperMod)** | **Hugo theme** — templates, typography, dark/light mode, post lists, search (Fuse.js), TOC, breadcrumbs, etc. This project loads it as a **[Hugo Module](https://gohugo.io/hugo-modules/)** (`go.mod` + `hugo.toml`). |
+| **[Hugo](https://gohugo.io/)** | **Static site generator.** Reads Markdown, config, layouts, and a theme, then outputs plain **HTML, CSS, JS, images, and RSS** into a `public/` folder. |
+| **[PaperMod](https://github.com/adityatelange/hugo-PaperMod)** | **Hugo theme** — templates, typography, dark/light mode, post lists, TOC, breadcrumbs, etc. This project loads it as a **[Hugo Module](https://gohugo.io/hugo-modules/)** (`go.mod` + `hugo.toml`). |
 | **Your content** | Mostly Markdown under `content/` plus static files under `static/`. |
 | **GitHub Actions** | On every push to `main`, runs `hugo` and deploys the result to **GitHub Pages** (see `.github/workflows/deploy.yml`). |
 | **GitHub Pages** | **Static hosting only** — it serves the built files. There is no server-side app or database when readers visit the site. |
 
-**In one sentence:** you edit text and config locally → **Hugo builds a static website** → you **push to GitHub** → **Actions rebuilds and publishes** → visitors get normal HTML pages with light client-side features (search, theme toggle, etc.).
+**In one sentence:** you edit text and config locally → **Hugo builds a static website** → you **push to GitHub** → **Actions rebuilds and publishes** → visitors get normal HTML pages with light client-side features (theme toggle, KaTeX math, code copy buttons).
+
+> **Prerequisite, one time only:** in the repo under **Settings → Pages → Build and deployment**, **Source** must be **GitHub Actions**. If it is set to *Deploy from a branch*, GitHub builds the repo with legacy Jekyll and serves `README.md` as the homepage — none of the Hugo output below ever reaches the live site.
 
 ---
 
@@ -22,15 +24,48 @@ This document explains the **architecture** of this repository and a **practical
 
 | Path | Purpose |
 |------|--------|
-| `hugo.toml` | Site URL (`baseURL`), title, menus, PaperMod options, search/RSS outputs, Goldmark/KaTeX-related settings. |
-| `content/posts/` | **Blog posts** — each `.md` file is one article. Listed on `/posts/`, in RSS, archive, categories, tags, and search. |
-| `content/_index.md` | **Homepage** body (Karpathy-style layout via `layouts/home.html`). |
-| `content/about.md`, `content/resume.md`, … | Standalone **pages** (About, Résumé, Archive, Search, etc.). |
-| `content/categories/` | Optional **category hub** pages and taxonomy content. |
-| `layouts/` | **Your overrides** on top of PaperMod (e.g. `home.html`, `partials/extend_head.html` for KaTeX). |
-| `assets/css/extended/` | Extra **CSS** merged into the theme stylesheet. |
-| `static/` | Files copied **as-is** to the site root (e.g. `static/images/avatar.jpg` → `/images/avatar.jpg`). |
+| `hugo.toml` | Site URL (`baseURL`), title, menus, PaperMod options, taxonomies, RSS output, Goldmark/KaTeX settings. |
+| `content/posts/` | **Blog posts** — each `.md` file is one article. Listed on `/posts/`, on the homepage, in RSS, and under tags. |
+| `content/_index.md` | **Homepage** intro (rendered by `layouts/home.html`, which appends the dated index of every post below it). |
+| `content/about.md`, `content/resume.md` | Standalone **pages** (About, Résumé). |
+| `layouts/` | **Your overrides** on top of PaperMod: `home.html`, `404.html`, `partials/extend_head.html` (font preloads + KaTeX), `partials/math.html` (KaTeX with pinned integrity hashes). |
+| `assets/css/extended/` | Extra **CSS** merged into the theme stylesheet: `fonts.css` (`@font-face` for the self-hosted webfonts), `typography.css` (font stacks, type scale) and `home.css` (homepage, SVG diagrams, tables). |
+| `static/` | Files copied **as-is** to the site root (e.g. `static/images/avatar.jpg` → `/images/avatar.jpg`). Includes the webfont files under `static/fonts/`. |
+| `design/` | Sources and provenance for generated assets (Open Graph card, favicons, webfonts). Not part of the build. |
 | `public/` | **Build output** — generated locally when you run `hugo`; **not** committed to git (see `.gitignore`). CI builds a fresh `public/` on each deploy. |
+
+### Navigation is deliberately small
+
+The menu is **About / Writing** only. Categories, Tags, Archive, and Search
+pages were removed: with a handful of posts, one hub page per post reads as an
+empty archive. Tags still exist in front matter and still generate `/tags/...`
+pages reachable from each post's footer — they are just not in the top nav.
+
+**Résumé is not in the nav either.** This reads as a writing site, not a CV. The
+page still builds at `/resume/` and is linked from `content/about.md`; to surface
+it again, add a `[[menu.main]]` block for it in `hugo.toml`.
+
+To bring back a fuller structure once post volume justifies it: add
+`category = "categories"` under `[taxonomies]` in `hugo.toml`, re-add the
+`[[menu.main]]` entries, and for search re-add `"JSON"` to `[outputs].home`
+plus a `content/search.md` with `layout: search`.
+
+### Typography
+
+Body copy is **Merriweather** (serif), headings and UI chrome are **Raleway**
+(sans) — the shape borrowed from eugeneyan.com. Both are **self-hosted**: the
+woff2 files (latin and latin-ext subsets, SIL Open Font License) live in
+`static/fonts/`, the `@font-face` rules in `assets/css/extended/fonts.css`, and
+`layouts/partials/extend_head.html` preloads the two faces used above the fold.
+No request goes to Google Fonts. The stacks and size/leading overrides live in
+`assets/css/extended/typography.css`, which also defines `--font-heading` (used
+by the SVG diagram styles in `home.css`).
+
+Every stack falls back to a system font, so the site is fully readable if a font
+file fails to load. To drop the webfonts entirely, delete `fonts.css`, the
+`static/fonts/` directory, and the two `<link rel="preload">` lines in
+`extend_head.html`; the fallbacks take over with no other CSS changes. To add a
+weight, see `design/README.md`.
 
 ---
 
@@ -44,7 +79,7 @@ This document explains the **architecture** of this repository and a **practical
 **Local check before push (recommended):**
 
 ```bash
-cd /path/to/linjia_website
+cd /path/to/linjiah.github.io
 hugo mod get
 hugo server -D
 ```
@@ -86,21 +121,36 @@ Use **YAML** front matter at the top of the file (between `---` lines), for exam
 title: "Your Post Title"
 date: 2026-05-15        # controls ordering; use real publish date
 draft: false             # must be false for production (hugo.toml has buildDrafts = false)
-summary: "One-line description for listings and SEO."
+summary: "One-line description — used on the homepage list, /posts/, and for SEO."
 tags: ["tag-one", "tag-two"]
-categories: ["ML Infra and System"]   # use one of your category names; see content/categories/
 math: true               # optional: load KaTeX for LaTeX on this page only
 ---
 ```
 
 Then write the body in **Markdown** (`##` headings, lists, code fences, images).
 
-**Categories** used in this project include (see `content/categories/`):  
-`ML Infra and System`, `ML Theory Basics`, `Agentic System`, `AI Frontiers`, `Software Architecture`.
+There is **no `categories:` field** — that taxonomy is disabled (see §2). Use `tags:` only.
 
 **Images:** put files under `static/images/` and reference them as `/images/your-file.png` in Markdown.
 
-**Math (KaTeX):** set `math: true` in the post front matter; use `\(...\)` / `\[...\]` or `$$...$$` (Goldmark passthrough is configured in `hugo.toml`).
+**Diagrams:** prefer **inline SVG** over screenshots — it stays sharp, needs no asset, and adapts to dark mode. Wrap it so the shared styling applies, and use `stroke="currentColor"` / `fill="currentColor"` so it inherits the theme's text colour:
+
+```html
+<figure class="diagram">
+<svg viewBox="0 0 640 300" role="img" aria-labelledby="my-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="my-title">Describe the diagram for screen readers</title>
+  <rect x="16" y="60" width="120" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <text x="76" y="91" fill="currentColor" font-size="14" text-anchor="middle">Box</text>
+</svg>
+<figcaption>Caption explaining what the reader should take away.</figcaption>
+</figure>
+```
+
+Inline HTML works because `markup.goldmark.renderer.unsafe = true` is set. See any existing post for a worked example.
+
+**Math (KaTeX):** set `math: true` in the post front matter; use `\(...\)` / `\[...\]` or `$$...$$` (Goldmark passthrough is configured in `hugo.toml`). Single-dollar `$...$` is deliberately **not** a math delimiter, so dollar amounts in prose are safe. If you ever bump the KaTeX version in `layouts/partials/math.html`, regenerate the three `integrity` hashes — the comment at the top of that file shows how.
+
+> **Escaping gotcha:** inline math needs a **single** backslash — `\( x \)`, not `\\( x \\)`. A double backslash is a LaTeX line break and will render wrong. Check with `grep -c '\\\\' content/posts/*.md` — it should print `0` for every file.
 
 **Code:** use fenced blocks with a language tag, e.g. ` ```python `.
 
@@ -119,11 +169,20 @@ Then write the body in **Markdown** (`##` headings, lists, code fences, images).
 | Home | `content/_index.md` |
 | About | `content/about.md` |
 | Résumé | `content/resume.md` (PDF in `static/documents/`) |
+| Writing index blurb | `content/posts/_index.md` |
 | Site title / menus / theme options | `hugo.toml` |
-| Homepage layout wrapper | `layouts/home.html` |
-| Extra head (e.g. KaTeX) | `layouts/partials/extend_head.html`, `layouts/partials/math.html` |
+| Homepage layout + post index | `layouts/home.html` |
+| 404 page | `layouts/404.html` |
+| Extra head (font preloads, KaTeX) | `layouts/partials/extend_head.html`, `layouts/partials/math.html` |
+| Webfont files / `@font-face` | `static/fonts/`, `assets/css/extended/fonts.css` |
+| Fonts / body + heading type | `assets/css/extended/typography.css` |
+| Homepage / diagram / table CSS | `assets/css/extended/home.css` |
+| Favicon | `static/favicon.svg`, plus the monochrome `static/safari-pinned-tab.svg` for Safari pinned tabs (wired up via `[params.assets]`) |
+| Social preview card | `static/images/og-default.jpg` — regenerate from `design/og-default.svg`, see `design/README.md` |
 
-Special layouts are set in front matter where needed, e.g. `layout: archives` for `content/archive.md`, `layout: search` for `content/search.md`.
+Special layouts are set in front matter where needed, e.g. `layout: home` on `content/_index.md` selects `layouts/home.html`. PaperMod's `archives` and `search` layouts are unused — see §2 for how to bring them back.
+
+The standalone pages (`about.md`, `resume.md`) carry `hiddenInRss: true` so the home feed at `/index.xml` lists posts only. Give any new non-post page the same flag.
 
 ---
 

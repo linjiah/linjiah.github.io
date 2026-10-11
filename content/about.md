@@ -1,6 +1,7 @@
 ---
 title: "About Me"
 description: "AI Architect and Principal ML Engineer — agentic systems, ML platforms, and alignment in production."
+hiddenInRss: true   # home feed /index.xml lists posts only
 aliases:
   - /about-me/
 ---

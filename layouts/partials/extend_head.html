@@ -1,3 +1,11 @@
+{{- /* Webfonts are self-hosted (static/fonts/, declared in
+       assets/css/extended/fonts.css) so no request leaves this origin. Preload
+       the two faces every page uses above the fold — body serif and the bold
+       heading sans — so first paint can use the real fonts instead of swapping
+       in from the fallback stack. */ -}}
+<link rel="preload" href="{{ "fonts/merriweather-normal-latin.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/raleway-normal-latin.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+
 {{- if or .Params.math .Site.Params.math -}}
   {{- partial "math.html" . -}}
 {{- end -}}

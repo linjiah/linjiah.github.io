@@ -1,11 +1,26 @@
 {{- define "main" }}
-<div class="karpathy-wrap">
-  <article class="karpathy-home post-content md-content">
+<div class="home-wrap">
+  <article class="home-content post-content md-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
       {{- partial "anchored_headings.html" .Content -}}
     {{- else }}
       {{- .Content }}
     {{- end }}
   </article>
+
+  {{- with where site.RegularPages "Type" "posts" }}
+  <section class="home-writing">
+    <h2>Writing</h2>
+    <ul class="post-index">
+      {{- range . }}
+      <li>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
+        <span class="sep">·</span>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
 </div>
 {{- end }}

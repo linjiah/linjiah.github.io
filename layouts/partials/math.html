@@ -1,19 +1,27 @@
+{{- /* KaTeX, pinned and protected with Subresource Integrity. When bumping the
+       version, regenerate all three hashes or the browser will silently refuse
+       to load the files:
+         curl -fsSL <url> | openssl dgst -sha384 -binary | openssl base64 -A
+       Delimiters mirror the Goldmark passthrough config in hugo.toml. Single
+       dollar $…$ is deliberately NOT a delimiter: Goldmark does not protect it,
+       so "$5 and $10" in prose would otherwise be rendered as math. */ -}}
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-  integrity="sha384-nB0miv6/bRfgiE3gQM6f8cCN2KCCQQdE4ooutSKynFCFRNHCtX9qvg9QTGNyrXW"
+  integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+"
   crossorigin="anonymous"
 />
 <script
   defer
   src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-  integrity="sha384-9U2rT5cgQNVmLLgw8FQHZMg9W6VhrJmWw3eqW2248gsAEiBWOcn/Y7yYc2BRYBQ"
+  integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
   crossorigin="anonymous"
 ></script>
 <script
   defer
   src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-  integrity="sha384-+VBxdEy+BO8N+1zErUMK8wMfTiV4hjgViZDdFq4wxSE0XCRsOGth0QoTsq+7wvV8"
+  integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"
   crossorigin="anonymous"
-  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],ignoredTags:['script','noscript','style','textarea','pre','code']});"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],ignoredTags:['script','noscript','style','textarea','pre','code'],throwOnError:false});"
 ></script>

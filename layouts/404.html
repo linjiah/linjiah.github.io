@@ -1,0 +1,15 @@
+{{- define "main" }}
+<div class="home-wrap">
+  <article class="home-content post-content md-content">
+    <h1>404 — page not found</h1>
+    <p>That URL does not exist on this site. It may have moved, or the link may be stale.</p>
+    <h2>Try instead</h2>
+    <ul>
+      <li><a href="{{ "" | relURL }}">Home</a></li>
+      <li><a href="{{ "posts/" | relURL }}">Writing</a></li>
+      <li><a href="{{ "about/" | relURL }}">About</a></li>
+      <li><a href="{{ "resume/" | relURL }}">Résumé</a></li>
+    </ul>
+  </article>
+</div>
+{{- end }}

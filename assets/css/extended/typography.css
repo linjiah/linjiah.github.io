@@ -1,0 +1,88 @@
+/* Editorial typography: serif body, sans headings — the eugeneyan.com approach.
+   Webfonts are loaded in layouts/partials/extend_head.html with display=swap,
+   and every stack falls back to a system font so text renders immediately. */
+
+:root {
+  --font-body: Merriweather, Charter, "Iowan Old Style", Georgia, Cambria,
+    "Times New Roman", Times, serif;
+  --font-heading: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  /* Merriweather runs large for its point size; ease it back and open the
+     leading so long-form posts stay comfortable. */
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+.logo a,
+#menu a,
+.post-title,
+.entry-header h2,
+.home-writing h2 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Slightly tighter leading on headings than the serif body default */
+h1, h2, h3, h4 {
+  line-height: 1.25;
+}
+
+/* Post body: serif at a comfortable measure */
+.post-content {
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.post-content h2 {
+  margin-top: 2.25rem;
+  font-size: 1.45rem;
+}
+
+.post-content h3 {
+  margin-top: 1.75rem;
+  font-size: 1.18rem;
+}
+
+/* Keep all code monospace — the serif body must not leak into code */
+code, pre, kbd, samp, tt,
+.highlight, .highlight pre, .chroma,
+.post-content code, .post-content pre {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  font-variant-ligatures: none;
+}
+
+/* Inline code needs a touch more presence next to serif text */
+.post-content :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* Tabular figures in tables so numeric columns line up */
+.post-content table {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Blockquotes: serif italic reads better than the theme default */
+.post-content blockquote {
+  font-style: normal;
+  border-inline-start: 3px solid var(--tertiary);
+}
+
+/* Nav and metadata stay sans for contrast against the serif body */
+.post-meta,
+.breadcrumbs,
+.footer,
+.top-link,
+.pagination {
+  font-family: var(--font-heading);
+}
