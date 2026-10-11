@@ -2,6 +2,9 @@
 title: "Résumé"
 description: "AI Architect | Principal Machine Learning Engineer — full CV and downloadable PDF."
 hiddenInRss: true   # home feed /index.xml lists posts only
+comments: false
+editPost:
+  disabled: true
 aliases:
   - /cv/
 ---

@@ -1,0 +1,15 @@
+{{- /* One video in a grid: thumbnail from YouTube, date, title, summary. */ -}}
+<li class="video-card">
+  <a class="video-thumb" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1">
+    <img src="https://i.ytimg.com/vi/{{ .Params.youtube_id }}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy">
+    <span class="yt-play yt-play-sm"></span>
+  </a>
+  <div class="video-body">
+    <p class="lp-post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      {{- with .Params.duration }}<span class="lp-dot" aria-hidden="true">·</span>{{ . }}{{ end }}
+    </p>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- with .Summary }}<p class="video-summary">{{ . }}</p>{{ end }}
+  </div>
+</li>

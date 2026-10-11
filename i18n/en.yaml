@@ -1,0 +1,44 @@
+# UI strings for the custom layouts. A Chinese edition adds i18n/zh.yaml with
+# the same ids; PaperMod's own strings live in the theme's i18n/zh.yaml already.
+- id: min_read
+  translation:
+    one: "1 min read"
+    other: "{{ .Count }} min read"
+- id: argued_in
+  translation: "Argued in"
+- id: all_posts
+  translation: "All posts"
+- id: rss
+  translation: "RSS"
+- id: latest_videos
+  translation: "Latest videos"
+- id: all_videos
+  translation: "All videos"
+- id: watch_on_youtube
+  translation: "Watch on YouTube"
+- id: chapters
+  translation: "Chapters"
+- id: related_reading
+  translation: "Related reading"
+- id: videos_coming_soon
+  translation: "The channel is in production. The first videos will appear here; subscribe below to hear when they land."
+- id: discussion
+  translation: "Discussion"
+- id: discussion_blurb
+  translation: "Comments are GitHub Discussions. Sign in with GitHub to reply, react, or ask a question; threads stay searchable."
+- id: discussion_fallback
+  translation: "Questions or disagreements? Start a thread on"
+- id: updated_on
+  translation: "Updated"
+- id: history
+  translation: "history"
+- id: cite_this
+  translation: "Cite this post"
+- id: subscribe
+  translation: "Subscribe"
+- id: subscribe_rss_only
+  translation: "Email updates are coming soon. Until then, follow by"
+- id: your_email
+  translation: "you@example.com"
+- id: email_address
+  translation: "Email address"

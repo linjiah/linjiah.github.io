@@ -9,3 +9,11 @@
 {{- if or .Params.math .Site.Params.math -}}
   {{- partial "math.html" . -}}
 {{- end -}}
+
+{{- /* Privacy-friendly analytics (GoatCounter): no cookies, no personal data.
+       Enabled only in production and only when params.analytics.goatcounter is set. */ -}}
+{{- with site.Params.analytics.goatcounter }}
+{{- if hugo.IsProduction }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{- end }}
+{{- end }}

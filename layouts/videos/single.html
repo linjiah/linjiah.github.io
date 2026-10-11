@@ -1,0 +1,75 @@
+{{- /* A video page: click-to-load player (privacy domain, no cookies until the
+       reader presses play), chapters, show notes, related posts, then the
+       shared post tail (updated line, signup, discussion). */ -}}
+{{- define "main" }}
+{{- $id := .Params.youtube_id }}
+<article class="post-single video-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+    <div class="post-meta">
+      {{- partial "post_meta.html" . -}}
+      {{- with .Params.duration }}&nbsp;·&nbsp;<span>{{ . }}</span>{{ end -}}
+      {{- partial "edit_post.html" . -}}
+    </div>
+  </header>
+
+  {{- if $id }}
+  <div class="yt" data-id="{{ $id }}">
+    <a class="yt-facade" href="https://www.youtube.com/watch?v={{ $id }}" rel="noopener noreferrer" target="_blank"
+       aria-label="{{ i18n "watch_on_youtube" }}: {{ .Title }}">
+      <img src="https://i.ytimg.com/vi/{{ $id }}/hqdefault.jpg" alt="" width="480" height="360" loading="eager" fetchpriority="high">
+      <span class="yt-play" aria-hidden="true"></span>
+    </a>
+  </div>
+  <script>
+  document.querySelectorAll('.yt-facade').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var wrap = a.parentNode, id = wrap.getAttribute('data-id');
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      f.title = a.getAttribute('aria-label');
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      wrap.replaceChild(f, a);
+    });
+  });
+  </script>
+  {{- end }}
+
+  {{- with .Params.chapters }}
+  <section class="yt-chapters" aria-labelledby="chapters-h">
+    <h2 id="chapters-h">{{ i18n "chapters" }}</h2>
+    <ol>
+      {{- range . }}
+      {{- $s := 0 }}{{ range split .time ":" }}{{ $v := strings.TrimLeft "0" . }}{{ $s = add (mul $s 60) (cond (ne $v "") (int $v) 0) }}{{ end }}
+      <li><a href="https://www.youtube.com/watch?v={{ $id }}&t={{ $s }}s" rel="noopener noreferrer" target="_blank"><time>{{ .time }}</time></a> {{ .title }}</li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="post-content md-content">{{ partial "anchored_headings.html" .Content }}</div>
+  {{- end }}
+
+  {{- with .Params.related }}
+  <section class="yt-related" aria-labelledby="related-h">
+    <h2 id="related-h">{{ i18n "related_reading" }}</h2>
+    <ul>{{ range . }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}</ul>
+  </section>
+  {{- end }}
+
+  {{- partial "extend_post_content.html" . }}
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      {{- range (.GetTerms "tags") }}<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+    </ul>
+    {{- if (.Param "ShowPostNavLinks") }}{{ partial "post_nav_links.html" . }}{{ end }}
+  </footer>
+  {{- if (.Param "comments") }}{{ partial "comments.html" . }}{{ end }}
+</article>
+{{- end }}

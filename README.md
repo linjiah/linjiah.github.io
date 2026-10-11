@@ -61,7 +61,9 @@ See **[SITE_GUIDE.md](SITE_GUIDE.md)** for how Hugo + PaperMod + GitHub Pages fi
 ## Customize
 
 - **Site metadata, menus, and PaperMod options**: [hugo.toml](hugo.toml)
-- **Landing page content**: [data/home.yaml](data/home.yaml) — hero, career timeline and headline numbers, selected work, positions, focus areas, contact. [layouts/home.html](layouts/home.html) renders it and pulls the writing list from [content/posts/](content/posts/) automatically. Keep the numbers in sync with [content/resume.md](content/resume.md).
+- **Landing page content**: [data/home/en.yaml](data/home/en.yaml) — hero, career timeline and headline numbers, selected work, videos block, positions, focus areas, contact. [layouts/home.html](layouts/home.html) renders it and pulls the writing and video lists from [content/](content/) automatically. Keep the numbers in sync with [content/resume.md](content/resume.md).
+- **Newsletter, community, videos, analytics, custom domain**: all wired up; each needs one account or setting. See [SITE_GUIDE.md](SITE_GUIDE.md) §8.
+- **Videos**: one page per video under [content/videos/](content/videos/); [sync-youtube.yml](.github/workflows/sync-youtube.yml) drafts them from the channel feed once `YOUTUBE_CHANNEL_ID` is set.
 - **Posts**: add Markdown under [content/posts/](content/posts/)
 - **Profile photo**: replace [static/images/avatar.jpg](static/images/avatar.jpg)
 - **Favicon**: [static/favicon.svg](static/favicon.svg), plus the monochrome [static/safari-pinned-tab.svg](static/safari-pinned-tab.svg) for Safari pinned tabs
@@ -69,4 +71,4 @@ See **[SITE_GUIDE.md](SITE_GUIDE.md)** for how Hugo + PaperMod + GitHub Pages fi
 - **Fonts and type scale**: [assets/css/extended/typography.css](assets/css/extended/typography.css) (Merriweather body / Raleway headings). The woff2 files are self-hosted in [static/fonts/](static/fonts/) and declared in [assets/css/extended/fonts.css](assets/css/extended/fonts.css); [layouts/partials/extend_head.html](layouts/partials/extend_head.html) preloads the two above-the-fold faces. No third-party font requests.
 - **Homepage, diagram, and table CSS**: [assets/css/extended/home.css](assets/css/extended/home.css)
 
-The navigation is **Work / Journey / Writing / About**. Work and Journey are anchors into sections of the landing page, and the header is sticky so they stay reachable while scrolling. The résumé is deliberately not a menu item; it is linked from the hero button, the Work section, the contact block, and the About page, and still lives at `/resume/`. Categories, Archive, and Search are kept out of the menu — see [SITE_GUIDE.md](SITE_GUIDE.md) §2 for the rationale and how to restore them.
+The navigation is **Work / Journey / Writing / Community / Subscribe / About**. Work and Journey are anchors into sections of the landing page, and the header is sticky so they stay reachable while scrolling. Add **Videos** when the first video is published. The résumé is deliberately not a menu item; it is linked from the hero button, the Work section, the contact block, and the About page, and still lives at `/resume/`. Categories, Archive, and Search are kept out of the menu — see [SITE_GUIDE.md](SITE_GUIDE.md) §2 for the rationale and how to restore them.

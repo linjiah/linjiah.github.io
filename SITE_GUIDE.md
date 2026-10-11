@@ -26,10 +26,13 @@ This document explains the **architecture** of this repository and a **practical
 |------|--------|
 | `hugo.toml` | Site URL (`baseURL`), title, menus, PaperMod options, taxonomies, RSS output, Goldmark/KaTeX settings. |
 | `content/posts/` | **Blog posts** — each `.md` file is one article. Listed on `/posts/`, on the homepage, in RSS, and under tags. |
-| `data/home.yaml` | **Landing page copy**: hero, career timeline and headline numbers, selected work, positions, focus areas, contact. Rendered by `layouts/home.html`; the writing list comes from `content/posts/` automatically. |
+| `data/home/en.yaml` | **Landing page copy**: hero, career timeline and headline numbers, selected work, videos block, positions, focus areas, contact. Rendered by `layouts/home.html`; the writing and video lists come from `content/` automatically. One file per language. |
+| `content/videos/` | **Videos** — one `.md` per YouTube video (id, summary, chapters, related posts, show notes). Drafted automatically by `scripts/sync_youtube.py` via `.github/workflows/sync-youtube.yml`. |
+| `content/subscribe.md`, `content/community.md` | The **Subscribe** and **Community** pages. |
+| `i18n/en.yaml` | UI strings used by the custom layouts, so a Chinese edition is a translation file rather than a template edit. |
 | `content/_index.md` | Homepage **front matter only** (title, description). Its body is not rendered. |
 | `content/about.md`, `content/resume.md` | Standalone **pages** (About, Résumé). |
-| `layouts/` | **Your overrides** on top of PaperMod: `home.html`, `404.html`, `partials/extend_head.html` (font preloads + KaTeX), `partials/math.html` (KaTeX with pinned integrity hashes). |
+| `layouts/` | **Your overrides** on top of PaperMod: `home.html`, `404.html`, `videos/` (list + single), `partials/newsletter.html` (email signup), `partials/comments.html` (GitHub Discussions via giscus), `partials/extend_post_content.html` (updated line, citation, signup), `partials/video_card.html`, `partials/extend_head.html` (font preloads, KaTeX, analytics), `partials/math.html`, `shortcodes/newsletter.html`. |
 | `assets/css/extended/` | Extra **CSS** merged into the theme stylesheet: `fonts.css` (`@font-face` for the self-hosted webfonts), `typography.css` (font stacks, type scale) and `home.css` (homepage, SVG diagrams, tables). |
 | `static/` | Files copied **as-is** to the site root (e.g. `static/images/avatar.jpg` → `/images/avatar.jpg`). Includes the webfont files under `static/fonts/`. |
 | `design/` | Sources and provenance for generated assets (Open Graph card, favicons, webfonts). Not part of the build. |
@@ -45,13 +48,16 @@ an employer label, a title, a one-paragraph summary, and metric chips) →
 **Positions** (one-sentence claims, each linking to the post that argues it) →
 **Focus** (four areas with skill chips) → **Contact**.
 
-Everything except the writing list is plain YAML in `data/home.yaml`:
+Everything except the writing and video lists is plain YAML in `data/home/en.yaml`:
 
 - `hero.headline` is a list of lines; the last line is rendered in the accent colour.
 - `journey.stats` takes exactly four `{value, label, note}` entries; `journey.timeline` is newest first.
 - `work.items` are `{label, title, summary, metrics[]}`; six items make a clean 3×2 grid.
 - `positions.items` are `{claim, post}` where `post` is the content path, e.g. `/posts/tool-calling-loop`; the title and date are looked up at build time.
 - `expertise.items` are `{title, summary, skills[]}`; four items make a 2×2 grid.
+- `videos` only supplies the heading; the block appears automatically once the first non-draft video exists.
+
+Sections are numbered with a running counter, so the optional Videos block slots in without renumbering. The email signup card sits between Writing and Positions and is the same partial used at the end of every post.
 
 Every number on the landing page is also in `content/resume.md`. When one
 changes, change both. The portrait is `static/images/avatar.jpg`, shown at
@@ -59,7 +65,7 @@ changes, change both. The portrait is `static/images/avatar.jpg`, shown at
 
 ### Navigation is deliberately small
 
-The menu is **Work / Journey / Writing / About**. Work and Journey are anchors
+The menu is **Work / Journey / Writing / Community / Subscribe / About**. Work and Journey are anchors
 into the landing page (`/#work`, `/#journey`); the header is sticky so they stay
 reachable while scrolling. Categories, Tags, Archive, and Search pages were
 removed: with a handful of posts, one hub page per post reads as an empty
@@ -193,7 +199,9 @@ Inline HTML works because `markup.goldmark.renderer.unsafe = true` is set. See a
 
 | Page | File to edit |
 |------|----------------|
-| Home (landing page copy) | `data/home.yaml` |
+| Home (landing page copy) | `data/home/en.yaml` |
+| Subscribe / Community pages | `content/subscribe.md`, `content/community.md` |
+| Videos | `content/videos/*.md` (see §9) |
 | About | `content/about.md` |
 | Résumé | `content/resume.md` (PDF in `static/documents/`) |
 | Writing index blurb | `content/posts/_index.md` |
@@ -232,7 +240,89 @@ Wait for the **Actions** workflow to finish green, then reload the live site.
 
 ---
 
-## 8. Further reading
+## 8. Audience plumbing: newsletter, community, videos, analytics, domain
+
+Everything in this section is wired up in templates and config already. Each
+item needs one account or setting on your side; until then it degrades
+gracefully (RSS link instead of a form, a plain Discussions link instead of
+embedded threads, a coming-soon note instead of videos).
+
+### Newsletter (Buttondown)
+
+1. Create a free account at <https://buttondown.com> and pick a username.
+2. Put it in `hugo.toml` under `[params.newsletter]` → `username`.
+3. Signup forms then render in the hero-adjacent card on the landing page, at
+   the end of every post and video, on `/subscribe/`, and on `/videos/`. Each
+   form sends a `tag` (`home`, `posts-end`, `videos-end`, `subscribe-page`,
+   `videos-list`) so Buttondown shows which placement converts.
+4. Optional: in Buttondown, set the sending domain to your custom domain once
+   you have one, and turn off open tracking to match the privacy promise on
+   `/subscribe/`.
+
+### Community (GitHub Discussions + giscus)
+
+1. On GitHub: repository **Settings → General → Features → Discussions** → enable.
+   Create categories named **Ask** (format: Q&A), **Show and tell**, **Ideas**,
+   **Corrections**, and one called **Comments** (format: Announcements, so only
+   the site can open threads) for the per-page threads.
+2. Install the giscus app on the repository: <https://github.com/apps/giscus>.
+3. Open <https://giscus.app>, enter `linjiah/linjiah.github.io`, choose the
+   **Comments** category and *pathname* mapping. Copy `data-category` and
+   `data-category-id` into `hugo.toml` under `[params.giscus]`. `repoId` is
+   already filled in.
+4. Threads now embed under every post and video and follow the site's light/dark
+   toggle. Readers sign in with GitHub; you moderate from the Discussions tab.
+   `/community/` explains the categories and the house rules.
+
+### Videos (YouTube)
+
+- Each video is a page under `content/videos/`. Create one by hand with
+  `hugo new content videos/my-video.md` (the archetype has every field) or let
+  the sync job draft it.
+- **Automatic drafts:** set the repository variable `YOUTUBE_CHANNEL_ID`
+  (Settings → Secrets and variables → Actions → Variables) to the channel's
+  `UC…` id. The workflow runs daily, reads the channel's public feed, and
+  commits a `draft: true` page for every new upload with title, date, id and
+  the first paragraph of the description. Drafts never deploy. Add show notes,
+  `duration`, `chapters` and `related` posts, set `draft: false`, push.
+- Pages use a click-to-load player on the privacy domain (no YouTube cookies
+  until the reader presses play), list chapters as deep links, and share the
+  post tail (signup, discussion).
+- When the first video is live: add a `Videos` menu entry in `hugo.toml`
+  (`url = "/videos/"`, weight 35), set `[params.youtube].channel_url`, and add a
+  `youtube` entry to `[[params.socialIcons]]` and to `hero.socials` in
+  `data/home/en.yaml`. The landing page block appears on its own.
+
+### Analytics (GoatCounter)
+
+Create a site at <https://www.goatcounter.com> and put its code in
+`[params.analytics].goatcounter`. The script loads only in production builds.
+No cookies, no personal data, so no consent banner is needed.
+
+### Custom domain
+
+A brand entrance should not live on a `github.io` address. When you have a
+domain: add a `static/CNAME` file containing it (for example `linjiahu.com`),
+set `baseURL` in `hugo.toml` to `https://linjiahu.com/`, and in the repository
+**Settings → Pages → Custom domain** enter the same name and enable *Enforce
+HTTPS*. At the DNS provider, add `A` records for the apex pointing at GitHub
+Pages' four IPs and a `CNAME` for `www` → `linjiah.github.io`. The old address
+redirects automatically.
+
+### Chinese edition (later)
+
+The site is English-first but structured for a second language:
+
+1. In `hugo.toml`, add `[languages.zh]` with `languageName = "中文"`,
+   `weight = 2`, and `contentDir`-free translation by filename.
+2. Translate copy into `data/home/zh.yaml` (same keys) and UI strings into
+   `i18n/zh.yaml` (same ids as `i18n/en.yaml`).
+3. Add translated pages as `about.zh.md`, `posts/<slug>.zh.md`, and so on.
+   Untranslated posts simply do not appear in the Chinese edition.
+4. PaperMod shows a language switch in the header automatically, and the
+   landing page picks `data/home/zh.yaml` by language.
+
+## 9. Further reading
 
 - [Hugo documentation](https://gohugo.io/documentation/)
 - [Hugo quick reference (content formats)](https://gohugo.io/content-management/formats/)

@@ -1,0 +1,41 @@
+{{- /* Discussion block: GitHub Discussions via giscus. Rendered by PaperMod's
+       single.html when params.comments is true. Falls back to a plain link
+       until category/categoryId are filled in hugo.toml. */ -}}
+{{- $g := site.Params.giscus -}}
+<section class="discussion" id="discussion" aria-labelledby="discussion-h">
+  <h2 id="discussion-h">{{ i18n "discussion" }}</h2>
+  {{- if and $g.repo $g.repoId $g.categoryId }}
+  <p class="discussion-blurb">{{ i18n "discussion_blurb" }}</p>
+  <div class="giscus"></div>
+  <script>
+  (function () {
+    var themeFor = function () {
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark_dimmed' : 'light';
+    };
+    var cfg = {
+      'repo': {{ $g.repo }}, 'repo-id': {{ $g.repoId }},
+      'category': {{ $g.category }}, 'category-id': {{ $g.categoryId }},
+      'mapping': {{ $g.mapping | default "pathname" }}, 'strict': '1',
+      'reactions-enabled': '1', 'emit-metadata': '0',
+      'input-position': {{ $g.inputPosition | default "top" }},
+      'theme': themeFor(), 'lang': {{ $g.lang | default "en" }}, 'loading': 'lazy'
+    };
+    var s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js'; s.async = true; s.crossOrigin = 'anonymous';
+    Object.keys(cfg).forEach(function (k) { s.setAttribute('data-' + k, cfg[k]); });
+    document.querySelector('.giscus').appendChild(s);
+    /* keep the embed in step with PaperMod's theme toggle */
+    var toggle = document.getElementById('theme-toggle');
+    if (toggle) toggle.addEventListener('click', function () {
+      setTimeout(function () {
+        var f = document.querySelector('iframe.giscus-frame');
+        if (f) f.contentWindow.postMessage({ giscus: { setConfig: { theme: themeFor() } } }, 'https://giscus.app');
+      }, 50);
+    });
+  })();
+  </script>
+  {{- else }}
+  <p class="discussion-blurb">{{ i18n "discussion_fallback" }}
+    <a href="https://github.com/{{ $g.repo }}/discussions" rel="noopener noreferrer" target="_blank">GitHub Discussions</a>.</p>
+  {{- end }}
+</section>

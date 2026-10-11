@@ -4,7 +4,18 @@
    selected work, a writing list, short "positions", and a contact block.
    Everything is keyed to PaperMod's CSS variables so dark mode just works. */
 
-:root { --lp-width: 940px; }
+:root {
+  --lp-width: 940px;
+  --lp-accent: #0f766e;
+  --lp-accent-ink: #ffffff;
+  --lp-accent-soft: rgba(15, 118, 110, 0.10);
+  --lp-radius: 14px;
+}
+[data-theme="dark"] {
+  --lp-accent: #5eead4;
+  --lp-accent-ink: #062722;
+  --lp-accent-soft: rgba(94, 234, 212, 0.12);
+}
 
 /* PaperMod caps .main at --main-width (720px) for posts; the landing page is the
    one page that wants more room, so widen .main only when it contains .lp. */
@@ -12,19 +23,9 @@
 
 .lp {
   --lp-measure: 640px;
-  --lp-accent: #0f766e;
-  --lp-accent-ink: #ffffff;
-  --lp-accent-soft: rgba(15, 118, 110, 0.10);
-  --lp-radius: 14px;
   max-width: var(--lp-width);
   margin: 0 auto;
   padding: 0 0 4rem;
-}
-
-[data-theme="dark"] .lp {
-  --lp-accent: #5eead4;
-  --lp-accent-ink: #062722;
-  --lp-accent-soft: rgba(94, 234, 212, 0.12);
 }
 
 /* Sticky, translucent header so the anchor nav is always reachable */
@@ -450,3 +451,105 @@ figure.diagram figcaption code { font-size: 0.85em; }
 
 .post-content table:not(.highlighttable):not(.highlight table):not(.gist table) { font-size: 0.92rem; }
 .post-content table th, .post-content table td { vertical-align: top; line-height: 1.55; }
+
+/* ---------- Audience plumbing: signup card, discussion, post tail ---------- */
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.nl {
+  margin: 2.5rem 0 0;
+  padding: 1.6rem 1.75rem;
+  border-radius: var(--lp-radius);
+  background: var(--lp-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--lp-accent) 35%, transparent);
+}
+.nl-heading {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4rem;
+  color: var(--primary);
+}
+.nl-blurb, .nl-fallback { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--secondary); }
+.nl-fallback { margin-top: 0.9rem; }
+.nl-fallback a { color: var(--lp-accent); font-weight: 600; }
+.nl-form { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.1rem; }
+.nl-input {
+  flex: 1 1 220px;
+  min-width: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--theme);
+  color: var(--primary);
+}
+.nl-input:focus { outline: 2px solid var(--lp-accent); outline-offset: 2px; border-color: var(--lp-accent); }
+.lp-subscribe { padding-top: 3rem; }
+.lp-subscribe .nl { margin-top: 0; }
+
+.post-updated {
+  margin: 2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+.post-updated a { color: inherit; text-decoration: underline; text-underline-offset: 0.15em; }
+
+.post-cite { margin-top: 1.25rem; border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 1rem; }
+.post-cite summary { cursor: pointer; font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; color: var(--secondary); }
+.post-cite summary:hover { color: var(--lp-accent); }
+.post-cite p { margin: 0.9rem 0 0.6rem; font-size: 0.92rem; line-height: 1.6; word-break: break-word; }
+.post-cite pre { margin: 0 0 0.4rem; font-size: 0.8rem; }
+
+.discussion { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.discussion h2 { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; margin: 0 0 0.5rem; }
+.discussion-blurb { margin: 0 0 1.25rem; font-size: 0.95rem; color: var(--secondary); line-height: 1.6; }
+.discussion-blurb a { color: var(--lp-accent); font-weight: 600; }
+
+/* ---------- Videos ---------- */
+
+.yt { position: relative; aspect-ratio: 16 / 9; margin: 1.5rem 0 2rem; border-radius: var(--lp-radius); overflow: hidden; background: #000; }
+.yt iframe, .yt-facade { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-facade { display: block; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; transition: opacity 0.15s ease, transform 0.3s ease; }
+.yt-facade:hover img { opacity: 1; transform: scale(1.02); }
+.yt-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 72px; height: 50px; border-radius: 14px;
+  background: var(--lp-accent);
+  box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.6);
+}
+.yt-play::after {
+  content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-40%, -50%);
+  border-style: solid; border-width: 11px 0 11px 19px;
+  border-color: transparent transparent transparent var(--lp-accent-ink);
+}
+.yt-play-sm { width: 44px; height: 32px; border-radius: 9px; }
+.yt-play-sm::after { border-width: 7px 0 7px 12px; }
+
+.yt-chapters, .yt-related { margin: 0 0 1.75rem; }
+.yt-chapters h2, .yt-related h2 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem; }
+.yt-chapters ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; }
+.yt-chapters li { break-inside: avoid; font-size: 0.95rem; line-height: 1.7; }
+.yt-chapters time { font-family: var(--font-heading); font-variant-numeric: tabular-nums; font-size: 0.82rem; font-weight: 700; color: var(--lp-accent); margin-right: 0.4rem; }
+.yt-related ul { margin: 0; padding-left: 1.2rem; }
+
+.video-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.video-card { display: flex; flex-direction: column; background: var(--entry); border: 1px solid var(--border); border-radius: var(--lp-radius); overflow: hidden; transition: border-color 0.15s ease, transform 0.15s ease; }
+.video-card:hover { border-color: var(--lp-accent); transform: translateY(-2px); }
+.video-thumb { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; }
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-body { padding: 1rem 1.15rem 1.2rem; }
+.video-body h3 { font-family: var(--font-heading); font-size: 1.05rem; line-height: 1.35; margin: 0.3rem 0 0.4rem; }
+.video-body h3 a { text-decoration: none; color: var(--primary); }
+.video-body h3 a:hover { color: var(--lp-accent); }
+.video-summary { margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--content); }
+.videos-empty { margin: 1.5rem 0 0; padding: 1.5rem; border: 1px dashed var(--border); border-radius: var(--lp-radius); color: var(--secondary); text-align: center; }
+
+@media (max-width: 600px) {
+  .yt-chapters ol { columns: 1; }
+  .nl { padding: 1.25rem 1.1rem; }
+}

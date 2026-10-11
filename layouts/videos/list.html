@@ -1,0 +1,23 @@
+{{- /* /videos/ — grid of all videos, or a coming-soon note before the first one. */ -}}
+{{- define "main" }}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}<div class="post-description">{{ . | markdownify }}</div>{{ end }}
+</header>
+{{- if .Content }}<div class="post-content md-content">{{ .Content }}</div>{{ end }}
+{{- $pages := .RegularPages }}
+{{- if $pages }}
+{{- $paginator := .Paginate $pages }}
+<ul class="video-grid">{{ range $paginator.Pages }}{{ partial "video_card.html" . }}{{ end }}</ul>
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer"><nav class="pagination">
+  {{ if $paginator.HasPrev }}<a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>{{ end }}
+  {{ if $paginator.HasNext }}<a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>{{ end }}
+</nav></footer>
+{{- end }}
+{{- else }}
+<p class="videos-empty">{{ i18n "videos_coming_soon" }}</p>
+{{- end }}
+{{ partial "newsletter.html" (dict "ctx" . "tag" "videos-list") }}
+{{- end }}

@@ -1,7 +1,9 @@
-{{- /* Landing page. All copy lives in data/home.yaml; posts come from content/posts.
-       Sections carry ids so the nav (hugo.toml [menu]) can deep-link to them. */ -}}
+{{- /* Landing page. Copy lives in data/home/<lang>.yaml; posts and videos come
+       from content/. Sections carry ids so the nav can deep-link to them, and
+       are numbered with a running counter so optional sections (videos) slot in. */ -}}
 {{- define "main" }}
-{{- $d := site.Data.home }}
+{{- $d := index site.Data.home site.Language.Lang | default site.Data.home.en }}
+{{- $n := 0 }}
 <div class="lp">
 
   {{- /* ---------- Hero ---------- */}}
@@ -34,25 +36,19 @@
     </figure>
   </section>
 
-  {{- /* ---------- Journey: timeline + stats ---------- */}}
-  {{- with $d.journey }}
+  {{- /* ---------- Journey: stats + timeline ---------- */}}
+  {{- with $d.journey }}{{ $n = add $n 1 }}
   <section id="journey" class="lp-section" aria-labelledby="journey-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">01 · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
       <h2 id="journey-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
-
     <ul class="lp-stats">
       {{- range .stats }}
-      <li>
-        <strong>{{ .value }}</strong>
-        <span>{{ .label }}</span>
-        {{ with .note }}<small>{{ . }}</small>{{ end }}
-      </li>
+      <li><strong>{{ .value }}</strong><span>{{ .label }}</span>{{ with .note }}<small>{{ . }}</small>{{ end }}</li>
       {{- end }}
     </ul>
-
     <ol class="lp-timeline">
       {{- range .timeline }}
       <li>
@@ -66,10 +62,10 @@
   {{- end }}
 
   {{- /* ---------- Selected work ---------- */}}
-  {{- with $d.work }}
+  {{- with $d.work }}{{ $n = add $n 1 }}
   <section id="work" class="lp-section" aria-labelledby="work-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">02 · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
       <h2 id="work-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -79,24 +75,20 @@
         <p class="lp-label">{{ .label }}</p>
         <h3>{{ .title }}</h3>
         <p>{{ .summary }}</p>
-        {{- with .metrics }}
-        <ul class="lp-chips lp-metrics">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
-        {{- end }}
+        {{- with .metrics }}<ul class="lp-chips lp-metrics">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
       </li>
       {{- end }}
     </ul>
-    {{- with .footer_link }}
-    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></p>
-    {{- end }}
+    {{- with .footer_link }}<p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></p>{{ end }}
   </section>
   {{- end }}
 
   {{- /* ---------- Writing ---------- */}}
   {{- $posts := where site.RegularPages "Type" "posts" }}
-  {{- with $d.writing }}
+  {{- with $d.writing }}{{ $n = add $n 1 }}
   <section id="writing" class="lp-section" aria-labelledby="writing-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">03 · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
       <h2 id="writing-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -105,7 +97,7 @@
       <li>
         <p class="lp-post-meta">
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-          <span class="lp-dot" aria-hidden="true">·</span>{{ .ReadingTime }} min read
+          <span class="lp-dot" aria-hidden="true">·</span>{{ i18n "min_read" .ReadingTime }}
         </p>
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         {{- with .Summary }}<p class="lp-post-summary">{{ . }}</p>{{ end }}
@@ -116,16 +108,35 @@
       {{- end }}
     </ol>
     {{- with .footer_link }}
-    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a> <span class="lp-dot" aria-hidden="true">·</span> <a href="{{ "index.xml" | relURL }}">RSS</a></p>
+    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a> <span class="lp-dot" aria-hidden="true">·</span> <a href="{{ "index.xml" | relURL }}">{{ i18n "rss" }}</a></p>
     {{- end }}
   </section>
   {{- end }}
 
+  {{- /* ---------- Videos: appears automatically once the first video exists ---------- */}}
+  {{- $videos := where site.RegularPages "Type" "videos" }}
+  {{- with $d.videos }}{{ if $videos }}{{ $n = add $n 1 }}
+  <section id="videos" class="lp-section" aria-labelledby="videos-h">
+    <header class="lp-sec-head">
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
+      <h2 id="videos-h">{{ .heading }}</h2>
+      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+    </header>
+    <ul class="video-grid">{{ range first 3 $videos }}{{ partial "video_card.html" . }}{{ end }}</ul>
+    {{- with .footer_link }}<p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></p>{{ end }}
+  </section>
+  {{- end }}{{ end }}
+
+  {{- /* ---------- Subscribe ---------- */}}
+  <section id="subscribe" class="lp-section lp-subscribe">
+    {{ partial "newsletter.html" (dict "ctx" . "tag" "home") }}
+  </section>
+
   {{- /* ---------- Positions ---------- */}}
-  {{- with $d.positions }}
+  {{- with $d.positions }}{{ $n = add $n 1 }}
   <section id="positions" class="lp-section" aria-labelledby="positions-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">04 · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
       <h2 id="positions-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -135,7 +146,7 @@
         <p class="lp-claim">{{ .claim }}</p>
         {{- with site.GetPage .post }}
         <a class="lp-claim-src" href="{{ .RelPermalink }}">
-          <span class="lp-claim-src-label">Argued in</span> {{ .Title }}
+          <span class="lp-claim-src-label">{{ i18n "argued_in" }}</span> {{ .Title }}
           <span class="lp-dot" aria-hidden="true">·</span> {{ .Date.Format "Jan 2006" }} <span aria-hidden="true">→</span>
         </a>
         {{- end }}
@@ -145,11 +156,11 @@
   </section>
   {{- end }}
 
-  {{- /* ---------- Expertise ---------- */}}
-  {{- with $d.expertise }}
+  {{- /* ---------- Focus ---------- */}}
+  {{- with $d.expertise }}{{ $n = add $n 1 }}
   <section id="focus" class="lp-section" aria-labelledby="focus-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">05 · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
       <h2 id="focus-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -158,9 +169,7 @@
       <li class="lp-card">
         <h3>{{ .title }}</h3>
         <p>{{ .summary }}</p>
-        {{- with .skills }}
-        <ul class="lp-chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
-        {{- end }}
+        {{- with .skills }}<ul class="lp-chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
       </li>
       {{- end }}
     </ul>
@@ -168,9 +177,9 @@
   {{- end }}
 
   {{- /* ---------- Contact ---------- */}}
-  {{- with $d.contact }}
+  {{- with $d.contact }}{{ $n = add $n 1 }}
   <section id="contact" class="lp-section lp-contact" aria-labelledby="contact-h">
-    <p class="lp-eyebrow">06 · {{ .kicker }}</p>
+    <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
     <h2 id="contact-h">{{ .heading }}</h2>
     {{ with .text }}<p class="lp-lede">{{ . }}</p>{{ end }}
     <div class="lp-cta">

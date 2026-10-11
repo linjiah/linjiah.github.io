@@ -1,0 +1,22 @@
+{{- /* Email signup card (Buttondown). Call with (dict "ctx" . "tag" "<placement>").
+       The tag is passed to Buttondown so you can see which placement converts.
+       With no username configured the card falls back to RSS. */ -}}
+{{- $u := site.Params.newsletter.username -}}
+{{- $tag := .tag | default "site" -}}
+<aside class="nl" aria-labelledby="nl-h-{{ $tag }}">
+  <h2 id="nl-h-{{ $tag }}" class="nl-heading">{{ site.Params.newsletter.heading }}</h2>
+  <p class="nl-blurb">{{ site.Params.newsletter.blurb }}</p>
+  {{- if $u }}
+  <form class="nl-form" action="https://buttondown.com/api/emails/embed-subscribe/{{ $u }}" method="post"
+        target="popupwindow" onsubmit="window.open('https://buttondown.com/{{ $u }}', 'popupwindow')">
+    <label class="sr-only" for="nl-email-{{ $tag }}">{{ i18n "email_address" }}</label>
+    <input id="nl-email-{{ $tag }}" class="nl-input" type="email" name="email"
+           placeholder="{{ i18n "your_email" }}" autocomplete="email" required>
+    <input type="hidden" name="embed" value="1">
+    <input type="hidden" name="tag" value="{{ $tag }}">
+    <button class="lp-btn lp-btn-primary" type="submit">{{ i18n "subscribe" }}</button>
+  </form>
+  {{- else }}
+  <p class="nl-fallback">{{ i18n "subscribe_rss_only" }} <a href="{{ "index.xml" | relURL }}">{{ i18n "rss" }}</a>.</p>
+  {{- end }}
+</aside>

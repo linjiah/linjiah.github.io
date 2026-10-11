@@ -7,9 +7,24 @@ enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
 
-defaultContentLanguage = "en"
+# Git commit dates feed .Lastmod so posts can show an "Updated" line (see
+# layouts/partials/extend_post_content.html). Explicit front-matter lastmod wins.
+enableGitInfo = true
 
-mainSections = ["posts"]
+[frontmatter]
+lastmod = ["lastmod", ":git", "date"]
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+mainSections = ["posts", "videos"]
+
+# English first. A Chinese edition is a second block here plus translated
+# files: post.zh.md, data/home/zh.yaml, i18n/zh.yaml. See SITE_GUIDE §9.
+[languages]
+  [languages.en]
+  languageName = "English"
+  weight = 1
 
 [pagination]
 pagerSize = 10
@@ -49,10 +64,25 @@ url = "/posts/"
 weight = 30
 
 [[menu.main]]
+identifier = "community"
+name = "Community"
+url = "/community/"
+weight = 40
+
+[[menu.main]]
+identifier = "subscribe"
+name = "Subscribe"
+url = "/subscribe/"
+weight = 50
+
+[[menu.main]]
 identifier = "about"
 name = "About"
 url = "/about/"
-weight = 40
+weight = 60
+
+# Add a "Videos" entry (url = "/videos/", weight = 35) when the first video is
+# published; the landing page block and /videos/ already exist.
 
 # The résumé is deliberately not in the nav. It is linked from the landing page
 # (hero button, Work section, contact block) and from content/about.md, and
@@ -72,7 +102,7 @@ ShowBreadCrumbs = true
 ShowPostNavLinks = true
 ShowWordCount = true
 ShowShareButtons = false
-comments = false
+comments = true   # GitHub Discussions via giscus, see [params.giscus]
 
 # Default social preview image for links shared on LinkedIn/X/Slack.
 images = ["/images/og-default.jpg"]
@@ -92,6 +122,42 @@ apple_touch_icon = "/apple-touch-icon.png"
 # monochrome SVG — the filled favicon would show as a solid square.
 safari_pinned_tab = "/safari-pinned-tab.svg"
 disableHLJS = true
+
+# "Suggest an edit" link in every post's meta line → GitHub editor for that file.
+[params.editPost]
+URL = "https://github.com/linjiah/linjiah.github.io/edit/main/content"
+Text = "Suggest an edit"
+appendFilePath = true
+
+[params.footer]
+text = "Writing is licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+
+# Email list (Buttondown). Leave username empty until the account exists; every
+# subscribe block then falls back to an RSS link. Setup: SITE_GUIDE §9.
+[params.newsletter]
+username = ""
+heading = "Get new posts and videos by email"
+blurb = "About one email a month: new writing, new videos, the occasional short note. No tracking pixels, unsubscribe in one click."
+
+# Comments are GitHub Discussions rendered by giscus. repoId is this repo's
+# node id. Fill category and categoryId from https://giscus.app after enabling
+# Discussions on the repository. Until then posts show a plain link. SITE_GUIDE §9.
+[params.giscus]
+repo = "linjiah/linjiah.github.io"
+repoId = "R_kgDOSaCGiw"
+category = ""
+categoryId = ""
+mapping = "pathname"
+inputPosition = "top"
+lang = "en"
+
+# Privacy-friendly analytics. Set to your GoatCounter site code to enable.
+[params.analytics]
+goatcounter = ""
+
+# Filled in when the channel exists; used by the Videos and Subscribe pages.
+[params.youtube]
+channel_url = ""
 
 [[params.socialIcons]]
 name = "github"

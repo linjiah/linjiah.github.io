@@ -1,4 +1,5 @@
-# Content for the landing page (layouts/home.html). Edit facts here, not in HTML.
+# Content for the English landing page (layouts/home.html). Edit facts here, not
+# in HTML. A Chinese edition is data/home/zh.yaml with the same keys.
 # Every claim below is lifted from content/resume.md; keep the two in sync.
 
 hero:
@@ -156,6 +157,16 @@ writing:
     text: "All posts"
     url: "/posts/"
 
+videos:
+  kicker: "Videos"
+  heading: "Watch the ideas worked through."
+  lede: >-
+    Talks-through of the same material as the writing, with show notes, chapters,
+    and links to the code and the related post.
+  footer_link:
+    text: "All videos"
+    url: "/videos/"
+
 positions:
   kicker: "Positions"
   heading: "Claims I'll defend."
@@ -209,6 +220,8 @@ contact:
     - text: "Email me"
       url: "mailto:linjia.hwu@gmail.com"
       primary: true
+    - text: "Join the discussion"
+      url: "/community/"
     - text: "LinkedIn"
       url: "https://www.linkedin.com/in/linjia-hu-4a296818/"
     - text: "Résumé (PDF)"

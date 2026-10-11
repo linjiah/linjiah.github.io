@@ -1,0 +1,34 @@
+{{- /* Rendered by PaperMod after the body of every single page.
+       Posts and videos get: an "Updated" line when git says the content moved
+       after publication, a citation block (posts only), and the email signup. */ -}}
+{{- if in (slice "posts" "videos") .Type }}
+{{- $updated := and (not .Lastmod.IsZero) (gt (sub .Lastmod.Unix .Date.Unix) 86400) }}
+{{- if $updated }}
+<p class="post-updated">
+  {{ i18n "updated_on" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>
+  {{- with .File }} · <a href="https://github.com/{{ site.Params.giscus.repo }}/commits/main/{{ path.Join "content" .Path }}" rel="noopener noreferrer" target="_blank">{{ i18n "history" }}</a>{{ end }}
+</p>
+{{- end }}
+
+{{- if eq .Type "posts" }}
+{{- $author := .Params.author | default site.Params.author }}
+{{- $names := split $author " " }}
+{{- $last := index $names (sub (len $names) 1) | lower | replaceRE "[^a-z0-9]" "" }}
+{{- $word := index (split .Title " ") 0 | lower | replaceRE "[^a-z0-9]" "" }}
+{{- $key := printf "%s%d%s" $last .Date.Year $word }}
+<details class="post-cite">
+  <summary>{{ i18n "cite_this" }}</summary>
+  <p>{{ $author }}. ({{ .Date.Format "Jan 2006" }}). <em>{{ .Title }}</em>. {{ site.Title }}. {{ .Permalink }}</p>
+  <pre><code>@article{ {{- $key -}},
+  title   = {{ printf "{%s}" .Title }},
+  author  = {{ printf "{%s}" $author }},
+  journal = {{ printf "{%s}" site.Title }},
+  year    = {{ printf "{%d}" .Date.Year }},
+  month   = {{ printf "{%s}" (.Date.Format "Jan") }},
+  url     = {{ printf "{%s}" .Permalink }}
+}</code></pre>
+</details>
+{{- end }}
+
+{{ partial "newsletter.html" (dict "ctx" . "tag" (printf "%s-end" .Type)) }}
+{{- end }}
