@@ -553,3 +553,7 @@ figure.diagram figcaption code { font-size: 0.85em; }
   .yt-chapters ol { columns: 1; }
   .nl { padding: 1.25rem 1.1rem; }
 }
+
+/* Link from a post's discussion block to its LinkedIn thread */
+.discussion-linkedin { margin: 0 0 1.25rem; }
+.discussion-linkedin .lp-btn svg { width: 16px; height: 16px; }

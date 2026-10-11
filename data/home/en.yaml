@@ -10,8 +10,8 @@ hero:
   intro: >-
     I'm Linjia. I design and ship agentic reasoning, ML platforms, and inference
     stacks that have to survive real traffic. Currently **Director of AI Systems
-    Architecture** at **Intelligent Machines**, building full-stack software for
-    agentic and generative AI on proprietary silicon. Before that I was the technical
+    Architecture** at **Siemens** (Intelligent Machines), building full-stack software
+    for agentic and generative AI on proprietary silicon. Before that I was the technical
     owner of agent reasoning and post-training for **Microsoft Copilot** and
     **Azure Global Datacenter AI**, built ML platforms at **Amazon**, and shipped
     edge AI and a world-first 5G stack at **Qualcomm**.
@@ -50,7 +50,7 @@ journey:
   stats:
     - value: "15+"
       label: "years shipping production AI"
-      note: "Qualcomm → Amazon → Microsoft → Intelligent Machines"
+      note: "Qualcomm → Amazon → Microsoft → Siemens"
     - value: "3.0 → 4.2"
       label: "Copilot reasoning CSAT in 90 days"
       note: "trust-first reasoning architecture"
@@ -62,8 +62,8 @@ journey:
       note: "GPU computing and computer vision"
   timeline:
     - period: "2025 – now"
-      org: "Intelligent Machines"
-      role: "Director of AI Systems Architecture"
+      org: "Siemens"
+      role: "Director of AI Systems Architecture (Intelligent Machines)"
       summary: >-
         Full-stack software for agentic and generative AI on proprietary silicon:
         distributed runtime and cluster management, plus vLLM, SGLang, llama.cpp,
@@ -127,7 +127,7 @@ work:
         ReAct agents over a vector store and knowledge graph, rolled out
         human-in-the-loop first and endorsed by InfoSec.
       metrics: ["+10% accuracy", "−40% human escalations", "~5x operator throughput"]
-    - label: "Intelligent Machines · 2025 – now"
+    - label: "Siemens · Intelligent Machines · 2025 – now"
       title: "Inference stack on proprietary silicon"
       summary: >-
         Porting vLLM, SGLang, llama.cpp, and IREE/OpenXLA to new hardware, with a

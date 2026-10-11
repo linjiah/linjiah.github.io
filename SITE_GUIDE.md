@@ -157,8 +157,11 @@ draft: false             # must be false for production (hugo.toml has buildDraf
 summary: "One-line description — used on the homepage list, /posts/, and for SEO."
 tags: ["tag-one", "tag-two"]
 math: true               # optional: load KaTeX for LaTeX on this page only
+linkedin: ""             # optional: URL of the LinkedIn post; adds a "Join the conversation on LinkedIn" link
 ---
 ```
+
+`hugo new content posts/my-post.md` now uses `archetypes/posts.md`, which has exactly these fields in YAML.
 
 Then write the body in **Markdown** (`##` headings, lists, code fences, images).
 

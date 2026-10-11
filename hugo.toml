@@ -90,9 +90,9 @@ weight = 60
 
 [params]
 env = "production"
-description = "AI Architect | Principal ML Engineer — agentic AI, ML platforms, LLM post-training. Intelligent Machines; ex-Microsoft Copilot & Azure AI, Amazon, Qualcomm."
+description = "AI Architect | Principal ML Engineer — agentic AI, ML platforms, LLM post-training. Siemens (Intelligent Machines); ex-Microsoft Copilot & Azure AI, Amazon, Qualcomm."
 author = "Linjia Hu"
-keywords = ["AI architect", "machine learning", "agentic AI", "LLM alignment", "Copilot", "Azure", "ML platforms", "edge AI", "Intelligent Machines"]
+keywords = ["AI architect", "machine learning", "agentic AI", "LLM alignment", "Copilot", "Azure", "ML platforms", "edge AI", "Siemens", "Intelligent Machines"]
 defaultTheme = "auto"
 ShowReadingTime = true
 ShowToc = true

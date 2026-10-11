@@ -33,7 +33,7 @@ At Microsoft, delivered **~40% operational efficiency** gains in Azure operation
 
 ## Professional experience
 
-### Director of AI Systems Architecture — Intelligent Machines *(2025–Present)*
+### Director of AI Systems Architecture — Siemens (Intelligent Machines) *(2025–Present)*
 
 *Infrastructure and Platform on Chips for Edge AI & Private Data Center · Seattle, WA*
 
@@ -79,6 +79,7 @@ Architectural owner of **large-scale ML platforms and data infrastructure** for 
 
 - Massively parallel **GPU** algorithms (**up to ~100x** speedups) for computer vision and video streaming.
 - Scalable **GPU / GPU-cluster** indexing and search for object detection and recognition.
+- Research projects: real-time **3D point cloud** processing on heterogeneous GPU and multicore systems; parallel **fountain-code** decoding on GPU (**Raptor >40x**, **RaptorQ >160x** faster than the baseline).
 
 ### Senior Software Engineer — ZTE *(2007–2009)*
 
@@ -100,6 +101,25 @@ Architectural owner of **large-scale ML platforms and data infrastructure** for 
 
 ## Research and publications
 
-- **12+** peer-reviewed publications in computer vision and distributed systems.
-- Massively parallel GPU-accelerated algorithms and large-scale nearest-neighbor search.
-- Full list: search **Google Scholar** for *Linjia Hu* (Michigan Tech / GPU / parallel algorithms) or see citations on [**LinkedIn**](https://www.linkedin.com/in/linjia-hu-4a296818/).
+**12+** peer-reviewed publications in computer vision, GPU computing, and forward error correction. The ten below are the ones listed on [LinkedIn](https://www.linkedin.com/in/linjia-hu-4a296818/); search **Google Scholar** for *Linjia Hu* (Michigan Tech, GPU, parallel algorithms) for the complete record.
+
+**Nearest-neighbor search and 3D descriptors on GPUs**
+
+- *Massive Parallelization of Approximate Nearest Neighbor Search on KD-tree for High-Dimensional Image Descriptor Matching* — Journal of Visual Communication and Image Representation (Elsevier JVCI), 2017
+- *Parallel Randomized KD-Tree Forest on GPU Cluster for Image Descriptor Matching* — IEEE International Symposium on Circuits and Systems (ISCAS), 2016
+- *G-SHOT: GPU Accelerated 3D Local Descriptor for Surface Matching* — Journal of Visual Communication and Image Representation (Elsevier JVCI), 2015
+- *Massively Parallel KD-Tree Construction and Nearest Neighbor Search Algorithms* — IEEE ISCAS, 2015
+- *A 3D Local Descriptor SHOT on Massively Parallel Processors* — IEEE International Conference on Consumer Electronics (ICCE), 2015
+- *Parallel 3D Local Descriptor on NVIDIA GPU* — GPU Technology Conference (GTC), 2014
+
+**Forward error correction on GPUs and heterogeneous systems**
+
+- *Forward Error Correction with Raptor GF(2) and GF(256) Codes on GPU* — IEEE Transactions on Consumer Electronics, 2013
+- *Forward Error Correction with RaptorQ Code on Heterogeneous System* — IEEE ISCAS, 2013
+- *Implementation and Evaluation of Raptor Code on GPU* — 16th IEEE International Symposium on Consumer Electronics, 2012
+- *Implementation of Raptor Code on GPU* — GPU Technology Conference (GTC), 2012
+
+## Languages and memberships
+
+- **Languages:** Mandarin Chinese (native), English (professional working proficiency).
+- **Professional memberships:** IEEE and ACM, member since 2012.

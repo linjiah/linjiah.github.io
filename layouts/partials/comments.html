@@ -4,6 +4,11 @@
 {{- $g := site.Params.giscus -}}
 <section class="discussion" id="discussion" aria-labelledby="discussion-h">
   <h2 id="discussion-h">{{ i18n "discussion" }}</h2>
+  {{- /* LinkedIn-first publishing: when a post has a `linkedin` URL in its front
+         matter, point readers at that thread as well. */ -}}
+  {{- with .Params.linkedin }}
+  <p class="discussion-linkedin"><a class="lp-btn" href="{{ . }}" rel="noopener noreferrer" target="_blank">{{ partial "svg.html" (dict "name" "linkedin") }} {{ i18n "discuss_on_linkedin" }}</a></p>
+  {{- end }}
   {{- if and $g.repo $g.repoId $g.categoryId }}
   <p class="discussion-blurb">{{ i18n "discussion_blurb" }}</p>
   <div class="giscus"></div>

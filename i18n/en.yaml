@@ -42,3 +42,5 @@
   translation: "you@example.com"
 - id: email_address
   translation: "Email address"
+- id: discuss_on_linkedin
+  translation: "Join the conversation on LinkedIn"
