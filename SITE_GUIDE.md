@@ -26,9 +26,9 @@ This document explains the **architecture** of this repository and a **practical
 |------|--------|
 | `hugo.toml` | Site URL (`baseURL`), title, menus, PaperMod options, taxonomies, RSS output, Goldmark/KaTeX settings. |
 | `content/posts/` | **Blog posts** — each `.md` file is one article. Listed on `/posts/`, on the homepage, in RSS, and under tags. |
-| `data/home/en.yaml` | **Landing page copy**: hero, career timeline and headline numbers, selected work, videos block, positions, focus areas, contact. Rendered by `layouts/home.html`; the writing and video lists come from `content/` automatically. One file per language. |
+| `data/home/en.yaml` | **Landing page copy**: introduction, writing heading, selected work, background, videos heading, and contact. Rendered by `layouts/home.html`; the writing and video lists come from `content/` automatically. One file per language. |
 | `content/videos/` | **Videos** — one `.md` per YouTube video (id, summary, chapters, related posts, show notes). Drafted automatically by `scripts/sync_youtube.py` via `.github/workflows/sync-youtube.yml`. |
-| `content/subscribe.md`, `content/community.md` | The **Subscribe** and **Community** pages. |
+| `content/subscribe.md`, `content/community.md` | Legacy follow and contact pages; kept available for existing links. |
 | `i18n/en.yaml` | UI strings used by the custom layouts, so a Chinese edition is a translation file rather than a template edit. |
 | `content/_index.md` | Homepage **front matter only** (title, description). Its body is not rendered. |
 | `content/about.md`, `content/resume.md` | Standalone **pages** (About, Résumé). |
@@ -40,48 +40,47 @@ This document explains the **architecture** of this repository and a **practical
 
 ### The landing page
 
-The homepage is a single long page with anchored sections, in this order: hero
-(headline, intro, two buttons, profile links, portrait) → **Journey** (four
-headline numbers and a numbered career timeline) → **Selected work** (cards with
-an employer label, a title, a one-paragraph summary, and metric chips) →
-**Writing** (every post with date, reading time, summary, and tags) →
-**Positions** (one-sentence claims, each linking to the post that argues it) →
-**Focus** (four areas with skill chips) → **Contact**.
+The homepage presents **Introduction → Latest writing → Selected work → Background → Contact**.
+Published videos appear after Background when available. The article list shows
+up to three recent posts, with a cover image when provided in front matter.
 
-Everything except the writing and video lists is plain YAML in `data/home/en.yaml`:
+Homepage copy lives in `data/home/en.yaml`:
 
-- `hero.headline` is a list of lines; the last line is rendered in the accent colour.
-- `journey.stats` takes exactly four `{value, label, note}` entries; `journey.timeline` is newest first.
-- `work.items` are `{label, title, summary, metrics[]}`; six items make a clean 3×2 grid.
-- `positions.items` (optional, currently absent) are `{claim, post}` where `post` is a content path; the title and date are looked up at build time and the section only renders when the block exists.
-- `expertise.items` are `{title, summary, skills[]}`; four items make a 2×2 grid.
-- `videos` only supplies the heading; the block appears automatically once the first non-draft video exists.
+- `hero` contains the name, current role, focus line, short introduction, links, and portrait.
+- `writing` provides the section copy; published posts are selected automatically.
+- `work.items` contains three concise `{label, title, summary}` project descriptions, with current work first.
+- `background` contains a short career summary and links to About and the PDF résumé.
+- `videos` supplies optional section copy; `contact` holds working contact links.
 
-Sections are numbered with a running counter, so the optional Videos block slots in without renumbering. The email signup card sits between Writing and Positions and is the same partial used at the end of every post.
-
-Every number on the landing page is also in `content/resume.md`. When one
-changes, change both. The portrait is `static/images/avatar.jpg`, shown at
-152px; a 320px-square source would look sharper on high-density screens.
+Keep the role and professional facts consistent across this YAML, `content/about.md`,
+`content/resume.md`, the descriptions in `hugo.toml` and `content/_index.md`, and
+`design/og-default.svg`. Regenerate the social preview image when its copy changes
+(see `design/README.md`). The portrait remains `static/images/avatar.jpg`.
+The old `#journey` anchor now leads to the short Background section.
 
 ### Navigation is deliberately small
 
-The menu is **Work / Journey / Writing / Community / Subscribe / About**. Work and Journey are anchors
-into the landing page (`/#work`, `/#journey`); the header is sticky so they stay
-reachable while scrolling. Categories, Tags, Archive, and Search pages were
-removed: with a handful of posts, one hub page per post reads as an empty
-archive. Tags still exist in front matter and still generate `/tags/...` pages
-reachable from each post's footer and from the landing page — they are just not
-in the top nav.
+The menu is **Writing / Work / About / Résumé**. Work points to `/#work`; the
+other entries open dedicated pages. All four links fit the mobile navigation.
+The legacy `/subscribe/` and `/community/` routes remain available with RSS and
+LinkedIn links, but are outside the main menu until their services are configured.
+Tags remain reachable from articles; Categories, Archive, and Search stay out
+of the menu while the article collection is small.
 
-**Résumé is not in the nav either.** It is one click away from the hero button,
-the Work section, the contact block, and `content/about.md`, and still builds at
-`/resume/`; to surface it in the menu as well, add a `[[menu.main]]` block for it
-in `hugo.toml`.
+### Résumé PDF
 
-To bring back a fuller structure once post volume justifies it: add
-`category = "categories"` under `[taxonomies]` in `hugo.toml`, re-add the
-`[[menu.main]]` entries, and for search re-add `"JSON"` to `[outputs].home`
-plus a `content/search.md` with `layout: search`.
+`content/resume.md` is the source for both the web résumé and the downloadable
+PDF. After editing it, run:
+
+```bash
+node scripts/generate-resume.mjs
+```
+
+The generator uses Node.js 22+, Hugo, and Chrome or Chromium; it needs no npm
+packages. Its isolated print template is `scripts/resume-print.html`. Review
+page breaks in `static/documents/linjia-hu-resume.pdf`, then commit the PDF with
+the Markdown. Add `--html-output /tmp/linjia-resume.html` to save an HTML preview,
+or `--chrome /path/to/chrome` to select the browser.
 
 ### Typography
 
@@ -245,22 +244,19 @@ Wait for the **Actions** workflow to finish green, then reload the live site.
 
 ## 8. Audience plumbing: newsletter, community, videos, analytics, domain
 
-Everything in this section is wired up in templates and config already. Each
-item needs one account or setting on your side; until then it degrades
-gracefully (RSS link instead of a form, a plain Discussions link instead of
-embedded threads, a coming-soon note instead of videos).
+These optional integrations are supported by templates and configuration.
+Unconfigured email signup uses RSS and LinkedIn links; unconfigured giscus uses
+an article-specific LinkedIn conversation when supplied, or the author profile.
+The homepage shows videos only after one is published.
 
 ### Newsletter (Buttondown)
 
 1. Create a free account at <https://buttondown.com> and pick a username.
 2. Put it in `hugo.toml` under `[params.newsletter]` → `username`.
-3. Signup forms then render in the hero-adjacent card on the landing page, at
-   the end of every post and video, on `/subscribe/`, and on `/videos/`. Each
-   form sends a `tag` (`home`, `posts-end`, `videos-end`, `subscribe-page`,
-   `videos-list`) so Buttondown shows which placement converts.
-4. Optional: in Buttondown, set the sending domain to your custom domain once
-   you have one, and turn off open tracking to match the privacy promise on
-   `/subscribe/`.
+3. Signup forms then render at the end of posts and videos, on `/subscribe/`,
+   and on `/videos/`. Each form sends a placement `tag`.
+4. Update the signup copy to match your actual publishing schedule and account
+   settings. Do not describe email delivery or tracking settings before setup.
 
 ### Community (GitHub Discussions + giscus)
 
@@ -275,7 +271,8 @@ embedded threads, a coming-soon note instead of videos).
    already filled in.
 4. Threads now embed under every post and video and follow the site's light/dark
    toggle. Readers sign in with GitHub; you moderate from the Discussions tab.
-   `/community/` explains the categories and the house rules.
+   Update `/community/` with the working discussion link and any moderation
+   guidance when the service is ready.
 
 ### Videos (YouTube)
 

@@ -46,53 +46,40 @@ tag = "tags"
 # the header is sticky so they stay reachable while scrolling.
 [menu]
 [[menu.main]]
-identifier = "work"
-name = "Work"
-url = "/#work"
-weight = 10
-
-[[menu.main]]
-identifier = "journey"
-name = "Journey"
-url = "/#journey"
-weight = 20
-
-[[menu.main]]
 identifier = "posts"
 name = "Writing"
 url = "/posts/"
-weight = 30
+weight = 10
 
 [[menu.main]]
-identifier = "community"
-name = "Community"
-url = "/community/"
-weight = 40
-
-[[menu.main]]
-identifier = "subscribe"
-name = "Subscribe"
-url = "/subscribe/"
-weight = 50
+identifier = "work"
+name = "Work"
+url = "/#work"
+weight = 20
 
 [[menu.main]]
 identifier = "about"
 name = "About"
 url = "/about/"
-weight = 60
+weight = 30
+
+[[menu.main]]
+identifier = "resume"
+name = "Résumé"
+url = "/resume/"
+weight = 40
 
 # Add a "Videos" entry (url = "/videos/", weight = 35) when the first video is
 # published; the landing page block and /videos/ already exist.
 
-# The résumé is deliberately not in the nav. It is linked from the landing page
-# (hero button, Work section, contact block) and from content/about.md, and
-# still builds at /resume/.
+# Keep /subscribe/ and /community/ available for existing links. Surface them in
+# the menu only when the corresponding services are configured and useful.
 
 [params]
 env = "production"
-description = "AI Architect | Principal ML Engineer — agentic AI, ML platforms, LLM post-training. Siemens (Intelligent Machines); ex-Microsoft Copilot & Azure AI, Amazon, Qualcomm."
+description = "Linjia Hu — AI Architect at Siemens. Writing about physical AI, agent systems, inference, and ML infrastructure."
 author = "Linjia Hu"
-keywords = ["AI architect", "machine learning", "agentic AI", "LLM alignment", "Copilot", "Azure", "ML platforms", "edge AI", "Siemens", "Intelligent Machines"]
+keywords = ["Linjia Hu", "AI architect", "Physical AI", "agentic systems", "ML infrastructure", "inference", "Siemens"]
 defaultTheme = "auto"
 ShowReadingTime = true
 ShowToc = true
@@ -136,12 +123,12 @@ text = "Writing is licensed [CC BY 4.0](https://creativecommons.org/licenses/by/
 # subscribe block then falls back to an RSS link. Setup: SITE_GUIDE §9.
 [params.newsletter]
 username = ""
-heading = "Get new posts and videos by email"
-blurb = "About one email a month: new writing, new videos, the occasional short note. No tracking pixels, unsubscribe in one click."
+heading = "Get new articles by email"
+blurb = "Receive new articles when they are published."
 
 # Comments are GitHub Discussions rendered by giscus. repoId is this repo's
 # node id. Fill category and categoryId from https://giscus.app after enabling
-# Discussions on the repository. Until then posts show a plain link. SITE_GUIDE §9.
+# Discussions on the repository. Until then posts link to LinkedIn. SITE_GUIDE §8.
 [params.giscus]
 repo = "linjiah/linjiah.github.io"
 repoId = "R_kgDOSaCGiw"

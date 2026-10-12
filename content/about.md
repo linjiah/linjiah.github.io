@@ -1,20 +1,26 @@
 ---
 title: "About Me"
-description: "AI Architect and Principal ML Engineer — agentic systems, ML platforms, and alignment in production."
+description: "Linjia Hu, AI Architect at Siemens. Physical AI, agent systems, and ML infrastructure."
 hiddenInRss: true   # home feed /index.xml lists posts only
 comments: false
+hideMeta: true
+showReadingTime: false
+showWordCount: false
+showToc: false
+editPost:
+  disabled: true
 aliases:
   - /about-me/
 ---
 
-I am **Linjia Hu**, an **AI Architect** and **Principal Machine Learning Engineer** based in **Mercer Island, WA**. For **15+ years** I have owned and scaled high-impact AI systems across **Microsoft**, **Amazon**, and **Qualcomm**, and I am now an **AI Architect** at **Siemens** (Intelligent Machines), building full-stack software for agentic and generative AI on proprietary silicon for edge and private data centers.
+I'm Linjia Hu, an **AI Architect at Siemens** based in Mercer Island, Washington. I work on physical AI and the software that supports agentic and generative AI, including distributed runtimes, inference, and integration with specialized hardware.
 
-At **Microsoft**, I was the technical owner of **agent reasoning, orchestration, and LLM post-training** for **Microsoft Copilot** and **Azure Global Datacenter AI**—bridging alignment and reasoning research with production. Highlights included a trust-first turnaround for Copilot reasoning (structured templates and dynamic selection), closed-loop post-training from real user sessions with SFT/RL and a large regression suite, ensemble LLM-based evaluators wired into CI/CD, and agentic RAG for Azure operations with strong accuracy and escalation reductions.
+My writing explores agent architecture, evaluation, inference, and the decisions involved in running AI systems in production. I draw on work across both model behavior and the systems around it: reasoning and post-training, deployment infrastructure, and the controls that determine what an agent can do.
 
-At **Amazon**, I was architectural owner of **large-scale ML platforms and data infrastructure** for **Amazon Go** and **Retail ML**—streaming and batch processing, PB-scale media storage, feature pipelines, distributed training and inference, and experimentation platforms that cut training cycles and infrastructure cost materially.
+My background spans **15+ years in software engineering, machine learning, and AI systems**. At Microsoft, I worked on reasoning, orchestration, post-training, and evaluation for enterprise assistants and agents. At Amazon, I built ML and data platforms. Earlier at Qualcomm, I led embedded software and edge AI work.
 
-Earlier at **Qualcomm**, I led **embedded and edge AI** work on SoC platforms (including world-first 5G stack leadership). My **Ph.D. and M.S. in Computer Science** are from **Michigan Technological University** (massively parallel computing and computer vision); I also hold an **M.E. (Software Engineering)** from **USTC** and a **B.E. (Electrical Engineering)** from **Central South University**.
+I hold a Ph.D. and M.S. in Computer Science from Michigan Technological University, where my research focused on GPU computing and computer vision. I also hold an M.E. in Software Engineering from USTC and a B.E. in Electrical Engineering from Central South University.
 
-For the full timeline, impact bullets, and skills matrix, see the dedicated [**Résumé**](/resume/) page or download the [**PDF résumé**](/documents/linjia-hu-resume.pdf) (February 2026).
+You can [read my writing](/posts/), explore my [résumé](/resume/), or [download the résumé (PDF)](/documents/linjia-hu-resume.pdf).
 
-This website is **personal technical writing**, not an official channel for any employer. Use company communications for formal statements.
+This is a personal site, not an official channel for any employer.

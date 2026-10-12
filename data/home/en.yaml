@@ -1,25 +1,20 @@
-# Content for the English landing page (layouts/home.html). Edit facts here, not
-# in HTML. A Chinese edition is data/home/zh.yaml with the same keys.
-# Every claim below is lifted from content/resume.md; keep the two in sync.
-
+# English homepage copy. Keep professional facts consistent with content/resume.md.
 hero:
-  eyebrow: "AI Architect · Principal ML Engineer"
-  headline:
-    - "Build AI systems that keep working"
-    - "after the demo."
-  intro: >-
-    I'm Linjia. I design and ship agentic reasoning, ML platforms, and inference
-    stacks that have to survive real traffic. Currently an **AI Architect** at **Siemens** (Intelligent Machines), building
-    full-stack software for agentic and generative AI on proprietary silicon. Before that I was the technical
-    owner of agent reasoning and post-training for **Microsoft Copilot** and
-    **Azure Global Datacenter AI**, built ML platforms at **Amazon**, and shipped
-    edge AI and a world-first 5G stack at **Qualcomm**.
+  name: "Linjia Hu"
+  role: "AI Architect at Siemens"
+  focus: "Physical AI · Agentic Systems · ML Infrastructure"
+  intro: |-
+    I work on AI software and systems. My background spans enterprise agents,
+    ML platforms, and embedded software.
+
+    I write about architecture, inference, and the practical decisions involved
+    in running agents in production.
   primary:
-    text: "Read the writing"
+    text: "Read my articles"
     url: "#writing"
   secondary:
-    text: "Download résumé (PDF)"
-    url: "/documents/linjia-hu-resume.pdf"
+    text: "Connect on LinkedIn"
+    url: "https://www.linkedin.com/in/linjia-hu-4a296818/"
   portrait:
     src: "/images/avatar.jpg"
     alt: "Portrait of Linjia Hu"
@@ -29,9 +24,6 @@ hero:
     - name: github
       title: GitHub
       url: "https://github.com/linjiah"
-    - name: linkedin
-      title: LinkedIn
-      url: "https://www.linkedin.com/in/linjia-hu-4a296818/"
     - name: email
       title: Email
       url: "mailto:linjia.hwu@gmail.com"
@@ -39,172 +31,73 @@ hero:
       title: RSS
       url: "/index.xml"
 
-journey:
-  kicker: "Journey"
-  heading: "Fifteen years from silicon to agents."
-  lede: >-
-    Each stop added a layer: embedded systems, then massively parallel computing,
-    then planet-scale ML platforms, then the reasoning layer of a frontier copilot.
-    Now all of it is coming back together on new hardware.
-  stats:
-    - value: "15+"
-      label: "years shipping production AI"
-      note: "Qualcomm → Amazon → Microsoft → Siemens"
-    - value: "3.0 → 4.2"
-      label: "Copilot reasoning CSAT in 90 days"
-      note: "trust-first reasoning architecture"
-    - value: "50%+"
-      label: "training infrastructure cost cut"
-      note: "Amazon Go and Retail ML platforms"
-    - value: "12+"
-      label: "peer-reviewed publications"
-      note: "GPU computing and computer vision"
-  timeline:
-    - period: "2025 – now"
-      org: "Siemens"
-      role: "AI Architect (Intelligent Machines)"
-      summary: >-
-        Full-stack software for agentic and generative AI on proprietary silicon:
-        distributed runtime and cluster management, plus vLLM, SGLang, llama.cpp,
-        and IREE/OpenXLA ported to new hardware.
-    - period: "2023 – 2025"
-      org: "Microsoft"
-      role: "Principal Applied Scientist"
-      summary: >-
-        Technical owner of agent reasoning, orchestration, and LLM post-training for
-        Microsoft Copilot and Azure Global Datacenter AI.
-    - period: "2019 – 2023"
-      org: "Amazon"
-      role: "ML Engineer and Technical Lead"
-      summary: >-
-        Architectural owner of ML platforms and data infrastructure for Amazon Go and
-        Retail ML, from PB-scale ingestion to global low-latency inference.
-    - period: "2013 – 2019"
-      org: "Qualcomm"
-      role: "Staff Engineer and Engineering Manager"
-      summary: >-
-        Technical lead for a world-first 5G embedded stack and multiple 4G products;
-        edge AI on DSP, NPU, and mobile GPU.
-    - period: "2009 – 2013"
-      org: "Michigan Technological University"
-      role: "Ph.D. and M.S., Computer Science"
-      summary: >-
-        Massively parallel GPU algorithms for computer vision and large-scale
-        nearest-neighbor search, with speedups up to ~100x.
-    - period: "2007 – 2009"
-      org: "ZTE"
-      role: "Senior Software Engineer"
-      summary: >-
-        Embedded and real-time software, Linux kernel components, and drivers for
-        SoC platforms.
-
-work:
-  kicker: "Selected work"
-  heading: "Systems I'm proud of."
-  lede: >-
-    The common thread: make the failure modes visible, then engineer them away.
-    Numbers are from the shipped systems, not the slide decks.
-  footer_link:
-    text: "Full résumé with impact bullets"
-    url: "/resume/"
-  items:
-    - label: "Microsoft Copilot · 2023 – 2025"
-      title: "Trust-first reasoning for Copilot"
-      summary: >-
-        Rebuilt the reasoning layer around structured templates with dynamic component
-        selection, so failures became predictable and fixable instead of mysterious.
-      metrics: ["CSAT 3.0 → 4.2 in 90 days", "~60% fewer critical reasoning failures"]
-    - label: "Microsoft Copilot · 2023 – 2025"
-      title: "Closed-loop post-training and LLM evaluators"
-      summary: >-
-        SFT and RL from dissatisfied real-user sessions, gated by a ~6,000-query
-        regression suite and an ensemble LLM evaluator wired into CI/CD.
-      metrics: ["0.89 Spearman vs blinded human study", "Validation from weeks to days", "~+30% reasoning success"]
-    - label: "Azure Global Datacenter AI · 2023 – 2025"
-      title: "Agentic RAG for datacenter operations"
-      summary: >-
-        ReAct agents over a vector store and knowledge graph, rolled out
-        human-in-the-loop first and endorsed by InfoSec.
-      metrics: ["+10% accuracy", "−40% human escalations", "~5x operator throughput"]
-    - label: "Siemens · Intelligent Machines · 2025 – now"
-      title: "Inference stack on proprietary silicon"
-      summary: >-
-        Porting vLLM, SGLang, llama.cpp, and IREE/OpenXLA to new hardware, with a
-        roadmap for hardware-accelerated KV-cache and deep-stack optimizations.
-      metrics: ["~3x throughput vs GPU baseline in prototypes"]
-    - label: "Amazon Go and Retail ML · 2019 – 2023"
-      title: "ML and data platform for Amazon Go"
-      summary: >-
-        Streaming and batch processing, PB-scale image and video storage, feature
-        pipelines, distributed training, and global low-latency inference, with
-        guardrails so many teams could ship independently.
-      metrics: ["Training from weeks to under a day", "50%+ infrastructure cost reduction"]
-    - label: "Qualcomm · 2013 – 2019"
-      title: "World-first 5G stack and edge AI on SoC"
-      summary: >-
-        Led the embedded software for a first-to-market 5G stack and multiple 4G
-        products; edge inference on DSP, NPU, and mobile GPU.
-      metrics: ["World-first 5G", "Edge AI on DSP / NPU / GPU"]
-
 writing:
   kicker: "Writing"
-  heading: "Notes that survived production."
-  lede: >-
-    Architecture, inference SLOs, evaluation, and the tradeoffs that only show up
-    at scale. Long-form, with the math where it earns its place.
+  heading: "Latest article"
+  lede: "Notes on AI systems, their constraints, and the choices behind them."
   footer_link:
-    text: "All posts"
+    text: "All articles"
     url: "/posts/"
+
+work:
+  kicker: "Work"
+  heading: "Selected work"
+  lede: "Current work at Siemens and projects from my time at Microsoft and Amazon."
+  footer_link:
+    text: "Experience and technical background"
+    url: "/resume/"
+  items:
+    - label: "Siemens · 2025–present"
+      title: "AI runtimes and inference"
+      summary: >-
+        Developing software for agentic and generative AI on specialized hardware.
+        My work includes distributed runtimes, inference engines, and memory
+        management across the serving stack.
+    - label: "Microsoft · 2023–2025"
+      title: "Agent evaluation and reliability"
+      summary: >-
+        Led agent reasoning, orchestration, and post-training for enterprise
+        copilots. Built evaluation and regression checks into the release
+        process to assess changes before deployment.
+    - label: "Amazon · 2019–2023"
+      title: "ML training and data platforms"
+      summary: >-
+        Built data pipelines, distributed training, and inference infrastructure
+        for retail and computer vision systems. The training infrastructure
+        reduced cycles from weeks to under a day.
+
+background:
+  kicker: "Background"
+  heading: "From embedded software to AI systems"
+  text: |-
+    Over the past 15+ years, I've worked across software systems, machine learning,
+    and AI. Before Siemens, I worked on enterprise agents at Microsoft, ML platforms
+    at Amazon, and embedded software and edge AI at Qualcomm.
+
+    I hold a Ph.D. in Computer Science from Michigan Technological University,
+    where my research focused on parallel GPU computing and computer vision.
+  links:
+    - text: "More about me"
+      url: "/about/"
+    - text: "Download résumé (PDF)"
+      url: "/documents/linjia-hu-resume.pdf"
 
 videos:
   kicker: "Videos"
-  heading: "Watch the ideas worked through."
-  lede: >-
-    Talks-through of the same material as the writing, with show notes, chapters,
-    and links to the code and the related post.
+  heading: "Talks and walkthroughs"
+  lede: "Technical explanations with notes and links to related articles."
   footer_link:
     text: "All videos"
     url: "/videos/"
 
-expertise:
-  kicker: "Focus"
-  heading: "What I work on."
-  items:
-    - title: "Agentic systems and alignment"
-      summary: >-
-        Reasoning, orchestration, tool planning, grounding, and memory for enterprise
-        copilots and autonomous workflows; post-training with SFT, DPO, and RL.
-      skills: ["Orchestration", "RAG", "SFT / DPO / RL", "PPO / GRPO"]
-    - title: "Evaluation and reliability"
-      summary: >-
-        Offline and online LLM-based evaluation, hallucination mitigation, and
-        regression gates that sit inside the release pipeline.
-      skills: ["LLM judges", "Regression suites", "CI/CD gates", "HITL rollout"]
-    - title: "ML platforms and infrastructure"
-      summary: >-
-        Ingestion, streaming and batch, feature stores, distributed training,
-        serving, and continuous learning, tuned for latency, cost, and elasticity.
-      skills: ["Ray", "Spark", "Kubernetes", "Feature stores"]
-    - title: "Inference and edge optimization"
-      summary: >-
-        vLLM, SGLang, llama.cpp, and IREE/OpenXLA on proprietary silicon;
-        quantization, distillation, and pruning under power and latency budgets.
-      skills: ["vLLM", "SGLang", "IREE / OpenXLA", "Triton"]
-
 contact:
   kicker: "Contact"
-  heading: "Working on agents, inference, or ML platforms?"
-  text: >-
-    I'm glad to compare notes on architecture that has to survive production.
-    Email is the fastest way to reach me.
+  heading: "Get in touch"
+  text: "I'd be glad to hear from you about AI architecture, agent systems, or a question raised by an article."
   links:
     - text: "Email me"
       url: "mailto:linjia.hwu@gmail.com"
       primary: true
-    - text: "Join the discussion"
-      url: "/community/"
     - text: "LinkedIn"
       url: "https://www.linkedin.com/in/linjia-hu-4a296818/"
-    - text: "Résumé (PDF)"
-      url: "/documents/linjia-hu-resume.pdf"
-  note: "This is a personal site, not an official channel for any employer."
+  note: "The views on this site are my own."

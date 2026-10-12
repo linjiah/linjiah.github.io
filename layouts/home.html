@@ -1,71 +1,74 @@
-{{- /* Landing page. Copy lives in data/home/<lang>.yaml; posts and videos come
-       from content/. Sections carry ids so the nav can deep-link to them, and
-       are numbered with a running counter so optional sections (videos) slot in. */ -}}
+{{- /* Homepage copy lives in data/home/<lang>.yaml. Articles and videos are
+       pulled from published content; professional history lives on /resume/. */ -}}
 {{- define "main" }}
-{{- $d := index site.Data.home site.Language.Lang | default site.Data.home.en }}
-{{- $n := 0 }}
+{{- $d := index hugo.Data.home site.Language.Lang | default hugo.Data.home.en }}
 <div class="lp">
-
-  {{- /* ---------- Hero ---------- */}}
   <section class="lp-hero" aria-labelledby="lp-headline">
-    <div class="lp-hero-text">
-      <p class="lp-eyebrow">{{ $d.hero.eyebrow }}</p>
-      <h1 id="lp-headline" class="lp-headline">
-        {{- range $d.hero.headline }}<span>{{ . }}</span>{{ end -}}
-      </h1>
-      <div class="lp-intro">{{ $d.hero.intro | markdownify }}</div>
-      <div class="lp-cta">
-        <a class="lp-btn lp-btn-primary" href="{{ $d.hero.primary.url }}">{{ $d.hero.primary.text }}</a>
-        <a class="lp-btn" href="{{ $d.hero.secondary.url | relURL }}">{{ $d.hero.secondary.text }}</a>
-      </div>
-      <ul class="lp-social" aria-label="Profiles">
-        {{- range $d.hero.socials }}
-        <li>
-          <a href="{{ .url }}" title="{{ .title }}"
-            {{- if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer me"{{ end }}>
-            {{- partial "svg.html" . -}}<span>{{ .title }}</span>
-          </a>
-        </li>
-        {{- end }}
-      </ul>
+    <div class="lp-identity">
+      <h1 id="lp-headline" class="lp-headline">{{ $d.hero.name }}</h1>
+      <p class="lp-role">{{ $d.hero.role }}</p>
+      <p class="lp-focus-line">{{ range $i, $focus := split $d.hero.focus " · " }}{{ if $i }} · {{ end }}<span>{{ $focus }}</span>{{ end }}</p>
     </div>
     <figure class="lp-portrait">
       <img src="{{ $d.hero.portrait.src | relURL }}" alt="{{ $d.hero.portrait.alt }}"
            width="{{ $d.hero.portrait.width }}" height="{{ $d.hero.portrait.height }}"
            loading="eager" fetchpriority="high" decoding="async">
     </figure>
+    <div class="lp-hero-body">
+      <div class="lp-intro">{{ $d.hero.intro | markdownify }}</div>
+      <div class="lp-cta">
+        <a class="lp-btn lp-btn-primary" href="{{ $d.hero.primary.url | relURL }}">{{ $d.hero.primary.text }}</a>
+        <a class="lp-btn" href="{{ $d.hero.secondary.url | relURL }}">{{ $d.hero.secondary.text }}</a>
+      </div>
+      <ul class="lp-social" aria-label="Profiles and updates">
+        {{- range $d.hero.socials }}
+        <li><a href="{{ .url | relURL }}" title="{{ .title }}"
+          {{- if hasPrefix .url "http" }} rel="me"{{ end }}>
+          {{- partial "svg.html" . -}}<span>{{ .title }}</span>
+        </a></li>
+        {{- end }}
+      </ul>
+    </div>
   </section>
 
-  {{- /* ---------- Journey: stats + timeline ---------- */}}
-  {{- with $d.journey }}{{ $n = add $n 1 }}
-  <section id="journey" class="lp-section" aria-labelledby="journey-h">
+  {{- $posts := (where site.RegularPages "Type" "posts").ByDate.Reverse }}
+  {{- with $d.writing }}
+  <section id="writing" class="lp-section" aria-labelledby="writing-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
-      <h2 id="journey-h">{{ .heading }}</h2>
+      <p class="lp-eyebrow">{{ .kicker }}</p>
+      <h2 id="writing-h">{{ if gt (len $posts) 1 }}Latest articles{{ else }}{{ .heading }}{{ end }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
-    <ul class="lp-stats">
-      {{- range .stats }}
-      <li><strong>{{ .value }}</strong><span>{{ .label }}</span>{{ with .note }}<small>{{ . }}</small>{{ end }}</li>
-      {{- end }}
-    </ul>
-    <ol class="lp-timeline">
-      {{- range .timeline }}
-      <li>
-        <p class="lp-tl-period">{{ .period }}</p>
-        <h3>{{ .role }} <span class="lp-tl-org">· {{ .org }}</span></h3>
-        <p>{{ .summary }}</p>
+    <ol class="lp-posts">
+      {{- range first 3 $posts }}
+      {{- $post := . }}
+      <li class="lp-post-entry{{ if .Params.cover.image }} lp-post-with-cover{{ end }}">
+        {{- with .Params.cover.image }}
+        {{- $cover := . }}
+        {{- with $post.Resources.GetMatch . }}{{ $cover = .RelPermalink }}{{ else }}
+          {{- with resources.Get . }}{{ $cover = .RelPermalink }}{{ end }}
+        {{- end }}
+        <div class="lp-post-cover">
+          <img src="{{ $cover | relURL }}" alt="" width="1600" height="900" loading="lazy" decoding="async">
+        </div>
+        {{- end }}
+        <div class="lp-post-body">
+          <p class="lp-post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time><span class="lp-dot" aria-hidden="true">·</span>{{ i18n "min_read" .ReadingTime }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{- with .Summary }}<div class="lp-post-summary">{{ . }}</div>{{ end }}
+          <a class="lp-read" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }}">Read article <span aria-hidden="true">→</span></a>
+        </div>
       </li>
       {{- end }}
     </ol>
+    {{- with .footer_link }}<p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></p>{{ end }}
   </section>
   {{- end }}
 
-  {{- /* ---------- Selected work ---------- */}}
-  {{- with $d.work }}{{ $n = add $n 1 }}
+  {{- with $d.work }}
   <section id="work" class="lp-section" aria-labelledby="work-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ .kicker }}</p>
       <h2 id="work-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -75,7 +78,6 @@
         <p class="lp-label">{{ .label }}</p>
         <h3>{{ .title }}</h3>
         <p>{{ .summary }}</p>
-        {{- with .metrics }}<ul class="lp-chips lp-metrics">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
       </li>
       {{- end }}
     </ul>
@@ -83,42 +85,24 @@
   </section>
   {{- end }}
 
-  {{- /* ---------- Writing ---------- */}}
-  {{- $posts := where site.RegularPages "Type" "posts" }}
-  {{- with $d.writing }}{{ $n = add $n 1 }}
-  <section id="writing" class="lp-section" aria-labelledby="writing-h">
+  {{- with $d.background }}
+  <section id="journey" class="lp-section lp-background" aria-labelledby="background-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
-      <h2 id="writing-h">{{ .heading }}</h2>
-      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
+      <p class="lp-eyebrow">{{ .kicker }}</p>
+      <h2 id="background-h">{{ .heading }}</h2>
     </header>
-    <ol class="lp-posts">
-      {{- range first 8 $posts }}
-      <li>
-        <p class="lp-post-meta">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-          <span class="lp-dot" aria-hidden="true">·</span>{{ i18n "min_read" .ReadingTime }}
-        </p>
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{- with .Summary }}<p class="lp-post-summary">{{ . }}</p>{{ end }}
-        {{- with .Params.tags }}
-        <ul class="lp-chips lp-tags">{{ range first 4 . }}<li><a href="{{ (printf "/tags/%s/" (urlize .)) | relURL }}">{{ . }}</a></li>{{ end }}</ul>
-        {{- end }}
-      </li>
-      {{- end }}
-    </ol>
-    {{- with .footer_link }}
-    <p class="lp-more"><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a> <span class="lp-dot" aria-hidden="true">·</span> <a href="{{ "index.xml" | relURL }}">{{ i18n "rss" }}</a></p>
-    {{- end }}
+    <div class="lp-intro">{{ .text | markdownify }}</div>
+    <ul class="lp-background-links">
+      {{- range .links }}<li><a href="{{ .url | relURL }}">{{ .text }} <span aria-hidden="true">→</span></a></li>{{ end }}
+    </ul>
   </section>
   {{- end }}
 
-  {{- /* ---------- Videos: appears automatically once the first video exists ---------- */}}
   {{- $videos := where site.RegularPages "Type" "videos" }}
-  {{- with $d.videos }}{{ if $videos }}{{ $n = add $n 1 }}
+  {{- with $d.videos }}{{ if $videos }}
   <section id="videos" class="lp-section" aria-labelledby="videos-h">
     <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
+      <p class="lp-eyebrow">{{ .kicker }}</p>
       <h2 id="videos-h">{{ .heading }}</h2>
       {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
     </header>
@@ -127,70 +111,16 @@
   </section>
   {{- end }}{{ end }}
 
-  {{- /* ---------- Subscribe ---------- */}}
-  <section id="subscribe" class="lp-section lp-subscribe">
-    {{ partial "newsletter.html" (dict "ctx" . "tag" "home") }}
-  </section>
-
-  {{- /* ---------- Positions ---------- */}}
-  {{- with $d.positions }}{{ $n = add $n 1 }}
-  <section id="positions" class="lp-section" aria-labelledby="positions-h">
-    <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
-      <h2 id="positions-h">{{ .heading }}</h2>
-      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
-    </header>
-    <ol class="lp-positions">
-      {{- range .items }}
-      <li>
-        <p class="lp-claim">{{ .claim }}</p>
-        {{- with site.GetPage .post }}
-        <a class="lp-claim-src" href="{{ .RelPermalink }}">
-          <span class="lp-claim-src-label">{{ i18n "argued_in" }}</span> {{ .Title }}
-          <span class="lp-dot" aria-hidden="true">·</span> {{ .Date.Format "Jan 2006" }} <span aria-hidden="true">→</span>
-        </a>
-        {{- end }}
-      </li>
-      {{- end }}
-    </ol>
-  </section>
-  {{- end }}
-
-  {{- /* ---------- Focus ---------- */}}
-  {{- with $d.expertise }}{{ $n = add $n 1 }}
-  <section id="focus" class="lp-section" aria-labelledby="focus-h">
-    <header class="lp-sec-head">
-      <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
-      <h2 id="focus-h">{{ .heading }}</h2>
-      {{ with .lede }}<p class="lp-lede">{{ . }}</p>{{ end }}
-    </header>
-    <ul class="lp-grid lp-focus">
-      {{- range .items }}
-      <li class="lp-card">
-        <h3>{{ .title }}</h3>
-        <p>{{ .summary }}</p>
-        {{- with .skills }}<ul class="lp-chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
-      </li>
-      {{- end }}
-    </ul>
-  </section>
-  {{- end }}
-
-  {{- /* ---------- Contact ---------- */}}
-  {{- with $d.contact }}{{ $n = add $n 1 }}
+  {{- with $d.contact }}
   <section id="contact" class="lp-section lp-contact" aria-labelledby="contact-h">
-    <p class="lp-eyebrow">{{ printf "%02d" $n }} · {{ .kicker }}</p>
+    <p class="lp-eyebrow">{{ .kicker }}</p>
     <h2 id="contact-h">{{ .heading }}</h2>
     {{ with .text }}<p class="lp-lede">{{ . }}</p>{{ end }}
     <div class="lp-cta">
-      {{- range .links }}
-      <a class="lp-btn{{ if .primary }} lp-btn-primary{{ end }}" href="{{ .url | relURL }}"
-        {{- if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .text }}</a>
-      {{- end }}
+      {{- range .links }}<a class="lp-btn{{ if .primary }} lp-btn-primary{{ end }}" href="{{ .url | relURL }}">{{ .text }}</a>{{ end }}
     </div>
-    {{ with .note }}<p class="lp-note">{{ . }}</p>{{ end }}
+    {{- with .note }}<p class="lp-note">{{ . }}</p>{{ end }}
   </section>
   {{- end }}
-
 </div>
 {{- end }}

@@ -32,7 +32,7 @@ curl -fsSL -A "Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/130.0 Safari/53
 ## `og-default.svg` → `static/images/og-default.jpg`
 
 The social preview card (Open Graph / Twitter) referenced by `params.images`
-in `hugo.toml`. Social platforms do not render SVG, so it ships as a 1200×630 PNG.
+in `hugo.toml`. Social platforms do not render SVG, so it ships as a 1200×630 JPEG.
 
 The SVG canvas is deliberately **1200×1200 square** with the visible card
 occupying `y = 285..915`. Rendering square keeps `qlmanage` from rescaling the

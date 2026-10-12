@@ -1,8 +1,5 @@
-/* Landing page (layouts/home.html) and shared post styling.
-   Structure borrowed from creator-style personal sites: a hero with portrait and
-   calls to action, a numbered career timeline with headline numbers, a grid of
-   selected work, a writing list, short "positions", and a contact block.
-   Everything is keyed to PaperMod's CSS variables so dark mode just works. */
+/* Homepage and shared article styling. Theme variables support light and dark
+   modes; the homepage leads with identity, writing, and selected work. */
 
 :root {
   --lp-width: 940px;
@@ -72,9 +69,11 @@ html { scroll-behavior: smooth; }
 }
 
 .lp p { margin: 0; }
+.lp .lp-eyebrow { margin-bottom: 0.65rem; }
 
 .lp a:not(.lp-btn) { color: inherit; }
 .lp a:not(.lp-btn):hover { color: var(--lp-accent); }
+.lp a:focus-visible { outline: 2px solid var(--lp-accent); outline-offset: 4px; }
 
 .lp-section { padding-top: 4.5rem; }
 
@@ -145,11 +144,8 @@ html { scroll-behavior: smooth; }
   padding: 0;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
 }
-
-/* Four focus areas read better as a 2x2 than as 3+1 */
-.lp-focus { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .lp-card {
   background: var(--entry);
@@ -178,7 +174,7 @@ html { scroll-behavior: smooth; }
   color: var(--secondary);
 }
 
-.lp-more { margin-top: 1.5rem; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; }
+.lp .lp-more { margin-top: 1.5rem; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; }
 .lp-more a { text-decoration: none; color: var(--lp-accent) !important; }
 .lp-more a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .lp-dot { color: var(--tertiary); margin: 0 0.35rem; }
@@ -189,19 +185,34 @@ html { scroll-behavior: smooth; }
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: 2.5rem;
-  padding: 3.5rem 0 1rem;
+  gap: 1.25rem 3rem;
+  padding: 3rem 0 0;
 }
+.lp-identity { grid-column: 1; grid-row: 1; }
+.lp-hero-body { grid-column: 1; grid-row: 2; }
 
 .lp-headline {
-  font-size: clamp(2.1rem, 5.2vw, 3.3rem);
+  font-size: clamp(2.1rem, 5.2vw, 3.5rem);
   font-weight: 700;
   line-height: 1.08;
-  margin: 0 0 1.4rem;
+  margin: 0 0 0.6rem;
   text-wrap: balance;
 }
-.lp-headline span { display: block; }
-.lp-headline span + span { color: var(--lp-accent); }
+.lp-role {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--primary);
+}
+.lp .lp-focus-line {
+  margin-top: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--lp-accent);
+}
+.lp-focus-line span { white-space: nowrap; }
 
 .lp-intro {
   max-width: var(--lp-measure);
@@ -234,7 +245,7 @@ html { scroll-behavior: smooth; }
 .lp-social a:hover { color: var(--lp-accent) !important; }
 .lp-social svg { width: 18px; height: 18px; }
 
-.lp-portrait { margin: 0.4rem 0 0; }
+.lp-portrait { grid-column: 2; grid-row: 1 / span 2; margin: 0.4rem 0 0; }
 .lp-portrait img {
   display: block;
   width: 152px;
@@ -244,154 +255,35 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 0 0 4px var(--theme), 0 0 0 6px var(--lp-accent);
 }
 
-/* ---------- Stats ---------- */
-
-.lp-stats {
-  list-style: none;
-  margin: 0 0 2.75rem;
-  padding: 0;
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--lp-radius);
-  overflow: hidden;
-}
-.lp-stats > li {
-  background: var(--entry);
-  padding: 1.25rem 1.3rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-.lp-stats strong {
-  font-family: var(--font-heading);
-  font-size: clamp(1.7rem, 3vw, 2.1rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--lp-accent);
-  font-variant-numeric: tabular-nums;
-}
-.lp-stats span { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--primary); }
-.lp-stats small { font-size: 0.8rem; line-height: 1.45; color: var(--secondary); }
-
-/* ---------- Timeline ---------- */
-
-.lp-timeline {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  counter-reset: stop;
-  position: relative;
-}
-.lp-timeline::before {
-  content: "";
-  position: absolute;
-  left: 15px;
-  top: 10px;
-  bottom: 10px;
-  width: 2px;
-  background: var(--border);
-}
-.lp-timeline > li {
-  counter-increment: stop;
-  position: relative;
-  padding: 0 0 1.8rem 3.25rem;
-}
-.lp-timeline > li:last-child { padding-bottom: 0; }
-.lp-timeline > li::before {
-  content: counter(stop, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 0.05rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: var(--theme);
-  color: var(--lp-accent);
-  border: 2px solid var(--lp-accent);
-}
-.lp-tl-period {
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--secondary);
-  margin-bottom: 0.25rem;
-}
-.lp-timeline h3 { font-size: 1.08rem; line-height: 1.35; margin-bottom: 0.4rem; }
-.lp-tl-org { color: var(--secondary); font-weight: 600; }
-.lp-timeline > li > p:last-child { max-width: var(--lp-measure); font-size: 0.95rem; line-height: 1.65; color: var(--content); }
-
-/* ---------- Writing ---------- */
+/* ---------- Writing and background ---------- */
 
 .lp-posts { list-style: none; margin: 0; padding: 0; }
-.lp-posts > li {
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--border);
+.lp-post-entry {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  column-gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
 }
-.lp-posts > li:last-child { border-bottom: 1px solid var(--border); }
+.lp-post-entry:last-child { border-bottom: 1px solid var(--border); }
+.lp-post-with-cover { grid-template-columns: 300px minmax(0, 1fr); }
+.lp-post-cover img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .lp-post-meta {
   font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--secondary);
-  padding-top: 0.25rem;
   font-variant-numeric: tabular-nums;
 }
-.lp-post-meta time { display: block; }
-.lp-post-meta .lp-dot { display: none; }
-.lp-posts h3 { grid-column: 2; font-size: 1.15rem; line-height: 1.35; }
+.lp-posts h3 { margin-top: 0.45rem; font-size: 1.25rem; line-height: 1.4; }
 .lp-posts h3 a { text-decoration: none; }
 .lp-posts h3 a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
-.lp-post-summary { grid-column: 2; margin-top: 0.45rem; max-width: var(--lp-measure); font-size: 0.95rem; line-height: 1.65; color: var(--content); }
-.lp-posts .lp-chips { grid-column: 2; margin-top: 0.75rem; }
-
-/* ---------- Positions ---------- */
-
-.lp-positions { list-style: none; margin: 0; padding: 0; counter-reset: claim; display: grid; gap: 0.75rem; }
-.lp-positions > li {
-  counter-increment: claim;
-  position: relative;
-  padding: 1.1rem 1.25rem 1.1rem 3.4rem;
-  background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: var(--lp-radius);
-}
-.lp-positions > li::before {
-  content: counter(claim, decimal-leading-zero);
-  position: absolute;
-  left: 1.2rem;
-  top: 1.25rem;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--lp-accent);
-}
-.lp-claim { font-size: 1.08rem; line-height: 1.55; color: var(--primary); font-weight: 700; max-width: 46rem; }
-.lp-claim-src {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-family: var(--font-heading);
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--secondary) !important;
-  text-decoration: none;
-}
-.lp-claim-src:hover { color: var(--lp-accent) !important; }
-.lp-claim-src-label { font-weight: 500; opacity: 0.8; }
+.lp-post-summary { margin-top: 0.7rem; font-size: 0.95rem; line-height: 1.65; color: var(--content); }
+.lp a.lp-read { display: inline-block; margin-top: 0.9rem; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: var(--lp-accent); }
+.lp-background .lp-sec-head { margin-bottom: 1.25rem; }
+.lp-background-links { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+.lp-background-links a { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; color: var(--lp-accent) !important; }
 
 /* ---------- Contact ---------- */
 
@@ -405,26 +297,27 @@ html { scroll-behavior: smooth; }
 }
 .lp-contact .lp-lede { max-width: 38rem; margin: 0 auto; }
 .lp-contact .lp-cta { justify-content: center; margin-top: 1.6rem; }
-.lp-note { margin-top: 1.4rem; font-size: 0.82rem; color: var(--secondary); }
+.lp .lp-note { margin-top: 1.4rem; font-size: 0.82rem; color: var(--secondary); }
 
 /* ---------- Responsive ---------- */
 
 @media (max-width: 760px) {
-  .lp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lp-hero { grid-template-columns: 1fr; gap: 1.25rem; padding-top: 2.25rem; }
-  .lp-portrait { order: -1; }
-  .lp-portrait img { width: 112px; height: 112px; }
+  .lp-hero { grid-template-columns: minmax(0, 1fr) 80px; gap: 1.25rem; padding-top: 1.75rem; }
+  .lp-hero-body { grid-column: 1 / -1; }
+  .lp-portrait { grid-row: 1; }
+  .lp-portrait img { width: 76px; height: 76px; }
+  .lp-role { font-size: 1.06rem; }
+  .lp .lp-focus-line { font-size: 0.85rem; }
   .lp-section { padding-top: 3.25rem; }
-  .lp-posts > li { grid-template-columns: 1fr; row-gap: 0.25rem; }
-  .lp-posts h3, .lp-post-summary, .lp-posts .lp-chips { grid-column: 1; }
-  .lp-post-meta time { display: inline; }
-  .lp-post-meta .lp-dot { display: inline; }
+  .lp-post-with-cover { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
   .lp-contact { padding: 2rem 1.25rem; }
-  .lp-focus { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 420px) {
-  .lp-stats { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  #menu { width: 100%; justify-content: space-between; gap: 0.5rem; margin-inline: 0; overflow-x: visible; }
+  #menu li + li { margin-inline-start: 0; }
+  #menu a { font-size: 0.9rem; }
+  .lp section { scroll-margin-top: calc(var(--header-height) * 2 + 1rem); }
 }
 
 /* ---------- 404 page (layouts/404.html) ---------- */

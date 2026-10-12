@@ -1,15 +1,19 @@
 {{- /* Discussion block: GitHub Discussions via giscus. Rendered by PaperMod's
-       single.html when params.comments is true. Falls back to a plain link
-       until category/categoryId are filled in hugo.toml. */ -}}
+       single.html when params.comments is true. Without a complete giscus
+       configuration, use the article's LinkedIn thread or author profile. */ -}}
 {{- $g := site.Params.giscus -}}
+{{- $thread := .Params.linkedinDiscussion | default .Params.linkedin -}}
+{{- $profiles := where site.Params.socialIcons "name" "linkedin" -}}
+{{- $hasGiscus := and $g.repo $g.repoId $g.category $g.categoryId -}}
+{{- if or $thread $hasGiscus $profiles }}
 <section class="discussion" id="discussion" aria-labelledby="discussion-h">
   <h2 id="discussion-h">{{ i18n "discussion" }}</h2>
   {{- /* LinkedIn-first publishing: when a post has a `linkedin` URL in its front
          matter, point readers at that thread as well. */ -}}
-  {{- with .Params.linkedin }}
+  {{- with $thread }}
   <p class="discussion-linkedin"><a class="lp-btn" href="{{ . }}" rel="noopener noreferrer" target="_blank">{{ partial "svg.html" (dict "name" "linkedin") }} {{ i18n "discuss_on_linkedin" }}</a></p>
   {{- end }}
-  {{- if and $g.repo $g.repoId $g.categoryId }}
+  {{- if $hasGiscus }}
   <p class="discussion-blurb">{{ i18n "discussion_blurb" }}</p>
   <div class="giscus"></div>
   <script>
@@ -39,8 +43,11 @@
     });
   })();
   </script>
-  {{- else }}
+  {{- else if not $thread }}
+    {{- range $profiles }}
   <p class="discussion-blurb">{{ i18n "discussion_fallback" }}
-    <a href="https://github.com/{{ $g.repo }}/discussions" rel="noopener noreferrer" target="_blank">GitHub Discussions</a>.</p>
+    <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ i18n "contact_on_linkedin" }}</a>.</p>
+    {{- end }}
   {{- end }}
 </section>
+{{- end }}

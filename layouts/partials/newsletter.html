@@ -1,12 +1,12 @@
 {{- /* Email signup card (Buttondown). Call with (dict "ctx" . "tag" "<placement>").
        The tag is passed to Buttondown so you can see which placement converts.
-       With no username configured the card falls back to RSS. */ -}}
+       With no username configured the card links to RSS and LinkedIn. */ -}}
 {{- $u := site.Params.newsletter.username -}}
 {{- $tag := .tag | default "site" -}}
 <aside class="nl" aria-labelledby="nl-h-{{ $tag }}">
+  {{- if $u }}
   <h2 id="nl-h-{{ $tag }}" class="nl-heading">{{ site.Params.newsletter.heading }}</h2>
   <p class="nl-blurb">{{ site.Params.newsletter.blurb }}</p>
-  {{- if $u }}
   <form class="nl-form" action="https://buttondown.com/api/emails/embed-subscribe/{{ $u }}" method="post"
         target="popupwindow" onsubmit="window.open('https://buttondown.com/{{ $u }}', 'popupwindow')">
     <label class="sr-only" for="nl-email-{{ $tag }}">{{ i18n "email_address" }}</label>
@@ -17,6 +17,11 @@
     <button class="lp-btn lp-btn-primary" type="submit">{{ i18n "subscribe" }}</button>
   </form>
   {{- else }}
-  <p class="nl-fallback">{{ i18n "subscribe_rss_only" }} <a href="{{ "index.xml" | relURL }}">{{ i18n "rss" }}</a>.</p>
+  <h2 id="nl-h-{{ $tag }}" class="nl-heading">{{ i18n "follow_writing" }}</h2>
+  <p class="nl-fallback"><a href="{{ "index.xml" | relURL }}">{{ i18n "follow_by_rss" }}</a>
+    {{- range where site.Params.socialIcons "name" "linkedin" }}
+    · <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ i18n "follow_on_linkedin" }}</a>
+    {{- end }}
+  </p>
   {{- end }}
 </aside>

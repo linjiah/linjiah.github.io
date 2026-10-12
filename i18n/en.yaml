@@ -21,13 +21,13 @@
 - id: related_reading
   translation: "Related reading"
 - id: videos_coming_soon
-  translation: "The channel is in production. The first videos will appear here; subscribe below to hear when they land."
+  translation: "No videos are published yet. You can find current writing on the articles page."
 - id: discussion
   translation: "Discussion"
 - id: discussion_blurb
   translation: "Comments are GitHub Discussions. Sign in with GitHub to reply, react, or ask a question; threads stay searchable."
 - id: discussion_fallback
-  translation: "Questions or disagreements? Start a thread on"
+  translation: "Questions or corrections?"
 - id: updated_on
   translation: "Updated"
 - id: history
@@ -36,8 +36,14 @@
   translation: "Cite this post"
 - id: subscribe
   translation: "Subscribe"
-- id: subscribe_rss_only
-  translation: "Email updates are coming soon. Until then, follow by"
+- id: follow_writing
+  translation: "Follow new writing"
+- id: follow_by_rss
+  translation: "Follow via RSS"
+- id: follow_on_linkedin
+  translation: "Follow on LinkedIn"
+- id: contact_on_linkedin
+  translation: "Get in touch on LinkedIn"
 - id: your_email
   translation: "you@example.com"
 - id: email_address

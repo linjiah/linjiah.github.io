@@ -61,8 +61,8 @@ See **[SITE_GUIDE.md](SITE_GUIDE.md)** for how Hugo + PaperMod + GitHub Pages fi
 ## Customize
 
 - **Site metadata, menus, and PaperMod options**: [hugo.toml](hugo.toml)
-- **Landing page content**: [data/home/en.yaml](data/home/en.yaml) — hero, career timeline and headline numbers, selected work, videos block, positions, focus areas, contact. [layouts/home.html](layouts/home.html) renders it and pulls the writing and video lists from [content/](content/) automatically. Keep the numbers in sync with [content/resume.md](content/resume.md).
-- **Newsletter, community, videos, analytics, custom domain**: all wired up; each needs one account or setting. See [SITE_GUIDE.md](SITE_GUIDE.md) §8.
+- **Landing page content**: [data/home/en.yaml](data/home/en.yaml) — introduction, writing section, selected work, background, and contact. [layouts/home.html](layouts/home.html) adds the latest published articles and any published videos automatically. Keep professional facts consistent with [content/resume.md](content/resume.md).
+- **Newsletter, community, videos, analytics, custom domain**: optional integrations. Until configured, follow and discussion links use RSS and LinkedIn. See [SITE_GUIDE.md](SITE_GUIDE.md) §8.
 - **Videos**: one page per video under [content/videos/](content/videos/); [sync-youtube.yml](.github/workflows/sync-youtube.yml) drafts them from the channel feed once `YOUTUBE_CHANNEL_ID` is set.
 - **Posts**: add Markdown under [content/posts/](content/posts/)
 - **Profile photo**: replace [static/images/avatar.jpg](static/images/avatar.jpg)
@@ -71,4 +71,14 @@ See **[SITE_GUIDE.md](SITE_GUIDE.md)** for how Hugo + PaperMod + GitHub Pages fi
 - **Fonts and type scale**: [assets/css/extended/typography.css](assets/css/extended/typography.css) (Merriweather body / Raleway headings). The woff2 files are self-hosted in [static/fonts/](static/fonts/) and declared in [assets/css/extended/fonts.css](assets/css/extended/fonts.css); [layouts/partials/extend_head.html](layouts/partials/extend_head.html) preloads the two above-the-fold faces. No third-party font requests.
 - **Homepage, diagram, and table CSS**: [assets/css/extended/home.css](assets/css/extended/home.css)
 
-The navigation is **Work / Journey / Writing / Community / Subscribe / About**. Work and Journey are anchors into sections of the landing page, and the header is sticky so they stay reachable while scrolling. Add **Videos** when the first video is published. The résumé is deliberately not a menu item; it is linked from the hero button, the Work section, the contact block, and the About page, and still lives at `/resume/`. Categories, Archive, and Search are kept out of the menu — see [SITE_GUIDE.md](SITE_GUIDE.md) §2 for the rationale and how to restore them.
+The navigation is **Writing / Work / About / Résumé**. Work links to the homepage section; the other entries open dedicated pages. The older `/subscribe/` and `/community/` URLs remain available with working follow/contact options. Add more navigation only when there is content or a configured service behind it.
+
+## Keep the résumé PDF current
+
+Edit [content/resume.md](content/resume.md), then regenerate the downloadable PDF from the same Markdown:
+
+```bash
+node scripts/generate-resume.mjs
+```
+
+This requires Node.js 22+, Hugo, and Chrome or Chromium, with no npm packages. The print layout lives in [scripts/resume-print.html](scripts/resume-print.html). Review the PDF's page breaks after content changes; `--html-output /tmp/linjia-resume.html` also saves a browser preview. Commit the regenerated PDF alongside the Markdown.

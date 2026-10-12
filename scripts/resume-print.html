@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="{{ .Site.Title }}">
+  <title>{{ .Site.Title }} — Résumé</title>
+  <base href="{{ .Site.BaseURL }}">
+  <style>
+    @page {
+      size: letter;
+      margin: 0.55in 0.62in;
+      @bottom-left { content: "Linjia Hu"; font: 8pt Arial, sans-serif; color: #63717d; }
+      @bottom-right { content: counter(page) " / " counter(pages); font: 8pt Arial, sans-serif; color: #63717d; }
+    }
+    * { box-sizing: border-box; }
+    html { color: #19212a; background: #fff; }
+    body {
+      max-width: 7.26in;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.32;
+    }
+    h1 { margin: 0 0 9pt; font-size: 24pt; letter-spacing: -0.6pt; line-height: 1.1; }
+    h2 {
+      margin: 15pt 0 6pt;
+      padding-bottom: 3pt;
+      border-bottom: 0.6pt solid #b3bec7;
+      font-size: 11pt;
+      letter-spacing: 0.7pt;
+      text-transform: uppercase;
+      break-after: avoid;
+    }
+    h3 { margin: 10pt 0 4pt; font-size: 10.5pt; break-after: avoid; }
+    h3 em { font-size: 9.5pt; font-weight: normal; }
+    p { margin: 0 0 6pt; orphans: 3; widows: 3; }
+    ul { margin: 4pt 0 8pt; padding-left: 15pt; }
+    li { margin: 0 0 3pt; break-inside: avoid; }
+    a { color: #1e4c67; text-decoration: none; overflow-wrap: anywhere; }
+    strong { font-weight: 700; }
+    hr { margin: 10pt 0; border: 0; border-top: 0.6pt solid #d4dbe0; }
+    h3 + p { break-after: avoid; }
+    @media screen {
+      html { background: #e8edf0; }
+      body { max-width: 8.5in; margin: 24px auto; padding: 0.55in 0.62in; background: white; }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>{{ .Site.Title }}</h1></header>
+  <main>{{ .Content }}</main>
+  <script>
+    // The download link is useful on the website but redundant inside its PDF.
+    const download = document.querySelector('a[href="/documents/linjia-hu-resume.pdf"]');
+    if (download) {
+      const item = download.parentElement.tagName === 'STRONG' ? download.parentElement : download;
+      const next = item.nextSibling;
+      if (next && next.nodeType === Node.TEXT_NODE) next.textContent = next.textContent.replace(/^[\s·|]+/, '');
+      const paragraph = item.closest('p');
+      item.remove();
+      if (paragraph && !paragraph.textContent.trim()) paragraph.remove();
+    }
+  </script>
+</body>
+</html>
