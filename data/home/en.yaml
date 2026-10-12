@@ -23,8 +23,8 @@ hero:
   portrait:
     src: "/images/avatar.jpg"
     alt: "Portrait of Linjia Hu"
-    width: 160
-    height: 160
+    width: 640
+    height: 640
   socials:
     - name: github
       title: GitHub
