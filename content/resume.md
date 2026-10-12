@@ -33,7 +33,7 @@ At Microsoft, delivered **~40% operational efficiency** gains in Azure operation
 
 ## Professional experience
 
-### Director of AI Systems Architecture — Siemens (Intelligent Machines) *(2025–Present)*
+### AI Architect — Siemens (Intelligent Machines) *(2025–Present)*
 
 *Infrastructure and Platform on Chips for Edge AI & Private Data Center · Seattle, WA*
 

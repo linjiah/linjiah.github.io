@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t">
+  <title id="t">AI agents need a runtime that can say no: an agent steered by untrusted input, inside a runtime ring with five gates matching the article's five areas; the network gate denies, the credentials gate allows</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#132236"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1c2a40" stroke-width="1"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#fbbf24"/></marker>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity="0.7"/>
+
+  <!-- headline -->
+  <text x="96" y="150" fill="#5eead4" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5">AGENTS IN PRODUCTION</text>
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" fill="#f8fafc" letter-spacing="-1">
+    <tspan x="96" y="258">AI agents need</tspan>
+    <tspan x="96" y="346">a runtime that</tspan>
+    <tspan x="96" y="434">can say </tspan><tspan fill="#5eead4">no.</tspan>
+  </text>
+  <text fill="#cbd5e1" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="26">
+    <tspan x="96" y="512">Permissions, human approval, and the</tspan>
+    <tspan x="96" y="548">architecture behind production agents.</tspan>
+  </text>
+  <!-- legend -->
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" fill="#94a3b8">
+    <circle cx="106" cy="628" r="8" fill="#f87171"/><text x="126" y="634">out-of-scope action refused</text>
+    <circle cx="106" cy="664" r="8" fill="#2dd4bf"/><text x="126" y="670">permitted request, token added by the gateway</text>
+    <line x1="98" y1="700" x2="114" y2="700" stroke="#fbbf24" stroke-width="3" stroke-dasharray="5 4"/><text x="126" y="706">untrusted input steering the agent</text>
+  </g>
+
+  <!-- runtime ring -->
+  <g transform="translate(1118 452)">
+    <circle r="300" fill="#0f766e" opacity="0.07"/>
+    <circle r="300" fill="none" stroke="#2dd4bf" stroke-width="3" stroke-dasharray="14 10" opacity="0.9"/>
+    <text x="0" y="-354" text-anchor="middle" fill="#5eead4" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">RUNTIME</text>
+    <text x="0" y="372" text-anchor="middle" fill="#94a3b8" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18">enforced outside the model · the agent cannot modify, override or bypass it</text>
+
+    <!-- untrusted input steering the agent (dashed amber, from inside the ring's lower left) -->
+    <path d="M-262 150 C-215 105 -175 70 -126 40" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arrowAmber)"/>
+    <text x="-300" y="182" fill="#fbbf24" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">untrusted input steers the agent</text>
+    <text x="-300" y="201" fill="#fbbf24" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" opacity="0.85">web page · issue comment · tool output</text>
+
+    <!-- tool calls leaving the agent -->
+    <line x1="0" y1="-66" x2="0" y2="-258" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="14" y="-170" fill="#94a3b8" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15">tool call: fetch URL</text>
+    <line x1="120" y1="-30" x2="246" y2="-76" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="134" y="-6" fill="#94a3b8" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15">tool call: read repo</text>
+
+    <!-- agent -->
+    <rect x="-120" y="-66" width="240" height="132" rx="16" fill="#111c2e" stroke="#64748b" stroke-width="2"/>
+    <text x="0" y="-18" text-anchor="middle" fill="#f1f5f9" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="700">agent</text>
+    <text x="0" y="14" text-anchor="middle" fill="#cbd5e1" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17">model + tools + memory</text>
+    <text x="0" y="44" text-anchor="middle" fill="#fbbf24" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="700">its own account is advisory</text>
+
+    <!-- five gates, labelled as the article's five areas -->
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+      <!-- 1 Network access: DENIED (top) -->
+      <g transform="translate(0 -300)">
+        <rect x="-135" y="-34" width="270" height="68" rx="12" fill="#0b1220" stroke="#f87171" stroke-width="3" filter="url(#glow)"/>
+        <!-- globe icon -->
+        <g transform="translate(-110 0)" fill="none" stroke="#fca5a5" stroke-width="2.2"><circle r="13"/><ellipse rx="5.5" ry="13"/><line x1="-13" y1="0" x2="13" y2="0"/></g>
+        <text x="-86" y="-6" fill="#fecaca" font-size="18" font-weight="700">Network access</text>
+        <text x="-86" y="15" fill="#fca5a5" font-size="12">default deny · no outbound path</text>
+        <g transform="translate(135 -34)"><circle r="15" fill="#f87171" stroke="#0b1220" stroke-width="3"/><path d="M-6 -6L6 6M6 -6L-6 6" stroke="#0b1220" stroke-width="3.2" stroke-linecap="round"/></g>
+        <text x="150" y="5" fill="#f87171" font-size="15" font-weight="700" letter-spacing="2">DENIED</text>
+      </g>
+      <!-- 2 Credentials & permissions: ALLOWED (upper right) -->
+      <g transform="translate(285 -93)">
+        <rect x="-135" y="-34" width="270" height="68" rx="12" fill="#0b1220" stroke="#2dd4bf" stroke-width="2.5"/>
+        <!-- key icon -->
+        <g transform="translate(-112 0)" fill="none" stroke="#5eead4" stroke-width="2.2" stroke-linecap="round"><circle cx="-4" cy="0" r="6.5"/><line x1="2.5" y1="0" x2="16" y2="0"/><line x1="11" y1="0" x2="11" y2="5"/><line x1="15" y1="0" x2="15" y2="4"/></g>
+        <text x="-86" y="-6" fill="#e2e8f0" font-size="18" font-weight="700">Credentials &amp; permissions</text>
+        <text x="-86" y="15" fill="#94a3b8" font-size="12">task checked first, then the token is added</text>
+        <text x="0" y="56" text-anchor="middle" fill="#2dd4bf" font-size="15" font-weight="700" letter-spacing="2">ALLOWED</text>
+        <g transform="translate(135 -34)"><circle r="15" fill="#2dd4bf" stroke="#0b1220" stroke-width="3"/><path d="M-7 0L-2 5L7 -5" fill="none" stroke="#0b1220" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </g>
+      <!-- 3 Policy & approval (lower right) -->
+      <g transform="translate(176 243)">
+        <rect x="-135" y="-34" width="270" height="68" rx="12" fill="#0b1220" stroke="#2dd4bf" stroke-width="2.5"/>
+        <!-- shield with check -->
+        <g transform="translate(-112 0)" fill="none" stroke="#5eead4" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M0 -14L12 -9V0C12 8 6 13 0 15C-6 13 -12 8 -12 0V-9Z"/><path d="M-5 0L-1 4L6 -4"/></g>
+        <text x="-86" y="-6" fill="#e2e8f0" font-size="18" font-weight="700">Policy &amp; approval</text>
+        <text x="-86" y="15" fill="#94a3b8" font-size="12">rules first · review for high-impact actions</text>
+      </g>
+      <!-- 4 Execution records (lower left) -->
+      <g transform="translate(-176 243)">
+        <rect x="-135" y="-34" width="270" height="68" rx="12" fill="#0b1220" stroke="#2dd4bf" stroke-width="2.5"/>
+        <!-- log icon -->
+        <g transform="translate(-112 0)" fill="none" stroke="#5eead4" stroke-width="2.2" stroke-linecap="round"><rect x="-11" y="-14" width="22" height="28" rx="3"/><line x1="-6" y1="-6" x2="6" y2="-6"/><line x1="-6" y1="0" x2="6" y2="0"/><line x1="-6" y1="6" x2="2" y2="6"/></g>
+        <text x="-86" y="-6" fill="#e2e8f0" font-size="18" font-weight="700">Execution records</text>
+        <text x="-86" y="15" fill="#94a3b8" font-size="12">logged outside the agent's reach</text>
+      </g>
+      <!-- 5 Changes & incident response (upper left) -->
+      <g transform="translate(-285 -93)">
+        <rect x="-135" y="-34" width="270" height="68" rx="12" fill="#0b1220" stroke="#2dd4bf" stroke-width="2.5"/>
+        <!-- refresh icon -->
+        <g transform="translate(-112 0)" fill="none" stroke="#5eead4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 -3A11 11 0 1 0 8 8"/><path d="M11 -11V-3H3"/></g>
+        <text x="-86" y="-6" fill="#e2e8f0" font-size="18" font-weight="700">Changes &amp; incident response</text>
+        <text x="-86" y="15" fill="#94a3b8" font-size="12">new model, new review · pause, verify, resume</text>
+      </g>
+    </g>
+  </g>
+</svg>

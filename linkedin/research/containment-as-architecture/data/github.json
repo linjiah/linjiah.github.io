@@ -1,0 +1,754 @@
+[
+ {
+  "repo": "affaan-m/ECC",
+  "url": "https://github.com/affaan-m/ECC",
+  "stars": 277087,
+  "desc": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Code",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent security",
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "bytedance/deer-flow",
+  "url": "https://github.com/bytedance/deer-flow",
+  "stars": 83693,
+  "desc": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, suba",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "BerriAI/litellm",
+  "url": "https://github.com/BerriAI/litellm",
+  "stars": 60972,
+  "desc": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, l",
+  "pushed": "2026-10-11",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "appwrite/appwrite",
+  "url": "https://github.com/appwrite/appwrite",
+  "stars": 57639,
+  "desc": "The open-source cloud for agents & devs. Including Auth, Databases, Storage, Functions, Messaging, Hosting, Realtime, WAF and more",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+  "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+  "stars": 34243,
+  "desc": "817 structured cybersecurity skills for AI agents \u00b7 Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & M",
+  "pushed": "2026-08-31",
+  "queries": [
+   "agent security",
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "nanocoai/nanoclaw",
+  "url": "https://github.com/nanocoai/nanoclaw",
+  "stars": 30925,
+  "desc": "A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other ",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "ComposioHQ/composio",
+  "url": "https://github.com/ComposioHQ/composio",
+  "stars": 30502,
+  "desc": "Composio powers 1000+ toolkits, tool search, context management, authentication, and a sandboxed workbench to help you build AI agents that ",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "Infisical/infisical",
+  "url": "https://github.com/Infisical/infisical",
+  "stars": 29694,
+  "desc": "Infisical is the open-source platform for securing secrets, certificates, access, and AI Agents.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "cloudflare/security-audit-skill",
+  "url": "https://github.com/cloudflare/security-audit-skill",
+  "stars": 28275,
+  "desc": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+  "pushed": "2026-09-14",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "mksglu/context-mode",
+  "url": "https://github.com/mksglu/context-mode",
+  "stars": 26639,
+  "desc": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and   enforces routing acr",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "wasmerio/wasmer",
+  "url": "https://github.com/wasmerio/wasmer",
+  "stars": 21144,
+  "desc": "\ud83d\ude80 Fast and lightweight sandboxes for your apps and AI agents",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "eosphoros-ai/DB-GPT",
+  "url": "https://github.com/eosphoros-ai/DB-GPT",
+  "stars": 20116,
+  "desc": "open-source agentic AI data assistant for the next generation of AI + Data products.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "NVIDIA/SkillSpector",
+  "url": "https://github.com/NVIDIA/SkillSpector",
+  "stars": 19935,
+  "desc": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and s",
+  "pushed": "2026-10-10",
+  "queries": [
+   "agent security",
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "opensandbox-group/OpenSandbox",
+  "url": "https://github.com/opensandbox-group/OpenSandbox",
+  "stars": 15782,
+  "desc": "Secure, Fast, and Extensible Sandbox runtime for AI agents.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "bytebase/bytebase",
+  "url": "https://github.com/bytebase/bytebase",
+  "stars": 14550,
+  "desc": "Database governance built for humans and agents \u2014 controlling changes and access across every major database.",
+  "pushed": "2026-10-10",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "NevaMind-AI/memU",
+  "url": "https://github.com/NevaMind-AI/memU",
+  "stars": 14527,
+  "desc": "Personal memory across agents",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "Portkey-AI/gateway",
+  "url": "https://github.com/Portkey-AI/gateway",
+  "stars": 13166,
+  "desc": "A blazing fast AI Gateway with integrated guardrails. Route to 1,600+ LLMs, 50+ AI Guardrails with 1 fast & friendly API.",
+  "pushed": "2026-05-25",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "Piebald-AI/claude-code-system-prompts",
+  "url": "https://github.com/Piebald-AI/claude-code-system-prompts",
+  "stars": 12881,
+  "desc": "All parts of Claude Code's system prompt, 27 builtin tool descriptions, sub agent prompts (Plan/Explore/Task), utility prompts (CLAUDE.md, c",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "TencentCloud/CubeSandbox",
+  "url": "https://github.com/TencentCloud/CubeSandbox",
+  "stars": 12875,
+  "desc": "Instant, Concurrent, Secure & Lightweight Sandbox for AI Agents.",
+  "pushed": "2026-10-10",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "nearai/ironclaw",
+  "url": "https://github.com/nearai/ironclaw",
+  "stars": 12648,
+  "desc": "IronClaw is an Agent OS focused on privacy, security and extensibility",
+  "pushed": "2026-10-07",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "0x4m4/hexstrike-ai",
+  "url": "https://github.com/0x4m4/hexstrike-ai",
+  "stars": 12642,
+  "desc": "HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools",
+  "pushed": "2026-08-03",
+  "queries": [
+   "agent security",
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "future-architect/vuls",
+  "url": "https://github.com/future-architect/vuls",
+  "stars": 12284,
+  "desc": "Agent-less vulnerability scanner for Linux, FreeBSD, Container, WordPress, Programming language libraries, Network devices",
+  "pushed": "2026-10-05",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "omnigent-ai/omnigent",
+  "url": "https://github.com/omnigent-ai/omnigent",
+  "stars": 10748,
+  "desc": "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harness",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "ntegrals/openbrowser",
+  "url": "https://github.com/ntegrals/openbrowser",
+  "stars": 9559,
+  "desc": "Let AI agents browse the web. An autonomous toolkit for browser-based AI agents.",
+  "pushed": "2026-04-02",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "databendlabs/databend",
+  "url": "https://github.com/databendlabs/databend",
+  "stars": 9460,
+  "desc": "Data Agent Ready Warehouse : One for  Analytics, Search, AI, Python Sandbox.  \u2014 rebuilt from scratch. Unified architecture on your S3.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "BoundaryML/baml",
+  "url": "https://github.com/BoundaryML/baml",
+  "stars": 9392,
+  "desc": "The programming language for agents",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "We5ter/Scanners-Box",
+  "url": "https://github.com/We5ter/Scanners-Box",
+  "stars": 9095,
+  "desc": "The Ultimate Open-Source Security Arsenal for Hackers, Enterprises, and AI Agents\u2014\u2014\u9762\u5411\u6781\u5ba2\u3001\u4f01\u4e1a\u4e0e AI \u667a\u80fd\u4f53\u7684\u5168\u57df\u5f00\u6e90\u7f51\u7edc\u5b89\u5168\u5de5\u5177\u77e9\u9635",
+  "pushed": "2026-09-28",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "nexu-io/html-anything",
+  "url": "https://github.com/nexu-io/html-anything",
+  "stars": 9084,
+  "desc": "\u2728 The agentic HTML editor \u2014 your local AI agent writes the HTML, you ship it. \ud83d\ude80 75 Skills \u00d7 9 Surfaces (magazine \u00b7 deck \u00b7 poster \u00b7 XHS / twe",
+  "pushed": "2026-09-15",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "maximhq/bifrost",
+  "url": "https://github.com/maximhq/bifrost",
+  "stars": 8703,
+  "desc": "Fastest enterprise AI gateway (50x faster than LiteLLM) with adaptive load balancer, cluster mode, guardrails, 1000+ models support & <100 \u00b5",
+  "pushed": "2026-10-11",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "HarnessMD/munder-difflin",
+  "url": "https://github.com/HarnessMD/munder-difflin",
+  "stars": 8663,
+  "desc": "an open-source alternative to the dots, bots and muses of the world, run an office of claude code/codex like agents on your laptop, sandboxe",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "firerpa/lamda",
+  "url": "https://github.com/firerpa/lamda",
+  "stars": 8571,
+  "desc": "Android Full-Stack Device Control Platform: WebRTC/H.264 remote desktop, UI/OCR/image-matching automation, one-click MITM, built-in Frida, p",
+  "pushed": "2026-09-27",
+  "queries": [
+   "agent security",
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "withastro/flue",
+  "url": "https://github.com/withastro/flue",
+  "stars": 8446,
+  "desc": "The sandbox agent framework.",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "mattpocock/sandcastle",
+  "url": "https://github.com/mattpocock/sandcastle",
+  "stars": 8375,
+  "desc": "Orchestrate sandboxed coding agents in TypeScript with sandcastle.run()",
+  "pushed": "2026-10-08",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "vercel-labs/deepsec",
+  "url": "https://github.com/vercel-labs/deepsec",
+  "stars": 8126,
+  "desc": "Deepsec is a security harness for finding vulnerabilities in your codebase powered by coding agents",
+  "pushed": "2026-09-29",
+  "queries": [
+   "agent security"
+  ]
+ },
+ {
+  "repo": "steel-dev/steel-browser",
+  "url": "https://github.com/steel-dev/steel-browser",
+  "stars": 7785,
+  "desc": "\ud83d\udd25 Open Source Browser API for AI Agents & Apps. Steel Browser is a batteries-included browser sandbox that lets you automate the web without",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent sandbox"
+  ]
+ },
+ {
+  "repo": "guardrails-ai/guardrails",
+  "url": "https://github.com/guardrails-ai/guardrails",
+  "stars": 7508,
+  "desc": "Adding guardrails to large language models.",
+  "pushed": "2026-10-09",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "NVIDIA-NeMo/Guardrails",
+  "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+  "stars": 7276,
+  "desc": "NeMo Guardrails is an open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.",
+  "pushed": "2026-10-10",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "katanemo/plano",
+  "url": "https://github.com/katanemo/plano",
+  "stars": 7084,
+  "desc": "Plano is an AI-native proxy server and data plane for agentic apps. Smart LLM routing, observability, agent orchestration, and guardrails so",
+  "pushed": "2026-10-07",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "Tencent/AI-Infra-Guard",
+  "url": "https://github.com/Tencent/AI-Infra-Guard",
+  "stars": 6827,
+  "desc": "A full-stack AI Red Teaming platform securing AI ecosystems via Agent Scan, Skills Scan, MCP scan, AI Infra scan and LLM jailbreak evaluatio",
+  "pushed": "2026-10-09",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "superagent-ai/superagent",
+  "url": "https://github.com/superagent-ai/superagent",
+  "stars": 6763,
+  "desc": "Superagent protects your AI applications against prompt injections, data leaks, and harmful outputs. Embed safety directly into your app and",
+  "pushed": "2026-08-25",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "vllm-project/semantic-router",
+  "url": "https://github.com/vllm-project/semantic-router",
+  "stars": 6087,
+  "desc": "An open, programmable decision layer for models and compute.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "kaifcodec/user-scanner",
+  "url": "https://github.com/kaifcodec/user-scanner",
+  "stars": 5358,
+  "desc": "\ud83d\udd75\ufe0f\u200d\u2642\ufe0f (2-in-1) Email & Username OSINT suite featuring native MCP support for deep data extraction just from a single Email/Username. Analyze",
+  "pushed": "2026-10-10",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "FailproofAI/failproofai",
+  "url": "https://github.com/FailproofAI/failproofai",
+  "stars": 5272,
+  "desc": "Observability and enforcement for AI agent harnesses. Capture every run and runtime reliability with policy enforcement.  ",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "cerbos/cerbos",
+  "url": "https://github.com/cerbos/cerbos",
+  "stars": 4618,
+  "desc": "Cerbos is an open-core authorization management platform for authorizing every identity and governing every action across applications, gate",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent permissions policy"
+  ]
+ },
+ {
+  "repo": "IBM/mcp-context-forge",
+  "url": "https://github.com/IBM/mcp-context-forge",
+  "stars": 4599,
+  "desc": "An AI Gateway, registry, and proxy that sits in front of any MCP, A2A, or REST/gRPC APIs, exposing a unified endpoint with centralized disco",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "intuitem/ciso-assistant-community",
+  "url": "https://github.com/intuitem/ciso-assistant-community",
+  "stars": 4500,
+  "desc": "CISO Assistant is a one-stop-shop GRC platform for Risk Management, AppSec, Compliance & Audit, TPRM, BIA, Privacy, and Reporting. It suppor",
+  "pushed": "2026-10-11",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "nolabs-ai/nono",
+  "url": "https://github.com/nolabs-ai/nono",
+  "stars": 4446,
+  "desc": "agent runtime security - zero trust, zero setup, zero latency agent sandbox",
+  "pushed": "2026-10-11",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "archestra-ai/archestra",
+  "url": "https://github.com/archestra-ai/archestra",
+  "stars": 4366,
+  "desc": "Enterprise AI Platform with guardrails, MCP registry, gateway & orchestrator",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "nextlevelbuilder/goclaw",
+  "url": "https://github.com/nextlevelbuilder/goclaw",
+  "stars": 3646,
+  "desc": "GoClaw - GoClaw is OpenClaw rebuilt in Go \u2014 with multi-tenant isolation, 5-layer security, and native concurrency. Deploy AI agent teams at ",
+  "pushed": "2026-10-04",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "onecli/onecli",
+  "url": "https://github.com/onecli/onecli",
+  "stars": 3568,
+  "desc": "Open-source sandboxed agent harness for teams. Giving every employee a secured personal agent.",
+  "pushed": "2026-10-09",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "metorial/metorial",
+  "url": "https://github.com/metorial/metorial",
+  "stars": 3364,
+  "desc": "Connect any AI model to 1200+ integrations (MCP, CLI, API)",
+  "pushed": "2026-10-11",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "snyk/agent-scan",
+  "url": "https://github.com/snyk/agent-scan",
+  "stars": 3132,
+  "desc": "Security scanner for AI agents, MCP servers and agent skills.",
+  "pushed": "2026-10-09",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "lennney/stop-that-shit",
+  "url": "https://github.com/lennney/stop-that-shit",
+  "stars": 2549,
+  "desc": "Stop That Shit\uff08\u522b\u518d\u9020\u53f2\u4e86\uff09\uff5c\u9762\u5411 Codex/GPT \u573a\u666f\u7684\u591a\u5e73\u53f0 Hook + Skill Guard\uff1a\u62e6\u622a AI coding agent \u65e0\u9700\u6c42\u7684\u54c8\u5e0c\u3001\u6821\u9a8c\u548c\u4e0e\u4efb\u52a1\u8303\u56f4\u81a8\u80c0\u3002 A multi-platform Hook + Skill Guard for A",
+  "pushed": "2026-10-07",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "beenuar/AiSOC",
+  "url": "https://github.com/beenuar/AiSOC",
+  "stars": 2402,
+  "desc": "Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, and a replayable decision ledger for ",
+  "pushed": "2026-10-11",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "stacklok/toolhive",
+  "url": "https://github.com/stacklok/toolhive",
+  "stars": 2268,
+  "desc": "ToolHive is an enterprise-grade platform for running and managing Model Context Protocol (MCP) servers.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "mcp security"
+  ]
+ },
+ {
+  "repo": "future-agi/future-agi",
+  "url": "https://github.com/future-agi/future-agi",
+  "stars": 2139,
+  "desc": "Open-source, end-to-end platform for evaluating, observing, and improving LLM and AI agent applications. Tracing \u00b7 Evals \u00b7 Simulations \u00b7 Dat",
+  "pushed": "2026-10-10",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "theopenco/llmgateway",
+  "url": "https://github.com/theopenco/llmgateway",
+  "stars": 1684,
+  "desc": "Route, manage, and analyze your LLM requests across multiple providers with a unified API interface.",
+  "pushed": "2026-10-11",
+  "queries": [
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "kenryu42/cc-safety-net",
+  "url": "https://github.com/kenryu42/cc-safety-net",
+  "stars": 1591,
+  "desc": "A pre-execution guard for AI coding agents. It blocks destructive Git and file system commands, plus common attempts to access sensitive fil",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "archestra-ai/OpenAPPA",
+  "url": "https://github.com/archestra-ai/OpenAPPA",
+  "stars": 1536,
+  "desc": "Deterministic guardrails that don't break agents",
+  "pushed": "2026-10-09",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "akto-api-security/akto",
+  "url": "https://github.com/akto-api-security/akto",
+  "stars": 1528,
+  "desc": "Akto is the fastest growing AI Security platform for your teams to secure AI agents, MCPs, LLMs, Agent skills, Gen AI apps in your organizat",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "hardenrun/aif",
+  "url": "https://github.com/hardenrun/aif",
+  "stars": 1516,
+  "desc": "On device Firewall for Coding and Personal Agents",
+  "pushed": "2026-09-05",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "Gentleman-Programming/gentle-shell",
+  "url": "https://github.com/Gentleman-Programming/gentle-shell",
+  "stars": 1279,
+  "desc": "Gentle Shell is a Pi-native coding-agent harness for controlled development with Organic Driven Development, optional SDD/OpenSpec, subagent",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "wanxingai/LightAgent",
+  "url": "https://github.com/wanxingai/LightAgent",
+  "stars": 1233,
+  "desc": "LightAgent: Lightweight Python framework for OpenAI-compatible agents with tools, memory, guardrails, tracing, lifecycle hooks, multi-agent ",
+  "pushed": "2026-09-30",
+  "queries": [
+   "agent guardrails",
+   "llm guardrails"
+  ]
+ },
+ {
+  "repo": "denoland/clawpatrol",
+  "url": "https://github.com/denoland/clawpatrol",
+  "stars": 1076,
+  "desc": "Security firewall for agents",
+  "pushed": "2026-10-03",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "souvikmajumder26/Multi-Agent-Medical-Assistant",
+  "url": "https://github.com/souvikmajumder26/Multi-Agent-Medical-Assistant",
+  "stars": 987,
+  "desc": "\u2695\ufe0fGenAI powered multi-agentic medical diagnostics and healthcare research assistance chatbot. \ud83c\udfe5 Designed for healthcare professionals, resea",
+  "pushed": "2025-05-03",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "kaplanelad/shellfirm",
+  "url": "https://github.com/kaplanelad/shellfirm",
+  "stars": 936,
+  "desc": "Safety guardrails for ai coding agents and human terminal commands",
+  "pushed": "2026-05-15",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "luckyPipewrench/pipelock",
+  "url": "https://github.com/luckyPipewrench/pipelock",
+  "stars": 922,
+  "desc": "Open-source AI agent firewall for MCP security and agent egress. Scans mediated HTTP, MCP, A2A, and WebSocket traffic for exfiltration, SSRF",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "cuga-project/cuga-agent",
+  "url": "https://github.com/cuga-project/cuga-agent",
+  "stars": 896,
+  "desc": "CUGA is an open-source generalist agent harness for the enterprise, supporting complex task execution on web and APIs, OpenAPI/MCP integrati",
+  "pushed": "2026-10-11",
+  "queries": [
+   "agent guardrails"
+  ]
+ },
+ {
+  "repo": "tldrsec/prompt-injection-defenses",
+  "url": "https://github.com/tldrsec/prompt-injection-defenses",
+  "stars": 737,
+  "desc": "Every practical and proposed defense against prompt injection.",
+  "pushed": "2025-02-22",
+  "queries": [
+   "prompt injection defense"
+  ]
+ },
+ {
+  "repo": "cordum-io/cordum",
+  "url": "https://github.com/cordum-io/cordum",
+  "stars": 509,
+  "desc": "The action firewall for AI agents. Enforce policy and human approval before risky tool calls, shell commands, workflows, and production chan",
+  "pushed": "2026-10-06",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "liu00222/Open-Prompt-Injection",
+  "url": "https://github.com/liu00222/Open-Prompt-Injection",
+  "stars": 505,
+  "desc": "This repository provides a benchmark for prompt injection attacks and defenses in LLMs",
+  "pushed": "2026-09-27",
+  "queries": [
+   "prompt injection defense"
+  ]
+ },
+ {
+  "repo": "yunwei37/prompt-hacker-collections",
+  "url": "https://github.com/yunwei37/prompt-hacker-collections",
+  "stars": 368,
+  "desc": "prompt attack-defense, prompt Injection, reverse engineering notes and examples | \u63d0\u793a\u8bcd\u5bf9\u6297\u3001\u7834\u89e3\u4f8b\u5b50\u4e0e\u7b14\u8bb0 ",
+  "pushed": "2025-02-25",
+  "queries": [
+   "prompt injection defense"
+  ]
+ },
+ {
+  "repo": "zszszszsz/.config",
+  "url": "https://github.com/zszszszsz/.config",
+  "stars": 362,
+  "desc": "# # Automatically generated file; DO NOT EDIT. # OpenWrt Configuration # CONFIG_MODULES=y CONFIG_HAVE_DOT_CONFIG=y # CONFIG_TARGET_sunxi is ",
+  "pushed": "2023-10-05",
+  "queries": [
+   "agent firewall"
+  ]
+ },
+ {
+  "repo": "ertugrulakben/cashclaw",
+  "url": "https://github.com/ertugrulakben/cashclaw",
+  "stars": 303,
+  "desc": "The Agent Economy Layer \u2014 agents earn, agents spend, Guard protects. 13 skills, runtime cost cap, recursive kill, tool firewall. 50+ HYRVE A",
+  "pushed": "2026-10-06",
+  "queries": [
+   "agent firewall"
+  ]
+ }
+]

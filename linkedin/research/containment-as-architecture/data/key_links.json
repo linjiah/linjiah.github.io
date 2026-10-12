@@ -1,0 +1,154 @@
+{
+ "OpenShell": {
+  "title": "Open-Shell: A collection of utilities bringing back classic features to Windows",
+  "url": "https://github.com/Open-Shell/Open-Shell-Menu",
+  "points": 90,
+  "comments": 76,
+  "date": "2024-04-24",
+  "hn": "https://news.ycombinator.com/item?id=40143704"
+ },
+ "watchdog chip agent": {
+  "title": "Nvidia wants to put a watchdog chip next to every AI agent",
+  "url": "https://www.cnbc.com/2026/09/28/nvidia-releases.html",
+  "points": 230,
+  "comments": 298,
+  "date": "2026-09-28",
+  "hn": "https://news.ycombinator.com/item?id=49879883"
+ },
+ "Execution Containers": {
+  "title": "Mxc: Microsoft Execution Containers version 1.0.0",
+  "url": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/",
+  "points": 219,
+  "comments": 66,
+  "date": "2026-10-09",
+  "hn": "https://news.ycombinator.com/item?id=50016956"
+ },
+ "Docker Agent": {
+  "title": "Docker Agent",
+  "url": "https://github.com/docker/docker-agent",
+  "points": 304,
+  "comments": 145,
+  "date": "2026-10-07",
+  "hn": "https://news.ycombinator.com/item?id=49996259"
+ },
+ "Docker Sandboxes agents": {
+  "title": "SBX: MicroVM Sandboxes for Agents",
+  "url": "https://www.docker.com/blog/docker-sandboxes-run-agents-in-yolo-mode-safely/",
+  "points": 5,
+  "comments": 1,
+  "date": "2026-03-31",
+  "hn": "https://news.ycombinator.com/item?id=47590936"
+ },
+ "full-disk access agents Apple": {
+  "title": "Apple is tightening macOS 'Full Disk Access' due to new risks from AI agents",
+  "url": "https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/",
+  "points": 20,
+  "comments": 8,
+  "date": "2026-10-02",
+  "hn": "https://news.ycombinator.com/item?id=49937239"
+ },
+ "Anthropic internal evals internet": {
+  "title": "Anthropic can't reliably control its AI agents, cuts internet access",
+  "url": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/",
+  "points": 7,
+  "comments": 3,
+  "date": "2026-10-10",
+  "hn": "https://news.ycombinator.com/item?id=50030778"
+ },
+ "OpenAI alerts rogue agent": {
+  "title": "OpenAI notifies 100 orgs about its AI agents bypassing their security controls",
+  "url": "https://www.reuters.com/legal/litigation/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity-2026-10-01/",
+  "points": 3,
+  "comments": 0,
+  "date": "2026-10-02",
+  "hn": "https://news.ycombinator.com/item?id=49934229"
+ },
+ "RubyGems OpenAI agents": {
+  "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
+  "url": "https://www.rubyhack.ai/",
+  "points": 975,
+  "comments": 613,
+  "date": "2026-09-11",
+  "hn": "https://news.ycombinator.com/item?id=49666735"
+ },
+ "Hugging Face OpenAI agents hacked": {
+  "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
+  "url": "https://swarmtraces.org/",
+  "points": 755,
+  "comments": 472,
+  "date": "2026-09-25",
+  "hn": "https://news.ycombinator.com/item?id=49849985"
+ },
+ "humans missed 1 in 3 threats": {
+  "title": "Humans missed 1 in 3 threats approving AI agent commands across 40k game runs",
+  "url": "https://scalex.dev/blog/ai-agent-permissions-stats/",
+  "points": 340,
+  "comments": 245,
+  "date": "2026-08-06",
+  "hn": "https://news.ycombinator.com/item?id=49195468"
+ },
+ "GitLost": {
+  "title": "GitLost: We Tricked GitHub's AI Agent into Leaking Private Repos",
+  "url": "https://noma.security/blog/gitlost-how-we-tricked-githubs-ai-agent-into-leaking-private-repos/",
+  "points": 541,
+  "comments": 204,
+  "date": "2026-07-08",
+  "hn": "https://news.ycombinator.com/item?id=48827858"
+ },
+ "Muse permissions": {
+  "title": "Unsurprisingly, Meta's new Muse AI agent blatantly ignores users permissions",
+  "url": "https://appleinsider.com/articles/26/09/28/metas-new-ai-agent-blatantly-ignores-users-permissions",
+  "points": 164,
+  "comments": 43,
+  "date": "2026-09-29",
+  "hn": "https://news.ycombinator.com/item?id=49893709"
+ },
+ "no rogue AI agents": {
+  "title": "There are no \"rogue\" AI agents",
+  "url": "https://eoinhiggins.substack.com/p/there-are-no-rogue-ai-agents",
+  "points": 396,
+  "comments": 269,
+  "date": "2026-09-27",
+  "hn": "https://news.ycombinator.com/item?id=49868083"
+ },
+ "Be skeptical rogue hacker agent": {
+  "title": "Be skeptical of OpenAI's rogue hacker agent story",
+  "url": "https://www.theguardian.com/technology/2026/jul/24/openai-rogue-hacker",
+  "points": 544,
+  "comments": 300,
+  "date": "2026-07-24",
+  "hn": "https://news.ycombinator.com/item?id=49038060"
+ },
+ "lethal trifecta": {
+  "title": "My Lethal Trifecta talk at the Bay Area AI Security Meetup",
+  "url": "https://simonwillison.net/2025/Aug/9/bay-area-ai/",
+  "points": 430,
+  "comments": 115,
+  "date": "2025-08-09",
+  "hn": "https://news.ycombinator.com/item?id=44846922"
+ },
+ "agent used DNS external chatbot": {
+  "title": "An agent used DNS to reach an external chatbot",
+  "url": "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+  "points": 198,
+  "comments": 188,
+  "date": "2026-09-26",
+  "hn": "https://news.ycombinator.com/item?id=49853137"
+ },
+ "Codex agents rogue 78,000": {
+  "title": "OpenAI Codex agents go rogue and consumes USD 78,000 without authorization",
+  "url": null,
+  "points": 84,
+  "comments": 36,
+  "date": "2026-09-26",
+  "hn": "https://news.ycombinator.com/item?id=49861047"
+ },
+ "Meta Security Researcher deleted emails": {
+  "title": "Meta Security Researcher's AI Agent Accidentally Deleted Her Emails",
+  "url": "https://au.pcmag.com/ai/116091/meta-security-researchers-ai-agent-accidentally-deleted-her-emails",
+  "points": 60,
+  "comments": 61,
+  "date": "2026-08-31",
+  "hn": "https://news.ycombinator.com/item?id=49506655"
+ }
+}

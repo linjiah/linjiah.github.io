@@ -9,9 +9,8 @@ hero:
     - "after the demo."
   intro: >-
     I'm Linjia. I design and ship agentic reasoning, ML platforms, and inference
-    stacks that have to survive real traffic. Currently **Director of AI Systems
-    Architecture** at **Siemens** (Intelligent Machines), building full-stack software
-    for agentic and generative AI on proprietary silicon. Before that I was the technical
+    stacks that have to survive real traffic. Currently an **AI Architect** at **Siemens** (Intelligent Machines), building
+    full-stack software for agentic and generative AI on proprietary silicon. Before that I was the technical
     owner of agent reasoning and post-training for **Microsoft Copilot** and
     **Azure Global Datacenter AI**, built ML platforms at **Amazon**, and shipped
     edge AI and a world-first 5G stack at **Qualcomm**.
@@ -63,7 +62,7 @@ journey:
   timeline:
     - period: "2025 – now"
       org: "Siemens"
-      role: "Director of AI Systems Architecture (Intelligent Machines)"
+      role: "AI Architect (Intelligent Machines)"
       summary: >-
         Full-stack software for agentic and generative AI on proprietary silicon:
         distributed runtime and cluster management, plus vLLM, SGLang, llama.cpp,
@@ -166,24 +165,6 @@ videos:
   footer_link:
     text: "All videos"
     url: "/videos/"
-
-positions:
-  kicker: "Positions"
-  heading: "Claims I'll defend."
-  lede: >-
-    Short versions of arguments made at length in the posts. Each links to the
-    reasoning behind it.
-  items:
-    - claim: "Agent loops fail on termination and context growth, not on model quality."
-      post: "/posts/tool-calling-loop"
-    - claim: "Batch pipelines break on queue depth, cold starts, and I/O contention long before accuracy matters."
-      post: "/posts/batch-inference-slo"
-    - claim: "A scaling-law fit is a planning tool with a narrow validity window. When the curve flattens, suspect data or optimization before parameters."
-      post: "/posts/scaling-laws-engineering"
-    - claim: "Keep batching, safety, and routing at the center of an inference service, and vendor churn at the edge."
-      post: "/posts/hexagonal-ports-for-ml-services"
-    - claim: "Bias–variance is a diagnostic, not a curiosity. The train/validation gap tells you which lever to pull."
-      post: "/posts/bias-variance-operationalized"
 
 expertise:
   kicker: "Focus"

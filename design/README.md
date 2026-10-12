@@ -76,3 +76,20 @@ Safari's pinned-tab icon is a *mask*: Safari recolours it from the alpha channel
 alone, so the filled card in `favicon.svg` would render as a solid rounded
 square. This file is a separate monochrome (black on transparent) version of the
 same "LH" mark. Edit it by hand alongside `favicon.svg`; it is not generated.
+
+## `covers/*.svg` → `static/images/covers/*.png`
+
+Article cover images, drawn as SVG at 1600×900 and rendered to PNG with headless
+Chrome so system fonts (Georgia, Helvetica Neue) render identically every time:
+
+```bash
+node -e '
+const p=require("puppeteer-core");(async()=>{const b=await p.launch({executablePath:"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",headless:true});
+const g=await b.newPage();await g.setViewport({width:1600,height:900});await g.goto("file://"+process.argv[1]);await g.screenshot({path:process.argv[2],clip:{x:0,y:0,width:1600,height:900}});await b.close();})()' \
+  "$PWD/design/covers/<slug>.svg" "$PWD/static/images/covers/<slug>.png"
+```
+
+`puppeteer-core` is installed in a scratch folder, not in this repo. The PNG is
+referenced from the post's `cover.image` front matter (PaperMod shows it above the
+post and uses it as the social-share image) and copied to `linkedin/assets/` for
+upload as the LinkedIn article cover.

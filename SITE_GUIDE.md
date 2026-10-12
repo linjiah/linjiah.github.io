@@ -53,7 +53,7 @@ Everything except the writing and video lists is plain YAML in `data/home/en.yam
 - `hero.headline` is a list of lines; the last line is rendered in the accent colour.
 - `journey.stats` takes exactly four `{value, label, note}` entries; `journey.timeline` is newest first.
 - `work.items` are `{label, title, summary, metrics[]}`; six items make a clean 3×2 grid.
-- `positions.items` are `{claim, post}` where `post` is the content path, e.g. `/posts/tool-calling-loop`; the title and date are looked up at build time.
+- `positions.items` (optional, currently absent) are `{claim, post}` where `post` is a content path; the title and date are looked up at build time and the section only renders when the block exists.
 - `expertise.items` are `{title, summary, skills[]}`; four items make a 2×2 grid.
 - `videos` only supplies the heading; the block appears automatically once the first non-draft video exists.
 
@@ -143,7 +143,7 @@ This creates a file from `archetypes/default.md` (starts as **`draft: true`** in
 
 ### Option B — copy an existing post
 
-Duplicate something like `content/posts/batch-inference-slo.md`, rename the file, and change the front matter and body.
+Duplicate something like `content/posts/agents-need-a-runtime-that-can-say-no.md`, rename the file, and change the front matter and body.
 
 ### Front matter checklist (posts)
 

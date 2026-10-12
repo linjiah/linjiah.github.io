@@ -7,7 +7,7 @@ aliases:
   - /about-me/
 ---
 
-I am **Linjia Hu**, an **AI Architect** and **Principal Machine Learning Engineer** based in **Mercer Island, WA**. For **15+ years** I have owned and scaled high-impact AI systems across **Microsoft**, **Amazon**, and **Qualcomm**, and I am now **Director of AI Systems Architecture** at **Siemens** (Intelligent Machines), building full-stack software for agentic and generative AI on proprietary silicon for edge and private data centers.
+I am **Linjia Hu**, an **AI Architect** and **Principal Machine Learning Engineer** based in **Mercer Island, WA**. For **15+ years** I have owned and scaled high-impact AI systems across **Microsoft**, **Amazon**, and **Qualcomm**, and I am now an **AI Architect** at **Siemens** (Intelligent Machines), building full-stack software for agentic and generative AI on proprietary silicon for edge and private data centers.
 
 At **Microsoft**, I was the technical owner of **agent reasoning, orchestration, and LLM post-training** for **Microsoft Copilot** and **Azure Global Datacenter AI**—bridging alignment and reasoning research with production. Highlights included a trust-first turnaround for Copilot reasoning (structured templates and dynamic selection), closed-loop post-training from real user sessions with SFT/RL and a large regression suite, ensemble LLM-based evaluators wired into CI/CD, and agentic RAG for Azure operations with strong accuracy and escalation reductions.
 

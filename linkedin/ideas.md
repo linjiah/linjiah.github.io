@@ -2,7 +2,8 @@
 
 Pieces you are positioned to write. Each is anchored in something already public
 on the résumé or in a published essay, so writing it expands public facts rather
-than leaking private ones. Move an idea to `drafts/` with `scripts/new-linkedin.sh`.
+than leaking private ones. Move an idea to `drafts/` with `scripts/new-linkedin.sh`. The first published piece is
+`AI Agents Need a Runtime That Can Say No` (Oct 2026); several entries below extend it.
 
 ## agents
 
@@ -14,9 +15,9 @@ than leaking private ones. Move an idea to `drafts/` with `scripts/new-linkedin.
 - **Human-in-the-loop first.** The rollout shape that got agents adopted in
   datacenter operations: +10% accuracy, 40% fewer escalations, 5x operator throughput.
 - **Where multi-agent systems actually fail: the handoff.** Context loss, duplicated
-  side effects, and termination that nobody owns. Extends the tool-calling-loop essay.
+  side effects, and termination that nobody owns.
 - **Idempotency keys for mutating tools.** The smallest change that stops an agent
-  from paying twice.
+  from paying twice. Natural follow-up to the runtime article.
 
 ## inference
 

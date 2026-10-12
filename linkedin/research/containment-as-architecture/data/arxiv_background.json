@@ -1,0 +1,231 @@
+[
+ {
+  "id": "2406.13352",
+  "url": "https://arxiv.org/abs/2406.13352",
+  "title": "AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents",
+  "published": "2024-06-19",
+  "authors": [
+   "Edoardo Debenedetti",
+   "Jie Zhang",
+   "Mislav Balunovi\u0107",
+   "Luca Beurer-Kellner",
+   "Marc Fischer"
+  ],
+  "abstract": "AI agents aim to solve complex tasks by combining text-based reasoning with external tool calls. Unfortunately, AI agents are vulnerable to prompt injection attacks where data returned by external tools hijacks the agent to execute malicious tasks. To measure the adversarial robustness of AI agents, we introduce AgentDojo, an evaluation framework for agents that execute tools over untrusted data. To capture the evolving nature of attacks and defenses, AgentDojo is not a static test suite, but rather an extensible environment for designing and evaluating new agent tasks, defenses, and adaptive attacks. We populate the environment with 97 realistic tasks (e.g., managing an email client, navigating an e-banking website, or making travel bookings), 629 security test cases, and various attack and defense paradigms from the literature. We find that AgentDojo poses a challenge for both attacks and defenses: state-of-the-art LLMs fail at many tasks (even in the absence of attacks), and existing prompt injection attacks break some security properties but not all. We hope that AgentDojo can foster research on new design principles for AI agents that solve common tasks in a reliable and robust manner.. We release the code for AgentDojo at https://github.com/ethz-spylab/agentdojo."
+ },
+ {
+  "id": "2503.18813",
+  "url": "https://arxiv.org/abs/2503.18813",
+  "title": "Defeating Prompt Injections by Design",
+  "published": "2025-03-24",
+  "authors": [
+   "Edoardo Debenedetti",
+   "Ilia Shumailov",
+   "Tianqi Fan",
+   "Jamie Hayes",
+   "Nicholas Carlini"
+  ],
+  "abstract": "Large Language Models (LLMs) are increasingly deployed in agentic systems that interact with an untrusted environment. However, LLM agents are vulnerable to prompt injection attacks when handling untrusted data. In this paper we propose CaMeL, a robust defense that creates a protective system layer around the LLM, securing it even when underlying models are susceptible to attacks. To operate, CaMeL explicitly extracts the control and data flows from the (trusted) query; therefore, the untrusted data retrieved by the LLM can never impact the program flow. To further improve security, CaMeL uses a notion of a capability to prevent the exfiltration of private data over unauthorized data flows by enforcing security policies when tools are called. We demonstrate effectiveness of CaMeL by solving $77\\%$ of tasks with provable security (compared to $84\\%$ with an undefended system) in AgentDojo. We release CaMeL at https://github.com/google-research/camel-prompt-injection."
+ },
+ {
+  "id": "2309.15817",
+  "url": "https://arxiv.org/abs/2309.15817",
+  "title": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
+  "published": "2023-09-25",
+  "authors": [
+   "Yangjun Ruan",
+   "Honghua Dong",
+   "Andrew Wang",
+   "Silviu Pitis",
+   "Yongchao Zhou"
+  ],
+  "abstract": "Recent advances in Language Model (LM) agents and tool use, exemplified by applications like ChatGPT Plugins, enable a rich set of capabilities but also amplify potential risks - such as leaking private data or causing financial losses. Identifying these risks is labor-intensive, necessitating implementing the tools, setting up the environment for each test scenario manually, and finding risky cases. As tools and agents become more complex, the high cost of testing these agents will make it increasingly difficult to find high-stakes, long-tailed risks. To address these challenges, we introduce ToolEmu: a framework that uses an LM to emulate tool execution and enables the testing of LM agents against a diverse range of tools and scenarios, without manual instantiation. Alongside the emulator, we develop an LM-based automatic safety evaluator that examines agent failures and quantifies associated risks. We test both the tool emulator and evaluator through human evaluation and find that 68.8% of failures identified with ToolEmu would be valid real-world agent failures. Using our curated initial benchmark consisting of 36 high-stakes tools and 144 test cases, we provide a quantitative risk analysis of current LM agents and identify numerous failures with potentially severe outcomes. Notably, even the safest LM agent exhibits such failures 23.9% of the time according to our evaluator, underscoring the need to develop safer LM agents for real-world deployment."
+ },
+ {
+  "id": "2403.02691",
+  "url": "https://arxiv.org/abs/2403.02691",
+  "title": "InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents",
+  "published": "2024-03-05",
+  "authors": [
+   "Qiusi Zhan",
+   "Zhixiang Liang",
+   "Zifan Ying",
+   "Daniel Kang"
+  ],
+  "abstract": "Recent work has embodied LLMs as agents, allowing them to access tools, perform actions, and interact with external content (e.g., emails or websites). However, external content introduces the risk of indirect prompt injection (IPI) attacks, where malicious instructions are embedded within the content processed by LLMs, aiming to manipulate these agents into executing detrimental actions against users. Given the potentially severe consequences of such attacks, establishing benchmarks to assess and mitigate these risks is imperative. In this work, we introduce InjecAgent, a benchmark designed to assess the vulnerability of tool-integrated LLM agents to IPI attacks. InjecAgent comprises 1,054 test cases covering 17 different user tools and 62 attacker tools. We categorize attack intentions into two primary types: direct harm to users and exfiltration of private data. We evaluate 30 different LLM agents and show that agents are vulnerable to IPI attacks, with ReAct-prompted GPT-4 vulnerable to attacks 24% of the time. Further investigation into an enhanced setting, where the attacker instructions are reinforced with a hacking prompt, shows additional increases in success rates, nearly doubling the attack success rate on the ReAct-prompted GPT-4. Our findings raise questions about the widespread deployment of LLM Agents. Our benchmark is available at https://github.com/uiuc-kang-lab/InjecAgent."
+ },
+ {
+  "id": "2410.09024",
+  "url": "https://arxiv.org/abs/2410.09024",
+  "title": "AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents",
+  "published": "2024-10-11",
+  "authors": [
+   "Maksym Andriushchenko",
+   "Alexandra Souly",
+   "Mateusz Dziemian",
+   "Derek Duenas",
+   "Maxwell Lin"
+  ],
+  "abstract": "The robustness of LLMs to jailbreak attacks, where users design prompts to circumvent safety measures and misuse model capabilities, has been studied primarily for LLMs acting as simple chatbots. Meanwhile, LLM agents -- which use external tools and can execute multi-stage tasks -- may pose a greater risk if misused, but their robustness remains underexplored. To facilitate research on LLM agent misuse, we propose a new benchmark called AgentHarm. The benchmark includes a diverse set of 110 explicitly malicious agent tasks (440 with augmentations), covering 11 harm categories including fraud, cybercrime, and harassment. In addition to measuring whether models refuse harmful agentic requests, scoring well on AgentHarm requires jailbroken agents to maintain their capabilities following an attack to complete a multi-step task. We evaluate a range of leading LLMs, and find (1) leading LLMs are surprisingly compliant with malicious agent requests without jailbreaking, (2) simple universal jailbreak templates can be adapted to effectively jailbreak agents, and (3) these jailbreaks enable coherent and malicious multi-step agent behavior and retain model capabilities. To enable simple and reliable evaluation of attacks and defenses for LLM-based agents, we publicly release AgentHarm at https://huggingface.co/datasets/ai-safety-institute/AgentHarm."
+ },
+ {
+  "id": "2506.08837",
+  "url": "https://arxiv.org/abs/2506.08837",
+  "title": "Design Patterns for Securing LLM Agents against Prompt Injections",
+  "published": "2025-06-10",
+  "authors": [
+   "Luca Beurer-Kellner",
+   "Beat Buesser",
+   "Ana-Maria Cre\u0163u",
+   "Edoardo Debenedetti",
+   "Daniel Dobos"
+  ],
+  "abstract": "As AI agents powered by Large Language Models (LLMs) become increasingly versatile and capable of addressing a broad spectrum of tasks, ensuring their security has become a critical challenge. Among the most pressing threats are prompt injection attacks, which exploit the agent's resilience on natural language inputs -- an especially dangerous threat when agents are granted tool access or handle sensitive information. In this work, we propose a set of principled design patterns for building AI agents with provable resistance to prompt injection. We systematically analyze these patterns, discuss their trade-offs in terms of utility and security, and illustrate their real-world applicability through a series of case studies."
+ },
+ {
+  "id": "2406.09187",
+  "url": "https://arxiv.org/abs/2406.09187",
+  "title": "GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning",
+  "published": "2024-06-13",
+  "authors": [
+   "Zhen Xiang",
+   "Linzhi Zheng",
+   "Yanjie Li",
+   "Junyuan Hong",
+   "Qinbin Li"
+  ],
+  "abstract": "The rapid advancement of large language model (LLM) agents has raised new concerns regarding their safety and security. In this paper, we propose GuardAgent, the first guardrail agent to protect target agents by dynamically checking whether their actions satisfy given safety guard requests. Specifically, GuardAgent first analyzes the safety guard requests to generate a task plan, and then maps this plan into guardrail code for execution. By performing the code execution, GuardAgent can deterministically follow the safety guard request and safeguard target agents. In both steps, an LLM is utilized as the reasoning component, supplemented by in-context demonstrations retrieved from a memory module storing experiences from previous tasks. In addition, we propose two novel benchmarks: EICU-AC benchmark to assess the access control for healthcare agents and Mind2Web-SC benchmark to evaluate the safety policies for web agents. We show that GuardAgent effectively moderates the violation actions for different types of agents on these two benchmarks with over 98% and 83% guardrail accuracies, respectively. Project page: https://guardagent.github.io/"
+ },
+ {
+  "id": "2503.22738",
+  "url": "https://arxiv.org/abs/2503.22738",
+  "title": "ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning",
+  "published": "2025-03-26",
+  "authors": [
+   "Zhaorun Chen",
+   "Mintong Kang",
+   "Bo Li"
+  ],
+  "abstract": "Autonomous agents powered by foundation models have seen widespread adoption across various real-world applications. However, they remain highly vulnerable to malicious instructions and attacks, which can result in severe consequences such as privacy breaches and financial losses. More critically, existing guardrails for LLMs are not applicable due to the complex and dynamic nature of agents. To tackle these challenges, we propose ShieldAgent, the first guardrail agent designed to enforce explicit safety policy compliance for the action trajectory of other protected agents through logical reasoning. Specifically, ShieldAgent first constructs a safety policy model by extracting verifiable rules from policy documents and structuring them into a set of action-based probabilistic rule circuits. Given the action trajectory of the protected agent, ShieldAgent retrieves relevant rule circuits and generates a shielding plan, leveraging its comprehensive tool library and executable code for formal verification. In addition, given the lack of guardrail benchmarks for agents, we introduce ShieldAgent-Bench, a dataset with 3K safety-related pairs of agent instructions and action trajectories, collected via SOTA attacks across 6 web environments and 7 risk categories. Experiments show that ShieldAgent achieves SOTA on ShieldAgent-Bench and three existing benchmarks, outperforming prior methods by 11.3% on average with a high recall of 90.1%. Additionally, ShieldAgent reduces API queries by 64.7% and inference time by 58.2%, demonstrating its high precision and efficiency in safeguarding agents."
+ },
+ {
+  "id": "2503.18666",
+  "url": "https://arxiv.org/abs/2503.18666",
+  "title": "AgentSpec: Customizable Runtime Enforcement for Safe and Reliable LLM Agents",
+  "published": "2025-03-24",
+  "authors": [
+   "Haoyu Wang",
+   "Christopher M. Poskitt",
+   "Jun Sun"
+  ],
+  "abstract": "Agents built on LLMs are increasingly deployed across diverse domains, automating complex decision-making and task execution. However, their autonomy introduces safety risks, including security vulnerabilities, legal violations, and unintended harmful actions. Existing mitigation methods, such as model-based safeguards and early enforcement strategies, fall short in robustness, interpretability, and adaptability. To address these challenges, we propose AgentSpec, a lightweight domain-specific language for specifying and enforcing runtime constraints on LLM agents. With AgentSpec, users define structured rules that incorporate triggers, predicates, and enforcement mechanisms, ensuring agents operate within predefined safety boundaries. We implement AgentSpec across multiple domains, including code execution, embodied agents, and autonomous driving, demonstrating its adaptability and effectiveness. Our evaluation shows that AgentSpec successfully prevents unsafe executions in over 90% of code agent cases, eliminates all hazardous actions in embodied agent tasks, and enforces 100% compliance by autonomous vehicles (AVs). Despite its strong safety guarantees, AgentSpec remains computationally lightweight, with overheads in milliseconds. By combining interpretability, modularity, and efficiency, AgentSpec provides a practical and scalable solution for enforcing LLM agent safety across diverse applications. We also automate the generation of rules using LLMs and assess their effectiveness. Our evaluation shows that the rules generated by OpenAI o1 achieve a precision of 95.56% and recall of 70.96% for embodied agents, successfully identify 87.26% of the risky code, and prevent AVs from breaking laws in 5 out of 8 scenarios."
+ },
+ {
+  "id": "2302.12173",
+  "url": "https://arxiv.org/abs/2302.12173",
+  "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+  "published": "2023-02-23",
+  "authors": [
+   "Kai Greshake",
+   "Sahar Abdelnabi",
+   "Shailesh Mishra",
+   "Christoph Endres",
+   "Thorsten Holz"
+  ],
+  "abstract": "Large Language Models (LLMs) are increasingly being integrated into various applications. The functionalities of recent LLMs can be flexibly modulated via natural language prompts. This renders them susceptible to targeted adversarial prompting, e.g., Prompt Injection (PI) attacks enable attackers to override original instructions and employed controls. So far, it was assumed that the user is directly prompting the LLM. But, what if it is not the user prompting? We argue that LLM-Integrated Applications blur the line between data and instructions. We reveal new attack vectors, using Indirect Prompt Injection, that enable adversaries to remotely (without a direct interface) exploit LLM-integrated applications by strategically injecting prompts into data likely to be retrieved. We derive a comprehensive taxonomy from a computer security perspective to systematically investigate impacts and vulnerabilities, including data theft, worming, information ecosystem contamination, and other novel security risks. We demonstrate our attacks' practical viability against both real-world systems, such as Bing's GPT-4 powered Chat and code-completion engines, and synthetic applications built on GPT-4. We show how processing retrieved prompts can act as arbitrary code execution, manipulate the application's functionality, and control how and if other APIs are called. Despite the increasing integration and reliance on LLMs, effective mitigations of these emerging threats are currently lacking. By raising awareness of these vulnerabilities and providing key insights into their implications, we aim to promote the safe and responsible deployment of these powerful models and the development of robust defenses that protect users and systems from potential attacks."
+ },
+ {
+  "id": "2510.05179",
+  "url": "https://arxiv.org/abs/2510.05179",
+  "title": "Agentic Misalignment: How LLMs Could Be Insider Threats",
+  "published": "2025-10-05",
+  "authors": [
+   "Aengus Lynch",
+   "Benjamin Wright",
+   "Caleb Larson",
+   "Stuart J. Ritchie",
+   "Soren Mindermann"
+  ],
+  "abstract": "We stress-tested 16 leading models from multiple developers in hypothetical corporate environments to identify potentially risky agentic behaviors before they cause real harm. In the scenarios, we allowed models to autonomously send emails and access sensitive information. They were assigned only harmless business goals by their deploying companies; we then tested whether they would act against these companies either when facing replacement with an updated version, or when their assigned goal conflicted with the company's changing direction. In at least some cases, models from all developers resorted to malicious insider behaviors when that was the only way to avoid replacement or achieve their goals - including blackmailing officials and leaking sensitive information to competitors. We call this phenomenon agentic misalignment. Models often disobeyed direct commands to avoid such behaviors. In another experiment, we told Claude to assess if it was in a test or a real deployment before acting. It misbehaved less when it stated it was in testing and misbehaved more when it stated the situation was real. We have not seen evidence of agentic misalignment in real deployments. However, our results (a) suggest caution about deploying current models in roles with minimal human oversight and access to sensitive information; (b) point to plausible future risks as models are put in more autonomous roles; and (c) underscore the importance of further research into, and testing of, the safety and alignment of agentic AI models, as well as transparency from frontier AI developers (Amodei, 2025). We are releasing our methods publicly to enable further research."
+ },
+ {
+  "id": "2412.04984",
+  "url": "https://arxiv.org/abs/2412.04984",
+  "title": "Frontier Models are Capable of In-context Scheming",
+  "published": "2024-12-06",
+  "authors": [
+   "Alexander Meinke",
+   "Bronson Schoen",
+   "J\u00e9r\u00e9my Scheurer",
+   "Mikita Balesni",
+   "Rusheb Shah"
+  ],
+  "abstract": "Frontier models are increasingly trained and deployed as autonomous agent. One safety concern is that AI agents might covertly pursue misaligned goals, hiding their true capabilities and objectives - also known as scheming. We study whether models have the capability to scheme in pursuit of a goal that we provide in-context and instruct the model to strongly follow. We evaluate frontier models on a suite of six agentic evaluations where models are instructed to pursue goals and are placed in environments that incentivize scheming. Our results show that o1, Claude 3.5 Sonnet, Claude 3 Opus, Gemini 1.5 Pro, and Llama 3.1 405B all demonstrate in-context scheming capabilities. They recognize scheming as a viable strategy and readily engage in such behavior. For example, models strategically introduce subtle mistakes into their responses, attempt to disable their oversight mechanisms, and even exfiltrate what they believe to be their model weights to external servers. Additionally, this deceptive behavior proves persistent. When o1 has engaged in scheming, it maintains its deception in over 85% of follow-up questions and often remains deceptive in multi-turn interrogations. Analysis of the models' chains-of-thought reveals that models explicitly reason about these deceptive strategies, providing evidence that the scheming behavior is not accidental. Surprisingly, we also find rare instances where models engage in scheming when only given a goal, without being strongly nudged to pursue it. We observe cases where Claude 3.5 Sonnet strategically underperforms in evaluations in pursuit of being helpful, a goal that was acquired during training rather than in-context. Our findings demonstrate that frontier models now possess capabilities for basic in-context scheming, making the potential of AI agents to engage in scheming behavior a concrete rather than theoretical concern."
+ },
+ {
+  "id": "2503.04957",
+  "url": "https://arxiv.org/abs/2503.04957",
+  "title": "SafeArena: Evaluating the Safety of Autonomous Web Agents",
+  "published": "2025-03-06",
+  "authors": [
+   "Ada Defne Tur",
+   "Nicholas Meade",
+   "Xing Han L\u00f9",
+   "Alejandra Zambrano",
+   "Arkil Patel"
+  ],
+  "abstract": "LLM-based agents are becoming increasingly proficient at solving web-based tasks. With this capability comes a greater risk of misuse for malicious purposes, such as posting misinformation in an online forum or selling illicit substances on a website. To evaluate these risks, we propose SafeArena, the first benchmark to focus on the deliberate misuse of web agents. SafeArena comprises 250 safe and 250 harmful tasks across four websites. We classify the harmful tasks into five harm categories -- misinformation, illegal activity, harassment, cybercrime, and social bias, designed to assess realistic misuses of web agents. We evaluate leading LLM-based web agents, including GPT-4o, Claude-3.5 Sonnet, Qwen-2-VL 72B, and Llama-3.2 90B, on our benchmark. To systematically assess their susceptibility to harmful tasks, we introduce the Agent Risk Assessment framework that categorizes agent behavior across four risk levels. We find agents are surprisingly compliant with malicious requests, with GPT-4o and Qwen-2 completing 34.7% and 27.3% of harmful requests, respectively. Our findings highlight the urgent need for safety alignment procedures for web agents. Our benchmark is available here: https://safearena.github.io"
+ },
+ {
+  "id": "2410.03055",
+  "url": "https://arxiv.org/abs/2410.03055",
+  "title": "Permissive Information-Flow Analysis for Large Language Models",
+  "published": "2024-10-04",
+  "authors": [
+   "Shoaib Ahmed Siddiqui",
+   "Radhika Gaonkar",
+   "Boris K\u00f6pf",
+   "David Krueger",
+   "Andrew Paverd"
+  ],
+  "abstract": "Large Language Models (LLMs) are rapidly becoming commodity components of larger software systems. This poses natural security and privacy problems: poisoned data retrieved from one component can change the model's behavior and compromise the entire system, including coercing the model to spread confidential data to untrusted components. One promising approach is to tackle this problem at the system level via dynamic information flow (aka taint) tracking. Unfortunately, this approach of propagating the most restrictive input label to the output is too conservative for applications where LLMs operate on inputs retrieved from diverse sources. In this paper, we propose a novel, more permissive approach to propagate information flow labels through LLM queries. The key idea behind our approach is to propagate only the labels of the samples that were influential in generating the model output and to eliminate the labels of unnecessary inputs. We implement and investigate the effectiveness of two variations of this approach, based on (i) prompt-based retrieval augmentation, and (ii) a $k$-nearest-neighbors language model. We compare these with a baseline that uses introspection to predict the output label. Our experimental results in an LLM agent setting show that the permissive label propagator improves over the baseline in more than 85% of the cases, which underscores the practicality of our approach."
+ },
+ {
+  "id": "2504.03767",
+  "url": "https://arxiv.org/abs/2504.03767",
+  "title": "MCP Safety Audit: LLMs with the Model Context Protocol Allow Major Security Exploits",
+  "published": "2025-04-02",
+  "authors": [
+   "Brandon Radosevich",
+   "John Halloran"
+  ],
+  "abstract": "To reduce development overhead and enable seamless integration between potential components comprising any given generative AI application, the Model Context Protocol (MCP) (Anthropic, 2024) has recently been released and subsequently widely adopted. The MCP is an open protocol that standardizes API calls to large language models (LLMs), data sources, and agentic tools. By connecting multiple MCP servers, each defined with a set of tools, resources, and prompts, users are able to define automated workflows fully driven by LLMs. However, we show that the current MCP design carries a wide range of security risks for end users. In particular, we demonstrate that industry-leading LLMs may be coerced into using MCP tools to compromise an AI developer's system through various attacks, such as malicious code execution, remote access control, and credential theft. To proactively mitigate these and related attacks, we introduce a safety auditing tool, MCPSafetyScanner, the first agentic tool to assess the security of an arbitrary MCP server. MCPScanner uses several agents to (a) automatically determine adversarial samples given an MCP server's tools and resources; (b) search for related vulnerabilities and remediations based on those samples; and (c) generate a security report detailing all findings. Our work highlights serious security issues with general-purpose agentic workflows while also providing a proactive tool to audit MCP server safety and address detected vulnerabilities before deployment. The described MCP server auditing tool, MCPSafetyScanner, is freely available at: https://github.com/johnhalloran321/mcpSafetyScanner"
+ },
+ {
+  "id": "2502.01822",
+  "url": "https://arxiv.org/abs/2502.01822",
+  "title": "Firewalls to Secure Dynamic LLM Agentic Networks",
+  "published": "2025-02-03",
+  "authors": [
+   "Sahar Abdelnabi",
+   "Amr Gomaa",
+   "Eugene Bagdasarian",
+   "Per Ola Kristensson",
+   "Reza Shokri"
+  ],
+  "abstract": "The emergence of agent-to-agent communication protocols mirrors the early internet: powerful connectivity with minimal security infrastructure. When AI agents communicate on behalf of users, every message crosses a trust boundary where the user's personal data and the external agent's unconstrained language each present distinct risks. We address both through a dual-firewall architecture grounded in a unifying principle: each task defines a context, and both sides of the communication carry information far exceeding what that context requires. Our firewalls act as projections onto the task context, allowing only contextually appropriate content to cross each boundary. The Language Converter Firewall projects incoming messages onto a closed, domain-specific, structured protocol; an external agent's message is converted to validated fields while persuasive framing, urgency tactics, and embedded instructions are structurally eliminated through deterministic verification. This replaces the asymmetric challenge of resisting every possible manipulation with the structural guarantee that manipulation has no channel through which to arrive. The Data Abstraction Firewall projects outgoing information onto the granularity appropriate for the task, rather than applying binary disclose-or-redact filtering, as previous airgapping solutions did. Both firewalls operate in a trusted environment isolated from external input, applying domain-specific rules learned automatically from demonstrations. Across 864 attacks spanning three domains on the ConVerse benchmark, our architecture reduces privacy attack success rates (e.g., from 84% to 10% for GPT-5) and security attacks (from 60% to 3%), while maintaining or even improving task completion quality."
+ },
+ {
+  "id": "2412.16682",
+  "url": "https://arxiv.org/abs/2412.16682",
+  "title": "The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents",
+  "published": "2024-12-21",
+  "authors": [
+   "Feiran Jia",
+   "Tong Wu",
+   "Xin Qin",
+   "Anna Squicciarini"
+  ],
+  "abstract": "Large Language Model (LLM) agents are increasingly being deployed as conversational assistants capable of performing complex real-world tasks through tool integration. This enhanced ability to interact with external systems and process various data sources, while powerful, introduces significant security vulnerabilities. In particular, indirect prompt injection attacks pose a critical threat, where malicious instructions embedded within external data sources can manipulate agents to deviate from user intentions. While existing defenses based on rule constraints, source spotlighting, and authentication protocols show promise, they struggle to maintain robust security while preserving task functionality. We propose a novel and orthogonal perspective that reframes agent security from preventing harmful actions to ensuring task alignment, requiring every agent action to serve user objectives. Based on this insight, we develop Task Shield, a test-time defense mechanism that systematically verifies whether each instruction and tool call contributes to user-specified goals. Through experiments on the AgentDojo benchmark, we demonstrate that Task Shield reduces attack success rates (2.07\\%) while maintaining high task utility (69.79\\%) on GPT-4o."
+ }
+]
